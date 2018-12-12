@@ -7,6 +7,10 @@
 	\usepackage{helvet}
 \fi
 \renewcommand{\familydefault}{\sfdefault}
+
+\usepackage{tikz}
+\tikzstyle{block} = [rectangle, draw, text width=5em, text centered, rounded corners, minimum height=3em]
+
 \def \code #1{\texttt{#1}}
 
 \begin{document}
@@ -29,4 +33,30 @@
 				Command senders with a certain permission (especially non-in-game senders like console) can create minion
 				builder sessions upon typing a command. The session's permission and location will be controlled by the
 				command sender.
+			Each builder session has an allocated amount of resources; this allocation may affect the rate of world-editing
+			operations to maximize server performance.
+
+			For implicit and explicit modes, the builder session's position and orientation is synchronized with the
+			player. The position uses the block that \textbf{the player's feet stand in}.
+			\begin{itemize}
+				\item If the player is floating on a lake of liquid, the highest level of the liquid is used.
+				\item If the player is standing on a full block (or the part of the block with full height, e.g. an upper slab, the upper step of a stair block), the \emph{air block above} the full block is used.
+				\item If the player is standing on an incomplete block (e.g. a lower slab, a chest block, an open-upwards trapdoor), the block itself is used.
+			\end{itemize}
+
+		\subsection{The core world editing chain}
+			\begin{tikzpicture}[node distance = 2cm, auto]
+				\node [block] (a) {Selection};
+				\node [block below of=a] (b) {Block iterator};
+				\path [line] (a) -- (b);
+				\node [block below of=b] (c) {Block changer};
+				\path [line] (b) -- (c);
+				\node [block below of=c] (d) {Cassette};
+				\path [line] (c) -- (d);
+				\node [block below of=d] (e) {User history};
+				\path [line] (d) -- (e);
+				\node [block below of=f] (g) {Load synchronizer};
+				\path [line] (f) -- (g);
+			\end{tikzpicture}
+
 \end{document}
