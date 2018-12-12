@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=latex 2018.12.12)  12 DEC 2018 09:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=latex 2018.12.12)  12 DEC 2018 10:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -499,57 +499,57 @@ version 2017-03-30-16:04
 )) (./index.aux)
 \openout1 = `index.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
 \AtBeginShipoutBox=\box26
-Package hyperref Info: Link coloring ON on input line 10.
-LaTeX Info: Redefining \ref on input line 10.
-LaTeX Info: Redefining \pageref on input line 10.
-LaTeX Info: Redefining \nameref on input line 10.
+Package hyperref Info: Link coloring ON on input line 6.
+LaTeX Info: Redefining \ref on input line 6.
+LaTeX Info: Redefining \pageref on input line 6.
+LaTeX Info: Redefining \nameref on input line 6.
 --- file index.css ---
  [1
 
 ] [2]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 11.
+(Font)              <12> on input line 7.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 11.
+(Font)              <8> on input line 7.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 11.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 13.
+(Font)              <6> on input line 7.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 9.
  (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 13.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 15.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 9.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 11.
  [3]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 15.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 11.
 
 (./index.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 15.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 15.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 15.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 11.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 11.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 11.
  ) 
 Here is how much of TeX's memory you used:
- 7696 strings out of 494587
- 102286 string characters out of 6177827
- 314140 words of memory out of 5000000
- 11222 multiletter control sequences out of 15000+600000
+ 7695 strings out of 494587
+ 102282 string characters out of 6177827
+ 314127 words of memory out of 5000000
+ 11221 multiletter control sequences out of 15000+600000
  6675 words of font info for 24 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  37i,6n,27p,746b,506s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on index.dvi (3 pages, 10412 bytes).
+Output written on index.dvi (3 pages, 10428 bytes).
