@@ -9,5 +9,3 @@
 *.log
 *.tmp
 *.xref
-build/*
-!build/Makefile

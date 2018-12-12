@@ -7,4 +7,4 @@ RUN cd /root && git clone https://github.com/SOF3/plugin-proposals
 WORKDIR /root/plugin-proposals/build
 RUN rm *
 
-CMD make all
+CMD ./travis.sh
