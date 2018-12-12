@@ -1,0 +1,13 @@
+*.4ct
+*.4tc
+*.aux
+*.css
+*.dvi
+*.html
+*.idv
+*.lg
+*.log
+*.tmp
+*.xref
+build/*
+!build/Makefile
