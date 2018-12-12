@@ -1,3 +1,3 @@
 #!/bin/bash
-git checkout $1
+(cd .. && git pull && git checkout $1)
 make all
