@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>WorldEditArt</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html --> 
+<meta name="src" content="WorldEditArt.tex"> 
+<link rel="stylesheet" type="text/css" href="WorldEditArt.css"> 
+</head><body 
+>
+   <div class="maketitle">
+
+
+
+<h2 class="titleHead">WorldEditArt</h2>
+<div class="author" ><span 
+class="cmss-12">SOFe</span></div><br />
+<div class="date" ><span 
+class="cmss-12">2017-07-20</span></div>
+   </div>This proposal describes a world edit plugin largely based on features originally
+intended in WorldEditArt, along with some new ideas.
+   <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
+ id="x1-10001"></a>Plugin mechanism</h3>
+<!--l. 17--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">1.1   </span> <a 
+ id="x1-20001.1"></a>Builder sessions</h4>
+<!--l. 18--><p class="noindent" >Users of this plugin should be managed in &#8221;builder sessions&#8221; with individual access
+information. Builder sessions can be created in three modes, namely:
+<!--l. 20--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-30001.1"></a><span 
+class="cmssbx-10">Implicit Mode</span></span>
+   Players with a certain permission will start a builder session upon joining
+a game. The session&#8217;s permission and location will be synchronized with the
+player.
+<!--l. 23--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-40001.1"></a><span 
+class="cmssbx-10">Explicit Mode</span></span>
+   Players with a certain permission will start a builder session upon typing a command.
+The session&#8217;s permission and location will be synchronized with the player, and can be
+closed with a command. The command may be locked with a private password (similar to
+the <span 
+class="cmtt-10">sudo </span>Linux command) or global password (similar to the <span 
+class="cmtt-10">su </span>Linux command) for
+additional protection.
+<!--l. 28--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-50001.1"></a><span 
+class="cmssbx-10">Minion Mode</span></span>
+   Command senders with a certain permission (especially non-in-game senders
+like console) can create minion builder sessions upon typing a command. The
+session&#8217;s permission and location will be controlled by the command sender.
+ 
+</body></html> 
+
+
+
