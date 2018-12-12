@@ -3,6 +3,8 @@
 	\date{2017-07-20}
 	\author{SOFe}
 
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
 \def \code #1{\texttt{#1}}
 
 \begin{document}
@@ -18,10 +20,9 @@
 				and location will be synchronized with the player.
 			\paragraph{Explicit Mode}
 				Players with a certain permission will start a builder session upon typing a command. The session's
-				permission and location will be synchronized with the player, and can be closed with a command.
-
-				The command may be locked with a private password \(similar to the `sudo` Linux command\) or global password
-				(similar to the `su` Linux command) for additional protection.
+				permission and location will be synchronized with the player, and can be closed with a command. The command
+				may be locked with a private password (similar to the \texttt{sudo} Linux command) or global password
+				(similar to the \texttt{su} Linux command) for additional protection.
 			\paragraph{Minion Mode}
 				Command senders with a certain permission (especially non-in-game senders like console) can create minion
 				builder sessions upon typing a command. The session's permission and location will be controlled by the
