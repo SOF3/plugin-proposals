@@ -1,12 +1,21 @@
 env:
   global:
     - secure: "JgQ0RnMwAEaJekcc2V8Xw7C2/Jt6KGPOBdrYj+H58qMZPQEXMcKIxrl8AUxr6cBK6QcOjX3jLHgpqQj8MOlSV0YvNTOmWUgG/fiYo8h/UMKvJ7GL1fYY0vKgjNCO36ZwkGS94k0c8f04IzyuGuw8SDGJeuVLeWN076Gp7f4uYivSpVLRJMVepPGHMDjopeuAm4ZaG04BFUf1UvBjuzWyP/zvtihfNOyjXP3Naz04Xdn7bjVR71qU7cfnkN+RXMNZGGEuRgDci13Bu/E+oRuU+NNS4tIuCsaYDFMOWp1FCtk6LnP+IJkoLbWsXg800I7C34jjuKwKam8/3LpgTSLPsqn8v0o3F0R9yY0RdIrdCnelmtsjxWZa3mRi99ErEnp2kSrPh9YKBxyegwSKGKWDpYJp0Qg+2TA7sL/JhNiS+Z5WUr3IPzmrxPozQ2vvX/dwwy0YNLO9MuNgsdORbzH3V+nbgwBObkEejhHdMujC6NFu1wv52sl06hS7qOZeWoJQqtuXjTLx2QfEmQym7/QtweBGF+rI9NppEKB1Fw3goz9OplW55gvH08zp7HfmzYD5M27zg/bGtLI26apfKhKs7DceFbGLN/2dFcudn1ca/MvGOt8KfqAwi7RFoM/YC7ZMbppYpgIY+RBZ+RMc2X5i7LBNUzn08HBfTsYBxhecEf0="
+cache:
+  bundler: true
+  directories:
+    - $HOME/docker
 services:
 - docker # just because Travis-CI doesn't have ubuntu bionic
+before_cache:
+  # Save tagged docker images
+  - mkdir -p $HOME/docker && docker images -a --filter='dangling=false' --format '{{.Repository}}:{{.Tag}} {{.ID}}' | xargs -n 2 -t sh -c 'test -e $HOME/docker/$1.tar.gz || docker save $0 | gzip -2 > $HOME/docker/$1.tar.gz'
+before_install:
+  - if [[ -d $HOME/docker ]]; then ls $HOME/docker/*.tar.gz | xargs -I {file} sh -c "zcat {file} | docker load"; fi
 install:
 - docker build -t httex docker
 script:
-- "docker run -v=$(pwd)/build:/root/plugin-proposals/build -it httex"
+- "docker run -v=$(pwd)/build:/root/plugin-proposals/build httex"
 deploy:
   provider: pages
   skip-cleanup: true
