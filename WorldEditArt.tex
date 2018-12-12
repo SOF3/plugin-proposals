@@ -2,6 +2,28 @@
 	\title{WorldEditArt}
 	\date{2017-07-20}
 	\author{SOFe}
+
+\def \code #1{\texttt{#1}}
+
 \begin{document}
 	\maketitle
+	This proposal describes a world edit plugin largely based on features originally intended in WorldEditArt, along with
+	some new ideas.
+	\section{Plugin mechanism}
+		\subsection{Builder sessions}
+			Users of this plugin should be managed in "builder sessions" with individual access information. Builder
+			sessions can be created in three modes, namely:
+			\paragraph{Implicit Mode}
+				Players with a certain permission will start a builder session upon joining a game. The session's permission
+				and location will be synchronized with the player.
+			\paragraph{Explicit Mode}
+				Players with a certain permission will start a builder session upon typing a command. The session's
+				permission and location will be synchronized with the player, and can be closed with a command.
+
+				The command may be locked with a private password \(similar to the `sudo` Linux command\) or global password
+				(similar to the `su` Linux command) for additional protection.
+			\paragraph{Minion Mode}
+				Command senders with a certain permission (especially non-in-game senders like console) can create minion
+				builder sessions upon typing a command. The session's permission and location will be controlled by the
+				command sender.
 \end{document}
