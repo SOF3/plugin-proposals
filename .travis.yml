@@ -13,9 +13,9 @@ before_cache:
 before_install:
   - if [[ -d $HOME/docker ]]; then ls $HOME/docker/*.tar.gz | xargs -I {file} sh -c "zcat {file} | docker load"; fi
 install:
-- docker build -t httex docker
+- "docker build -t httex:$(sha1sum docker/Dockerfile | cut -c1-8) docker"
 script:
-- "docker run -v=$(pwd)/build:/root/plugin-proposals/build httex"
+- "docker run -v=$(pwd)/build:/root/plugin-proposals/build httex:$(sha1sum docker/Dockerfile | cut -c1-8)"
 deploy:
   provider: pages
   skip-cleanup: true
