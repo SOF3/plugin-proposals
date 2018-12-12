@@ -1,3 +1,3 @@
 #!/bin/bash
-git checkout $TRAVIS_COMMIT
+git checkout $1
 make all
