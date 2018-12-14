@@ -17,8 +17,8 @@
 	This proposal describes a world edit plugin largely based on features originally intended in WorldEditArt, along with
 	some new ideas.
 
-	\section{Plugin mechanism}
-		\subsection{Builder sessions}
+	\part{Plugin mechanism}
+		\chapter{Builder sessions}
 			Users of this plugin should be managed in "builder sessions" with individual access information. Builder
 			sessions can be created in three modes, namely:
 			\paragraph{Implicit Mode}
@@ -44,7 +44,7 @@
 				\item If the player is standing on an incomplete block (e.g. a lower slab, a chest block, an open-upwards trapdoor), the block itself is used.
 			\end{itemize}
 
-		\subsection{The core world editing chain}
+		\chapter{The core world editing chain}
 			\begin{itemize}
 				\item Selection
 				\item Block Iterator
@@ -54,7 +54,7 @@
 				\item Load Synchronizer
 			\end{itemize}
 
-			\subsubsection{Selection and block iterator}
+			\section{Selection and block iterator}
 				A selection refers to a 3D shape. A selection can be created by various methods as described in the
 				\hyperref[sec:shape-selection]{Shape Selection} section.
 
@@ -66,7 +66,7 @@
 				blocks on the margin of the selection at a defined padding (inside the border) and margin (outside the
 				border).
 
-			\subsubsection{Block changer}
+			\section{Block changer}
 				A block changer is an interface that accepts a Block argument and returns another Block argument,
 				determining the new block to set.
 
@@ -81,22 +81,22 @@
 				\paragraph{Weighted random list block changer} Same as random list block changer, except that the block
 				types have different probability of being selected.
 
-			\subsubsection{Clipboard chain}
+			\section{Clipboard chain}
 				An alternative chain is \texttt{Clipboard -> Cassette -> User History -> Load Synchronizer}, where the
 				clipboard provides both the block iterator and the block changer. More details will be described in the
 				\hyperref[sec:clipboard]{Clipboar} section.
 
-			\subsubsection{Cassette}
+			\section{Cassette}
 				A cassette is a section of server memory, or a temporary file on the hard disk (if greater than 10MB),
 				storing an ordered list of blocks changed in an operation. It can be re-executed in forward or backward
 				order to redo/undo the operation.
 
-			\subsubsection{User history}
+			\section{User history}
 				A user history manages an "undo stack" and a "redo stack", each holding an ordered list of cassettes.
 				When the user requests to undo or redo, a cassette from one stack will be moved to the other stack, and
 				pass a reference to the cassette to the load synchronizer.
 
-			\subsubsection{Load synchronizer}
+			\section{Load synchronizer}
 				The load synchronizer manages chunk locking and cassette operation queuing. Before starting an
 				operation, it determines whether the operation should be executed synchronously or asynchronously and
 				stores the chunks (identifiers only) affected by the cassette to manage locking. \emph{Cassette
@@ -108,7 +108,7 @@
 				asynchronous strategy (lock the chunks, pass all parameters to an AsyncTask, modify them on the other
 				thread and send the whole chunks).
 
-			\subsubsection{User interface}
+			\section{User interface}
 				While the chain consists of five components, the user only needs to make two inputs, and only look at
 				the final user history.
 
@@ -122,13 +122,25 @@
 				If the load synchronizer contains cassettes used by the user, it should show a progress bar on the
 				user's screen (tips for players, periodic logger messages (at a lower frequency) for console).
 
-		\subsection{Shape selection}
+		\chapter{Shape selection}
 			The geometric logic is implemented in \textit{libgeom}, while the UI logic is implemented in this plugin.
 
-			A \paragraph{wand} refers to a combination of an item and an action; left-clicking with an emerald and
+			A \emph{wand} refers to a combination of an item and an action; left-clicking with an emerald and
 			right-clicking with an emerald are considered as two different wands.
 
 			A wand can be virtually used using a command. For example, the command \texttt{//pos1} is equivalent to clicking
 			the \texttt{pos1} wand at the block that the builder session currently stands in.
+
+			\section{Cuboid}
+				\subsection{Definition} Two points named \texttt{pos1} and \texttt{pos2}. The smallest cuboid
+				inscribing both points is selected.
+				\subsection{Creation}
+					\paragraph{Explicit selection} Execute the commands \texttt{//pos1} and \texttt{//pos2} to select the two
+					positions separately.
+					\paragraph{\texttt{grow} command} \texttt{//cuboid grow} grows a cuboid around the \textit{this}
+					position.
+					\paragraph{\texttt{shoot} command} \texttt{//cuboid shoot} selects the \textit{this} position as
+					\texttt{pos1}, then shoots a ray along the \textit{this} orientation for a specified length to
+					obtain \texttt{pos2}.
 
 \end{document}
