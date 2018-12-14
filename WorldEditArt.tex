@@ -11,6 +11,13 @@
 \def \sup #1{\textsuperscript{#1}}
 
 \begin{document}
+	\Css{
+		body {
+			margin: 10px auto;
+			max-width: 1000px;
+		}
+	}
+
 	\maketitle
 	\tableofcontents
 
@@ -135,13 +142,40 @@
 			clicking the \texttt{pos1} wand at the block that the builder session stands in.
 
 			\section{Cuboid}
-				\subsection{Definition} Two points named \texttt{pos1} and \texttt{pos2}. The smallest cuboid
+				\subsection{Definition} A cuboid is always aligned to the XYZ coordinate system.
+				\subsection{Parameters} Two points named \texttt{pos1} and \texttt{pos2}. The smallest cuboid
 				inscribing both points is selected.
 				\subsection{Creation}
-					\subsubsection{Explicit selection} Execute the commands \texttt{//pos1} and \texttt{//pos2} to
-					select the two positions separately. Executing again manipulates the selection.
-					\subsubsection{\texttt{shoot} command} \texttt{//cuboid shoot} selects the \textit{this} position
-					as \texttt{pos1}, then shoots a ray along the \textit{this} orientation for a specified length to
+					\paragraph{Explicit selection} Execute the wands \texttt{pos1} and \texttt{pos2} to select the two
+					positions separately. Executing again manipulates the selection.
+					\paragraph{\texttt{shoot} command} \texttt{//cuboid shoot <distance>} selects the \textit{this}
+					position as \texttt{pos1}, then shoots a ray along the \textit{this} orientation for a specified length to
 					obtain \texttt{pos2}.
+					\paragraph{\texttt{grow} command} \texttt{//cuboid grow <+x> [-x] <+y> [-y] <+z> [-z]} modifies the
+					current cuboid selection by extending the cuboid on the specified sides. \texttt{pos1} and \texttt{pos2}
+					points might be flipped.
 
-\end{document}
+			\section{Circular frustum}
+				\subsection{Definition} A circular frustum is very flexible. It is the generalization of:
+					\begin{itemize}
+						\item \href{http://mathworld.wolfram.com/Cylinder.html}{Cylinders}
+						\item \href{http://mathworld.wolfram.com/Cone.html}{Cones}
+						\item \href{http://mathworld.wolfram.com/ConicalFrustum.html}{Conical frustums}
+					\end{itemize}
+
+					Of which, the base shape can be a circle or an ellipse. The base circle may or may not align to the
+					XYZ coordinate system. The principal axis (the axis of rotation symmetry) may or may not be
+					orthogonal to the XYZ coordinate system, and may or may not be orthogonal to the base shape.
+					However, the top shape (for cylinders and conical frustums) must be parallel to the base shape.
+				\subsection{Parameters} Despite the great flexibility, there are no conditional parameters. The shape
+				is always only parameterized by a base ellipse and a top ellipse.
+					\paragraph{Base shape} The base ellipse is defined by a center point \texttt{baseCenter} (a
+					position vector), axis 1 \texttt{baseAxis1} (a relative vector from the center to one of the
+					extreme points on the ellipse) and axis 2 \texttt{baseAxis2} (a relative vector orthogonal to
+					\texttt{baseAxis1} to represent the other elliptic axis).
+					\paragraph{Top shape} The top shape must be a stretched projection of the base shape. That is, the
+					top shape has parallel axes 1 and 2 to the base shape, but the lengths can be different. Therefore,
+					the top shape is defined by the center point \texttt{topCenter}, length of axis 1
+					\texttt{topLength1} and length of axis 2 \texttt{topLength2}.
+
+	\end{document}
