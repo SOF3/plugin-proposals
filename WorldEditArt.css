@@ -1,6 +1,42 @@
  
 /* start css.sty */
 .cmss-10{  font-family: sans-serif;}
+.cmss-10{  font-family: sans-serif;}
+.cmss-10{  font-family: sans-serif;}
+.cmss-10{  font-family: sans-serif;}
+.cmss-10{  font-family: sans-serif;}
+.cmss-10{  font-family: sans-serif;}
+.cmss-17{font-size:170%;  font-family: sans-serif;}
+.cmss-17{  font-family: sans-serif;}
+.cmss-17{  font-family: sans-serif;}
+.cmss-17{  font-family: sans-serif;}
+.cmss-17{  font-family: sans-serif;}
+.cmss-17{  font-family: sans-serif;}
+.cmss-12{font-size:120%;  font-family: sans-serif;}
+.cmss-12{  font-family: sans-serif;}
+.cmss-12{  font-family: sans-serif;}
+.cmss-12{  font-family: sans-serif;}
+.cmss-12{  font-family: sans-serif;}
+.cmss-12{  font-family: sans-serif;}
+.cmtt-10{font-family: monospace;}
+.cmssbx-10{ font-family: sans-serif; font-weight: bold;}
+.cmssbx-10{ font-family: sans-serif; font-weight: bold;}
+.cmssbx-10{ font-family: sans-serif; font-weight: bold;}
+.cmssbx-10{ font-family: sans-serif; font-weight: bold;}
+.cmssbx-10{ font-family: sans-serif; font-weight: bold;}
+.cmssbx-10{ font-family: sans-serif; font-weight: bold;}
+.cmssi-10{ font-family: sans-serif; font-style: oblique;}
+.cmssi-10{ font-family: sans-serif; font-style: oblique;}
+.cmssi-10{ font-family: sans-serif; font-style: oblique;}
+.cmssi-10{ font-family: sans-serif; font-style: oblique;}
+.cmssi-10{ font-family: sans-serif; font-style: oblique;}
+.cmssi-10{ font-family: sans-serif; font-style: oblique;}
+.cmss-9{font-size:90%;  font-family: sans-serif;}
+.cmss-9{  font-family: sans-serif;}
+.cmss-9{  font-family: sans-serif;}
+.cmss-9{  font-family: sans-serif;}
+.cmss-9{  font-family: sans-serif;}
+.cmss-9{  font-family: sans-serif;}
 p.noindent { text-indent: 0em }
 td p.noindent { text-indent: 0em; margin-top:0em; }
 p.nopar { text-indent: 0em; }
@@ -89,6 +125,7 @@ table.pmatrix {width:100%;}
 span.bar-css {text-decoration:overline;}
 img.cdots{vertical-align:middle;}
 .partToc a, .partToc, .likepartToc a, .likepartToc {line-height: 200%; font-weight:bold; font-size:110%;}
+.chapterToc a, .chapterToc, .likechapterToc a, .likechapterToc, .appendixToc a, .appendixToc {line-height: 200%; font-weight:bold;}
 .index-item, .index-subitem, .index-subsubitem {display:block}
 div.caption {text-indent:-2em; margin-left:3em; margin-right:1em; text-align:left;}
 div.caption span.id{font-weight: bold; white-space: nowrap; }
@@ -106,6 +143,7 @@ div.author, div.date {text-align:center;}
 div.thanks{text-align:left; margin-left:10%; font-size:85%; font-style:italic; }
 div.author{white-space: nowrap;}
 .quotation {margin-bottom:0.25em; margin-top:0.25em; margin-left:1em; }
+h1.partHead{text-align: center}
 .abstract p {margin-left:5%; margin-right:5%;}
 div.abstract {width:100%;}
 /* end css.sty */
