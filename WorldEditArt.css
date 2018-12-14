@@ -115,6 +115,6 @@ div.author{white-space: nowrap;}
 h1.partHead{text-align: center}
 .abstract p {margin-left:5%; margin-right:5%;}
 div.abstract {width:100%;}
- body { margin: 10px auto; max-width: 1000px; } 
+ body { margin: 10px auto; max-width: 1000px; font-family: Verdana, Geneva, sans-serif; } 
 /* end css.sty */
 

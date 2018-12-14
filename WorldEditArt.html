@@ -70,18 +70,18 @@ href="#x1-290003.2.2" id="QQ2-1-29">Parameters</a></span>
    <div 
 class="abstract" 
 >
-<!--l. 24--><p class="indent" >
+<!--l. 25--><p class="indent" >
                                                                   
 
                                                                   
 <div class="center" 
 >
-<!--l. 24--><p class="noindent" >
-<!--l. 24--><p class="noindent" ><span 
+<!--l. 25--><p class="noindent" >
+<!--l. 25--><p class="noindent" ><span 
 class="cmbx-10">Abstract</span></div>
-<!--l. 25--><p class="noindent" >This proposal describes a world edit plugin largely based on features originally intended
+<!--l. 26--><p class="noindent" >This proposal describes a world edit plugin largely based on features originally intended
 in WorldEditArt, along with some new ideas.
-<!--l. 27--><p class="indent" >
+<!--l. 28--><p class="indent" >
                                                                   
 
                                                                   
@@ -89,7 +89,7 @@ in WorldEditArt, along with some new ideas.
                                                                   
 
                                                                   
-<!--l. 29--><p class="indent" >
+<!--l. 30--><p class="indent" >
                                                                   
 
                                                                   
@@ -100,15 +100,15 @@ in WorldEditArt, along with some new ideas.
                                                                   
    <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;1</span><br /><a 
  id="x1-30001"></a>Builder sessions</h2>
-<!--l. 31--><p class="noindent" >Users of this plugin should be managed in &#8221;builder sessions&#8221; with individual access
+<!--l. 32--><p class="noindent" >Users of this plugin should be managed in &#8221;builder sessions&#8221; with individual access
 information. Builder sessions can be created in three modes, namely:
-<!--l. 33--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 34--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-40001"></a><span 
 class="cmbx-10">Implicit Mode</span></span>
    Players with a certain permission will start a builder session upon joining a
 game. The session&#8217;s permission and location will be synchronized with the
 player.
-<!--l. 36--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 37--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-50001"></a><span 
 class="cmbx-10">Explicit Mode</span></span>
    Players with a certain permission will start a builder session upon typing a
@@ -118,7 +118,7 @@ private password (similar to the <span
 class="cmtt-10">sudo </span>Linux command) or global password (similar to
 the <span 
 class="cmtt-10">su </span>Linux command) for additional protection.
-<!--l. 41--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 42--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-60001"></a><span 
 class="cmbx-10">Minion Mode</span></span>
    Command senders with a certain permission (especially non-in-game senders like
@@ -126,7 +126,7 @@ console) can create minion builder sessions upon typing a command. The session&#
 permission and location will be controlled by the command sender. Each builder
 session has an allocated amount of resources; this allocation may affect the rate of
 world-editing operations to maximize server performance.
-<!--l. 48--><p class="indent" >   For implicit and explicit modes, the builder session&#8217;s position and orientation is
+<!--l. 49--><p class="indent" >   For implicit and explicit modes, the builder session&#8217;s position and orientation is
 synchronized with the player. The position uses the block that <span 
 class="cmbx-10">the player&#8217;s feet</span>
 <span 
@@ -162,27 +162,27 @@ class="cmti-10">above </span>the full block is used.
      <li class="itemize">Load Synchronizer</li></ul>
    <h3 class="sectionHead"><span class="titlemark">2.1   </span> <a 
  id="x1-80002.1"></a>Selection and block iterator</h3>
-<!--l. 67--><p class="noindent" >A selection refers to a 3D shape. A selection can be created by various methods as
+<!--l. 68--><p class="noindent" >A selection refers to a 3D shape. A selection can be created by various methods as
 described in the <span 
 class="cmbx-10">??</span> section.
-<!--l. 70--><p class="indent" >   By default, all commands only affect the selection named &#8221;default&#8221;. Builder
+<!--l. 71--><p class="indent" >   By default, all commands only affect the selection named &#8221;default&#8221;. Builder
 sessions may also create other selections, identified by case-insensitive names. The
 selections should be discarded upon closing a builder session (e.g. when a player
 quits).
-<!--l. 74--><p class="indent" >   A selection should provide an iterator providing a unique stream of blocks within
+<!--l. 75--><p class="indent" >   A selection should provide an iterator providing a unique stream of blocks within
 the selection, or blocks on the margin of the selection at a defined padding (inside the
 border) and margin (outside the border).
-<!--l. 78--><p class="noindent" >
+<!--l. 79--><p class="noindent" >
    <h3 class="sectionHead"><span class="titlemark">2.2   </span> <a 
  id="x1-90002.2"></a>Block changer</h3>
-<!--l. 79--><p class="noindent" >A block changer is an interface that accepts a Block argument and returns another
+<!--l. 80--><p class="noindent" >A block changer is an interface that accepts a Block argument and returns another
 Block argument, determining the new block to set.
-<!--l. 82--><p class="indent" >   Four implementations of block changer are proposed:
-<!--l. 83--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 83--><p class="indent" >   Four implementations of block changer are proposed:
+<!--l. 84--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-100002.2"></a><span 
 class="cmbx-10">Simple block changer</span></span>
    The blocks are always set to the specified block type.
-<!--l. 84--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 85--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-110002.2"></a><span 
 class="cmbx-10">Repeating block changer</span></span>
    A list of block types is provided by the user, and the blocks are returned in a
@@ -196,43 +196,43 @@ cuboid, but the direction is undefined.
                                                                   
 
                                                                   
-<!--l. 88--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 89--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-120002.2"></a><span 
 class="cmbx-10">Random list block changer</span></span>
    A list of block types is provided by the user. Each block is set to one of the block
 types in the list randomly selected.
-<!--l. 90--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 91--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-130002.2"></a><span 
 class="cmbx-10">Weighted random list block changer</span></span>
    Same as random list block changer, except that the block types have different
 probability of being selected.
-<!--l. 93--><p class="noindent" >
+<!--l. 94--><p class="noindent" >
    <h3 class="sectionHead"><span class="titlemark">2.3   </span> <a 
  id="x1-140002.3"></a>Clipboard chain</h3>
-<!--l. 94--><p class="noindent" >An alternative chain is <span 
+<!--l. 95--><p class="noindent" >An alternative chain is <span 
 class="cmtt-10">Clipboard -&#x003E; Cassette -&#x003E; User History -&#x003E; Load</span>
 <span 
 class="cmtt-10">Synchronizer</span>, where the clipboard provides both the block iterator and the block
 changer. More details will be described in the <span 
 class="cmbx-10">??</span> section.
-<!--l. 98--><p class="noindent" >
+<!--l. 99--><p class="noindent" >
    <h3 class="sectionHead"><span class="titlemark">2.4   </span> <a 
  id="x1-150002.4"></a>Cassette</h3>
-<!--l. 99--><p class="noindent" >A cassette is a section of server memory, or a temporary file on the hard
+<!--l. 100--><p class="noindent" >A cassette is a section of server memory, or a temporary file on the hard
 disk (if greater than 10MB), storing an ordered list of blocks changed in an
 operation. It can be re-executed in forward or backward order to redo/undo the
 operation.
-<!--l. 103--><p class="noindent" >
+<!--l. 104--><p class="noindent" >
    <h3 class="sectionHead"><span class="titlemark">2.5   </span> <a 
  id="x1-160002.5"></a>User history</h3>
-<!--l. 104--><p class="noindent" >A user history manages an &#8221;undo stack&#8221; and a &#8221;redo stack&#8221;, each holding an ordered
+<!--l. 105--><p class="noindent" >A user history manages an &#8221;undo stack&#8221; and a &#8221;redo stack&#8221;, each holding an ordered
 list of cassettes. When the user requests to undo or redo, a cassette from one stack
 will be moved to the other stack, and pass a reference to the cassette to the load
 synchronizer.
-<!--l. 108--><p class="noindent" >
+<!--l. 109--><p class="noindent" >
    <h3 class="sectionHead"><span class="titlemark">2.6   </span> <a 
  id="x1-170002.6"></a>Load synchronizer</h3>
-<!--l. 109--><p class="noindent" >The load synchronizer manages chunk locking and cassette operation queuing. Before
+<!--l. 110--><p class="noindent" >The load synchronizer manages chunk locking and cassette operation queuing. Before
 starting an operation, it determines whether the operation should be executed
 synchronously or asynchronously and stores the chunks (identifiers only) affected by
 the cassette to manage locking. <span 
@@ -241,7 +241,7 @@ class="cmti-10">Cassette operations owned by the same builder</span>
 class="cmti-10">session will be executed one by one, but cassette operations owned by different builder</span>
 <span 
 class="cmti-10">sessions are executed orderlessly.</span>
-<!--l. 115--><p class="indent" >   If the selection shape supports reporting the maximum number of blocks changed
+<!--l. 116--><p class="indent" >   If the selection shape supports reporting the maximum number of blocks changed
 per chunk, it would determine whether to use the synchronous strategy (updating a
                                                                   
 
@@ -249,12 +249,12 @@ per chunk, it would determine whether to use the synchronous strategy (updating 
 few blocks every tick) or the asynchronous strategy (lock the chunks, pass all
 parameters to an AsyncTask, modify them on the other thread and send the whole
 chunks).
-<!--l. 120--><p class="noindent" >
+<!--l. 121--><p class="noindent" >
    <h3 class="sectionHead"><span class="titlemark">2.7   </span> <a 
  id="x1-180002.7"></a>User interface</h3>
-<!--l. 121--><p class="noindent" >While the chain consists of five components, the user only needs to make two inputs,
+<!--l. 122--><p class="noindent" >While the chain consists of five components, the user only needs to make two inputs,
 and only look at the final user history.
-<!--l. 124--><p class="indent" >   A builder session first creates a selection using specific means (e.g. wands,
+<!--l. 125--><p class="indent" >   A builder session first creates a selection using specific means (e.g. wands,
 commands, etc.). After confirming the selection, the user can execute a manipulation
 command, e.g. <span 
 class="cmtt-10">//set</span>, <span 
@@ -263,7 +263,7 @@ selection and instantiate a block changer from the manipulation command&#8217;s
 arguments. A cassette will be inserted into the user history, and the user history
 shall pull data from block iterator and block changer into the cassette for
 execution.
-<!--l. 131--><p class="indent" >   If the load synchronizer contains cassettes used by the user, it should show a
+<!--l. 132--><p class="indent" >   If the load synchronizer contains cassettes used by the user, it should show a
 progress bar on the user&#8217;s screen (tips for players, periodic logger messages (at a
 lower frequency) for console).
                                                                   
@@ -271,41 +271,41 @@ lower frequency) for console).
                                                                   
    <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;3</span><br /><a 
  id="x1-190003"></a>Shape selection</h2>
-<!--l. 135--><p class="noindent" >The geometric logic is implemented in <span 
+<!--l. 136--><p class="noindent" >The geometric logic is implemented in <span 
 class="cmti-10">libgeom</span>, while the UI logic is implemented in
 this plugin.
-<!--l. 137--><p class="indent" >   A <span 
+<!--l. 138--><p class="indent" >   A <span 
 class="cmti-10">wand </span>refers to a combination of an item and an action; left-clicking with an
 emerald and right-clicking with an emerald are considered as two different wands.
 The clicked block is known as the <span 
 class="cmti-10">this </span>position.
-<!--l. 141--><p class="indent" >   A wand can be virtually used using a command. For example, the command
+<!--l. 142--><p class="indent" >   A wand can be virtually used using a command. For example, the command
 <span 
 class="cmtt-10">//pos1 </span>is equivalent to clicking the <span 
 class="cmtt-10">pos1 </span>wand at the block that the builder session
 stands in.
    <h3 class="sectionHead"><span class="titlemark">3.1   </span> <a 
  id="x1-200003.1"></a>Cuboid</h3>
-<!--l. 145--><p class="noindent" >
+<!--l. 146--><p class="noindent" >
    <h4 class="subsectionHead"><span class="titlemark">3.1.1   </span> <a 
  id="x1-210003.1.1"></a>Definition</h4>
-<!--l. 145--><p class="noindent" >A cuboid is always aligned to the XYZ coordinate system.
+<!--l. 146--><p class="noindent" >A cuboid is always aligned to the XYZ coordinate system.
    <h4 class="subsectionHead"><span class="titlemark">3.1.2   </span> <a 
  id="x1-220003.1.2"></a>Parameters</h4>
-<!--l. 146--><p class="noindent" >Two points named <span 
+<!--l. 147--><p class="noindent" >Two points named <span 
 class="cmtt-10">pos1 </span>and <span 
 class="cmtt-10">pos2</span>. The smallest cuboid inscribing both points is
 selected.
    <h4 class="subsectionHead"><span class="titlemark">3.1.3   </span> <a 
  id="x1-230003.1.3"></a>Creation</h4>
-<!--l. 149--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 150--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-240003.1.3"></a><span 
 class="cmbx-10">Explicit selection</span></span>
    Execute the wands <span 
 class="cmtt-10">pos1 </span>and <span 
 class="cmtt-10">pos2 </span>to select the two positions separately.
 Executing again manipulates the selection.
-<!--l. 151--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 152--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-250003.1.3"></a><span 
 class="cmtt-10">shoot </span><span 
 class="cmbx-10">command</span></span>
@@ -316,7 +316,7 @@ class="cmtt-10">pos1</span>, then shoots a ray
 along the <span 
 class="cmti-10">this </span>orientation for a specified length to obtain <span 
 class="cmtt-10">pos2</span>.
-<!--l. 154--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 155--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-260003.1.3"></a><span 
 class="cmtt-10">grow </span><span 
 class="cmbx-10">command</span></span>
@@ -326,16 +326,16 @@ selection by extending the cuboid on the specified sides. <span
 class="cmtt-10">pos1 </span>and <span 
 class="cmtt-10">pos2 </span>points might
 be flipped.
-<!--l. 158--><p class="noindent" >
+<!--l. 159--><p class="noindent" >
    <h3 class="sectionHead"><span class="titlemark">3.2   </span> <a 
  id="x1-270003.2"></a>Circular frustum</h3>
                                                                   
 
                                                                   
-<!--l. 159--><p class="noindent" >
+<!--l. 160--><p class="noindent" >
    <h4 class="subsectionHead"><span class="titlemark">3.2.1   </span> <a 
  id="x1-280003.2.1"></a>Definition</h4>
-<!--l. 159--><p class="noindent" >A circular frustum is very flexible. It is the generalization of:
+<!--l. 160--><p class="noindent" >A circular frustum is very flexible. It is the generalization of:
      <ul class="itemize1">
      <li class="itemize"><a 
 href="http://mathworld.wolfram.com/Cylinder.html" >Cylinders</a>
@@ -345,7 +345,7 @@ href="http://mathworld.wolfram.com/Cone.html" >Cones</a>
      </li>
      <li class="itemize"><a 
 href="http://mathworld.wolfram.com/ConicalFrustum.html" >Conical frustums</a></li></ul>
-<!--l. 166--><p class="indent" >   Of which, the base shape can be a circle or an ellipse. The base circle may or may
+<!--l. 167--><p class="indent" >   Of which, the base shape can be a circle or an ellipse. The base circle may or may
 not align to the XYZ coordinate system. The principal axis (the axis of
 rotation symmetry) may or may not be orthogonal to the XYZ coordinate
 system, and may or may not be orthogonal to the base shape. However, the
@@ -353,9 +353,9 @@ top shape (for cylinders and conical frustums) must be parallel to the base
 shape.
    <h4 class="subsectionHead"><span class="titlemark">3.2.2   </span> <a 
  id="x1-290003.2.2"></a>Parameters</h4>
-<!--l. 170--><p class="noindent" >Despite the great flexibility, there are no conditional parameters. The shape is always
+<!--l. 171--><p class="noindent" >Despite the great flexibility, there are no conditional parameters. The shape is always
 only parameterized by a base ellipse and a top ellipse.
-<!--l. 172--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 173--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-300003.2.2"></a><span 
 class="cmbx-10">Base shape</span></span>
    The base ellipse is defined by a center point <span 
@@ -366,7 +366,7 @@ ellipse) and axis 2 <span
 class="cmtt-10">baseAxis2 </span>(a relative vector orthogonal to <span 
 class="cmtt-10">baseAxis1 </span>to represent
 the other elliptic axis).
-<!--l. 176--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 177--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-310003.2.2"></a><span 
 class="cmbx-10">Top shape</span></span>
    The top shape must be a stretched projection of the base shape. That is, the top
