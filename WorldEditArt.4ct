@@ -20,7 +20,14 @@
 \doTocEntry\tocchapter{3}{\csname a:TocLink\endcsname{1}{x1-190003}{QQ2-1-19}{Shape selection}}{8}\relax 
 \doTocEntry\tocsection{3.1}{\csname a:TocLink\endcsname{1}{x1-200003.1}{QQ2-1-20}{Cuboid}}{8}\relax 
 \doTocEntry\tocsubsection{3.1.1}{\csname a:TocLink\endcsname{1}{x1-210003.1.1}{QQ2-1-21}{Definition}}{8}\relax 
-\doTocEntry\tocsubsection{3.1.2}{\csname a:TocLink\endcsname{1}{x1-220003.1.2}{QQ2-1-22}{Creation}}{8}\relax 
-\doTocEntry\tocsubsubsection{}{\csname a:TocLink\endcsname{1}{x1-230003.1.2}{QQ2-1-23}{Explicit selection}}{8}\relax 
-\doTocEntry\tocsubsubsection{}{\csname a:TocLink\endcsname{1}{x1-240003.1.2}{QQ2-1-24}{\texttt  {shoot} command}}{8}\relax 
+\doTocEntry\tocsubsection{3.1.2}{\csname a:TocLink\endcsname{1}{x1-220003.1.2}{QQ2-1-22}{Parameters}}{8}\relax 
+\doTocEntry\tocsubsection{3.1.3}{\csname a:TocLink\endcsname{1}{x1-230003.1.3}{QQ2-1-23}{Creation}}{8}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-240003.1.3}{QQ2-1-24}{Explicit selection}}{8}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-250003.1.3}{QQ2-1-25}{\texttt  {shoot} command}}{8}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-260003.1.3}{QQ2-1-26}{\texttt  {grow} command}}{8}\relax 
+\doTocEntry\tocsection{3.2}{\csname a:TocLink\endcsname{1}{x1-270003.2}{QQ2-1-27}{Circular frustum}}{8}\relax 
+\doTocEntry\tocsubsection{3.2.1}{\csname a:TocLink\endcsname{1}{x1-280003.2.1}{QQ2-1-28}{Definition}}{9}\relax 
+\doTocEntry\tocsubsection{3.2.2}{\csname a:TocLink\endcsname{1}{x1-290003.2.2}{QQ2-1-29}{Parameters}}{9}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-300003.2.2}{QQ2-1-30}{Base shape}}{9}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-310003.2.2}{QQ2-1-31}{Top shape}}{9}\relax 
 \par 
