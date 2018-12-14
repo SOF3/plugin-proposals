@@ -2,14 +2,10 @@
 	\title{WorldEditArt}
 	\date{2017-07-20}
 	\author{SOFe}
-	\thesis
 
 \usepackage{hyperref}
 \usepackage{xr-hyper}
 
-\usepackage[scaled]{helvet}
-\renewcommand{\familydefault}{\sfdefault}
-\usepackage[T1]{fontenc}
 
 \def \code #1{\texttt{#1}}
 \def \sup #1{\textsuperscript{#1}}
@@ -132,21 +128,20 @@
 			The geometric logic is implemented in \textit{libgeom}, while the UI logic is implemented in this plugin.
 
 			A \emph{wand} refers to a combination of an item and an action; left-clicking with an emerald and
-			right-clicking with an emerald are considered as two different wands.
+			right-clicking with an emerald are considered as two different wands. The clicked block is known as the
+			\textit{this} position.
 
-			A wand can be virtually used using a command. For example, the command \texttt{//pos1} is equivalent to clicking
-			the \texttt{pos1} wand at the block that the builder session currently stands in.
+			A wand can be virtually used using a command. For example, the command \texttt{//pos1} is equivalent to
+			clicking the \texttt{pos1} wand at the block that the builder session stands in.
 
 			\section{Cuboid}
 				\subsection{Definition} Two points named \texttt{pos1} and \texttt{pos2}. The smallest cuboid
 				inscribing both points is selected.
 				\subsection{Creation}
-					\paragraph{Explicit selection} Execute the commands \texttt{//pos1} and \texttt{//pos2} to select the two
-					positions separately.
-					\paragraph{\texttt{grow} command} \texttt{//cuboid grow} grows a cuboid around the \textit{this}
-					position.
-					\paragraph{\texttt{shoot} command} \texttt{//cuboid shoot} selects the \textit{this} position as
-					\texttt{pos1}, then shoots a ray along the \textit{this} orientation for a specified length to
+					\subsubsection{Explicit selection} Execute the commands \texttt{//pos1} and \texttt{//pos2} to
+					select the two positions separately. Executing again manipulates the selection.
+					\subsubsection{\texttt{shoot} command} \texttt{//cuboid shoot} selects the \textit{this} position
+					as \texttt{pos1}, then shoots a ray along the \textit{this} orientation for a specified length to
 					obtain \texttt{pos2}.
 
 \end{document}
