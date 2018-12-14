@@ -3,17 +3,23 @@
 	\date{2017-07-20}
 	\author{SOFe}
 
+\usepackage[utf8]{inputenc}
+
 \iffalse
 	\usepackage{helvet}
 \fi
 \renewcommand{\familydefault}{\sfdefault}
 
 \def \code #1{\texttt{#1}}
+\def \sup #1{\textsuperscript{#1}}
 
 \begin{document}
 	\maketitle
+	\tableofcontents
+
 	This proposal describes a world edit plugin largely based on features originally intended in WorldEditArt, along with
 	some new ideas.
+
 	\section{Plugin mechanism}
 		\subsection{Builder sessions}
 			Users of this plugin should be managed in "builder sessions" with individual access information. Builder
@@ -42,8 +48,90 @@
 			\end{itemize}
 
 		\subsection{The core world editing chain}
-			\begin{lstlisting}
-				Selection -> Block Iterator -> Block Changer -> Cassette -> User History -> Load Synchronizer
-			\end{lstlisting}
+			\begin{itemize}
+				\item Selection
+				\item Block Iterator
+				\item Block Changer
+				\item Cassette
+				\item User History
+				\item Load Synchronizer
+			\end{itemize}
+
+			\subsubsection{Selection and block iterator}
+				A selection refers to a 3D shape. A selection can be created by various methods as described in the
+				\hyperref[sec:shape-selection]{Shape Selection} section.
+
+				By default, all commands only affect the selection named "default". Builder sessions may also create
+				other selections, identified by case-insensitive names. The selections should be discarded upon closing
+				a builder session (e.g. when a player quits).
+
+				A selection should provide an iterator providing a unique stream of blocks within the selection, or
+				blocks on the margin of the selection at a defined padding (inside the border) and margin (outside the
+				border).
+
+			\subsubsection{Block changer}
+				A block changer is an interface that accepts a Block argument and returns another Block argument,
+				determining the new block to set.
+
+				Four implementations of block changer are proposed:
+				\paragraph{Simple block changer} The blocks are always set to the specified block type.
+				\paragraph{Repeating block changer} A list of block types is provided by the user, and the blocks are
+				returned in a loop. For example, if the user specifies \texttt{1 glowstone, 2 glass, 3 stone, 1 lantern},
+				the first block set is a glowstone, the next two are glass, etc. This loop repeats at the 9\sup{th}
+				block. This is useful for generating patterns in a rectangle or a cuboid, but the direction is undefined.
+				\paragraph{Random list block changer} A list of block types is provided by the user. Each block is set
+				to one of the block types in the list randomly selected.
+				\paragraph{Weighted random list block changer} Same as random list block changer, except that the block
+				types have different probability of being selected.
+
+			\subsubsection{Clipboard chain}
+				An alternative chain is \texttt{Clipboard -> Cassette -> User History -> Load Synchronizer}, where the
+				clipboard provides both the block iterator and the block changer. More details will be described in the
+				\hyperref[sec:clipboard]{Clipboar} section.
+
+			\subsubsection{Cassette}
+				A cassette is a section of server memory, or a temporary file on the hard disk (if greater than 10MB),
+				storing an ordered list of blocks changed in an operation. It can be re-executed in forward or backward
+				order to redo/undo the operation.
+
+			\subsubsection{User history}
+				A user history manages an "undo stack" and a "redo stack", each holding an ordered list of cassettes.
+				When the user requests to undo or redo, a cassette from one stack will be moved to the other stack, and
+				pass a reference to the cassette to the load synchronizer.
+
+			\subsubsection{Load synchronizer}
+				The load synchronizer manages chunk locking and cassette operation queuing. Before starting an
+				operation, it determines whether the operation should be executed synchronously or asynchronously and
+				stores the chunks (identifiers only) affected by the cassette to manage locking. \emph{Cassette
+				operations owned by the same builder session will be executed one by one, but cassette operations owned
+				by different builder sessions are executed orderlessly.}
+
+				If the selection shape supports reporting the maximum number of blocks changed per chunk, it would
+				determine whether to use the synchronous strategy (updating a few blocks every tick) or the
+				asynchronous strategy (lock the chunks, pass all parameters to an AsyncTask, modify them on the other
+				thread and send the whole chunks).
+
+			\subsubsection{User interface}
+				While the chain consists of five components, the user only needs to make two inputs, and only look at
+				the final user history.
+
+				A builder session first creates a selection using specific means (e.g. wands, commands, etc.). After
+				confirming the selection, the user can execute a manipulation command, e.g. \texttt{//set},
+				\texttt{//replace}, etc. This will trigger the block iterator from the selection and instantiate a
+				block changer from the manipulation command's arguments. A cassette will be inserted into the user
+				history, and the user history shall pull data from block iterator and block changer into the cassette
+				for execution.
+
+				If the load synchronizer contains cassettes used by the user, it should show a progress bar on the
+				user's screen (tips for players, periodic logger messages (at a lower frequency) for console).
+
+		\subsection{Shape selection}
+			The geometric logic is implemented in \textit{libgeom}, while the UI logic is implemented in this plugin.
+
+			A \paragraph{wand} refers to a combination of an item and an action; left-clicking with an emerald and
+			right-clicking with an emerald are considered as two different wands.
+
+			A wand can be virtually used using a command. For example, the command \texttt{//pos1} is equivalent to clicking
+			the \texttt{pos1} wand at the block that the builder session currently stands in.
 
 \end{document}
