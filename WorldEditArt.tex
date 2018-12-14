@@ -8,9 +8,6 @@
 \fi
 \renewcommand{\familydefault}{\sfdefault}
 
-\usepackage{tikz}
-\tikzstyle{block} = [rectangle, draw, text width=5em, text centered, rounded corners, minimum height=3em]
-
 \def \code #1{\texttt{#1}}
 
 \begin{document}
@@ -45,18 +42,8 @@
 			\end{itemize}
 
 		\subsection{The core world editing chain}
-			\begin{tikzpicture}[node distance = 2cm, auto]
-				\node [block] (a) {Selection};
-				\node [block below of=a] (b) {Block iterator};
-				\path [line] (a) -- (b);
-				\node [block below of=b] (c) {Block changer};
-				\path [line] (b) -- (c);
-				\node [block below of=c] (d) {Cassette};
-				\path [line] (c) -- (d);
-				\node [block below of=d] (e) {User history};
-				\path [line] (d) -- (e);
-				\node [block below of=f] (g) {Load synchronizer};
-				\path [line] (f) -- (g);
-			\end{tikzpicture}
+			\begin{lstlisting}
+				Selection -> Block Iterator -> Block Changer -> Cassette -> User History -> Load Synchronizer
+			\end{lstlisting}
 
 \end{document}
