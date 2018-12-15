@@ -1,6 +1,6 @@
 \documentclass{report}
-	\title{WorldEditArt}
-	\date{2017-07-20}
+	\title{Proposal for a World edit plugin}
+	\date{2017-07-20, revised 2018-12-15}
 	\author{SOFe}
 
 \usepackage{hyperref}
@@ -32,26 +32,28 @@
 			Users of this plugin should be managed in "builder sessions" with individual access information. Builder
 			sessions can be created in three modes, namely:
 			\paragraph{Implicit Mode}
-				Players with a certain permission will start a builder session upon joining a game. The session's permission
-				and location will be synchronized with the player.
+				Players with a certain permission will start a builder session upon joining a game. The session's
+				permission and location will be synchronized with the player.
 			\paragraph{Explicit Mode}
 				Players with a certain permission will start a builder session upon typing a command. The session's
-				permission and location will be synchronized with the player, and can be closed with a command. The command
-				may be locked with a private password (similar to the \texttt{sudo} Linux command) or global password
-				(similar to the \texttt{su} Linux command) for additional protection.
+				permission and location will be synchronized with the player, and can be closed with a command. The
+				command may be locked with a private password (similar to the \texttt{sudo} Linux command) or global
+				password (similar to the \texttt{su} Linux command) for additional protection.
 			\paragraph{Minion Mode}
-				Command senders with a certain permission (especially non-in-game senders like console) can create minion
-				builder sessions upon typing a command. The session's permission and location will be controlled by the
-				command sender.
-			Each builder session has an allocated amount of resources; this allocation may affect the rate of world-editing
-			operations to maximize server performance.
+				Command senders with a certain permission (especially non-in-game senders like console) can create
+				minion builder sessions upon typing a command. The session's permission and location will be controlled
+				by the command sender.
+			Each builder session has an allocated amount of resources; this allocation may affect the rate of
+			world-editing operations to maximize server performance.
 
 			For implicit and explicit modes, the builder session's position and orientation is synchronized with the
 			player. The position uses the block that \textbf{the player's feet stand in}.
 			\begin{itemize}
 				\item If the player is floating on a lake of liquid, the highest level of the liquid is used.
-				\item If the player is standing on a full block (or the part of the block with full height, e.g. an upper slab, the upper step of a stair block), the \emph{air block above} the full block is used.
-				\item If the player is standing on an incomplete block (e.g. a lower slab, a chest block, an open-upwards trapdoor), the block itself is used.
+				\item If the player is standing on a full block (or the part of the block with full height, e.g. an
+					upper slab, the upper step of a stair block), the \emph{air block above} the full block is used.
+				\item If the player is standing on an incomplete block (e.g. a lower slab, a chest block, an
+					open-upwards trapdoor), the block itself is used.
 			\end{itemize}
 
 		\chapter{The core world editing chain}
@@ -94,7 +96,7 @@
 			\section{Clipboard chain}
 				An alternative chain is \texttt{Clipboard -> Cassette -> User History -> Load Synchronizer}, where the
 				clipboard provides both the block iterator and the block changer. More details will be described in the
-				\hyperref[sec:clipboard]{Clipboar} section.
+				\hyperref[sec:clipboard]{Clipboard} section.
 
 			\section{Cassette}
 				A cassette is a section of server memory, or a temporary file on the hard disk (if greater than 10MB),
@@ -130,9 +132,10 @@
 				for execution.
 
 				If the load synchronizer contains cassettes used by the user, it should show a progress bar on the
-				user's screen (tips for players, periodic logger messages (at a lower frequency) for console).
+				user's screen (scoreboards for players, periodic logger messages (at a lower frequency) for console).
 
 		\chapter{Shape selection}
+			\label{sec:shape-selection}
 			The geometric logic is implemented in \textit{libgeom}, while the UI logic is implemented in this plugin.
 
 			A \emph{wand} refers to a combination of an item and an action; left-clicking with an emerald and
@@ -150,19 +153,22 @@
 					\paragraph{Explicit selection} Execute the wands \texttt{pos1} and \texttt{pos2} to select the two
 					positions separately. Executing again manipulates the selection.
 					\paragraph{\texttt{shoot} command} \texttt{//cuboid shoot <distance>} selects the \textit{this}
-					position as \texttt{pos1}, then shoots a ray along the \textit{this} orientation for a specified length to
-					obtain \texttt{pos2}.
+					position as \texttt{pos1}, then shoots a ray along the \textit{this} orientation for a specified
+					length to obtain \texttt{pos2}.
 					\paragraph{\texttt{grow} command} \texttt{//cuboid grow <+x> [-x] <+y> [-y] <+z> [-z]} modifies the
-					current cuboid selection by extending the cuboid on the specified sides. \texttt{pos1} and \texttt{pos2}
-					points might be flipped.
+					current cuboid selection by extending the cuboid on the specified sides. \texttt{pos1} and
+					\texttt{pos2} points might be flipped.
 
-			\section{Circular frustum}
-				\subsection{Definition} A circular frustum is very flexible. It is the generalization of:
+			\section{Conical frustum}
+				\subsection{Definition} A conical frustum is very flexible. It is the generalization of:
 					\begin{itemize}
 						\item \href{http://mathworld.wolfram.com/Cylinder.html}{Cylinders}
 						\item \href{http://mathworld.wolfram.com/Cone.html}{Cones}
-						\item \href{http://mathworld.wolfram.com/ConicalFrustum.html}{Conical frustums}
+						\item Or a generic \href{http://mathworld.wolfram.com/ConicalFrustum.html}{conical frustum}
 					\end{itemize}
+
+					A cylinder is a special case of conical frustum where both base shapes are congruent. A cone is a
+					special case of conical frustum where the top shape has radius 0.
 
 					Of which, the base shape can be a circle or an ellipse. The base circle may or may not align to the
 					XYZ coordinate system. The principal axis (the axis of rotation symmetry) may or may not be
@@ -170,13 +176,103 @@
 					However, the top shape (for cylinders and conical frustums) must be parallel to the base shape.
 				\subsection{Parameters} Despite the great flexibility, there are no conditional parameters. The shape
 				is always only parameterized by a base ellipse and a top ellipse.
-					\paragraph{Base shape} The base ellipse is defined by a center point \texttt{baseCenter} (a
+					\paragraph{Base ellipse} The base ellipse is defined by a center point \texttt{baseCenter} (a
 					position vector), axis 1 \texttt{baseAxis1} (a relative vector from the center to one of the
 					extreme points on the ellipse) and axis 2 \texttt{baseAxis2} (a relative vector orthogonal to
 					\texttt{baseAxis1} to represent the other elliptic axis).
-					\paragraph{Top shape} The top shape must be a stretched projection of the base shape. That is, the
-					top shape has parallel axes 1 and 2 to the base shape, but the lengths can be different. Therefore,
-					the top shape is defined by the center point \texttt{topCenter}, length of axis 1
+					\paragraph{Top ellipse} The top shape must be a stretched projection of the base shape. That is,
+					the top shape has parallel axes 1 and 2 to the base shape, but the lengths can be different.
+					Therefore, the top shape is defined by the center point \texttt{topCenter}, length of axis 1
 					\texttt{topLength1} and length of axis 2 \texttt{topLength2}.
+				\subsection{Wands}
+					\paragraph{Principal axis} There are two basic wands \texttt{baseCenter} and \texttt{topCenter} to
+					select the principal axis of the shape.
+					\paragraph{Upright radius selection} If the desired shape is an upright (base shape is orthogonal
+					to the principal axis) circular cylinder, the \texttt{radius} wand selects any point on the
+					extended curved plane of the cylinder. In other words, the distance between the base center and the
+					projection of the selected point on the base plane is used as the radius of the cylinder. If the
+					desired shape is an elliptic cylinder, use \texttt{radius} followed by \texttt{radius2} to select
+					the intersection points of the curved plane and axes 1/2. If the desired shape is a conical
+					frustum,
+					\paragraph{Aligned upright radius selection} If the elliptic radius is aligned on the XZ/YZ/XY
+					plane, use \texttt{radiusY}/\texttt{radiusX}/\texttt{radiusZ} so that the selected point is
+					projected onto the respective planes.
+					\paragraph{Orientation changes} The \texttt{freeRadius} and \texttt{freeRadius2} wands freely
+					select the intersection points between the base radii and the base ellipse perimeter.
+					\paragraph{Top center alignment} The \texttt{topCenterY} wand only selects the height of the shape.
+					The selected point is horizontally moved to a point directly above/below \texttt{baseCenter}. If
+					horizontal alignment is desired, use \texttt{topCenterX} or \texttt{topCenterZ} instead.
+					\paragraph{Top radius selection} Add \texttt{top} before the radius selection wand names so that
+					the wand only modifies the top radii but not the base radii, except the base axis directions are
+					rotated if the top radii are also rotated. Orientation-changing wands are not applicable as the two
+					ellipses must be parallel.
+				\subsection{Commands}
+					\paragraph{Creation} A much simpler way to create a basic aligned (elliptic) cylinder is to use the
+					command \texttt{//cylinder <height> <radius> [radius2] [Y|x|z]}, where the last parameter is the
+					alignment of the principal axis (default \texttt{y}).
+					\paragraph{Conversion} \texttt{//cylinder cone} sets the top radii to 0, making the shape a cone.
+					\texttt{//cylinder cylinder} sets the top radii to be same as the base radii, making the shape a
+					cylinder. \texttt{//cylinder frustum <ratio>} sets the top radii as \texttt{<ratio>} times of the
+					base radii, making the shape a frustum. \texttt{cone} is equivalent to \texttt{frustum 0}, and
+					\texttt{cyl} is equivalent to \texttt{frustum 1}.
+					\paragraph{Orthogonalization} \texttt{//cylinder pl} projects the base and top ellipses to the
+					planes containing the base and top centers orthogonal to the principal axis. \texttt{//cylinder rot}
+					rotates the base and top ellipses such that they are orthogonal to the principal axis.
+					\paragraph{Explicit radius} \texttt{//cylinder radius [top|base] [major|minor] <length>} sets the
+					major/minor/both radii of the top/base/both ellipses to \texttt{<length>}.
+
+			\section{Ellipsoid}
+				\subsection{Definition} An ellipsoid is a sphere that can be stretched alogn the three axes respectively.
+				\subsection{Parameters} \texttt{center} is the center point of the ellipsoid, and \texttt{rx},
+				\texttt{ry} and \texttt{rz} are the radii of the ellipsoid on the three axes.
+				\subsection{Creation} Use the \texttt{center} wand to select the center of the sphere. Use
+				\texttt{rx}, \texttt{ry} and \texttt{rz} to select any point at the same x/y/z-coordinate as the margins
+				of the ellipsoid. If other radii have not been set, the wands also set them to the same value. If the
+				ellipsoid is a regular sphere, it is also possible to use \texttt{radius} to select any point on the
+				sphere surface.
+
+		\chapter{Clipboard}
+			\label{sec:clipboard}
+			\section{Copying}
+				\paragraph{\texttt{//copy}} iterates the current selection and writes each block (coordinates + block
+				type) to a \texttt{.clip} file. Each builder session may own their own directory of multiple clips.
+				\paragraph{\texttt{//cut}} deletes the blocks while copying.
+				\paragraph{\texttt{//move}} only copies the selection without deleting the blocks. The first time it is
+				pasted, the blocks are removed.
+			\section{Pasting}
+				\paragraph{\texttt{//paste}} reads a \texttt{.clip} file and sets blocks through the cassette chain.
+		\chapter{Construction zone}
+			Command senders with a certain permission may declare specific zones in the world as "construction zones".
+			Builder sessions are granted with construction access in certain construction zones, only in which they can
+			execute world-editing operations.
+
+			This limit may be bypassed through a specific command, or it can be set in the plugin configuration to mark
+			the whole level/all levels as construction zones.
+
+			If a world-editing operation overlaps non-construction zones, the ignored blocks will be saved into a new
+			cassette that can be managed later
+
+		\chapter{Sandbox mode}
+			Builder sessions based on players can use a \texttt{//sandbox} prefix before their commands (e.g.
+			\texttt{//sandbox set snow} such that all world-editing operations they execute are only temporarily visible
+			on their client side, but do not update the level and are not visible to other players.
+
+			Builder sessions may also create named "shared sandboxes", inviting certain players (not related to builder
+			sessions) to it and making world-editing operations they execute also visible to the invited players' client
+			side. This feature can be used (\emph{abused}) to create automated games like spleef matches.
+
+			Since the changes are only temporary, it is not necessary to store the changes to a cassette. As a result,
+			the chain of a sandbox operation only consists of four steps:
+
+			\begin{itemize}
+				\item Selection
+				\item Block iterator
+				\item Block changer
+				\item Client-side changes
+			\end{itemize}
+
+			Sandbox operations are also affected by construction zones. Since no cassettes are involved, the unchanged
+			blocks will not be stored, but they will be counted and reported. In addition, the block changer may return
+			different blocks due to randomness (unlike redoing operations).
 
 	\end{document}
