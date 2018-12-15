@@ -39,19 +39,27 @@ href="#x1-40002" id="QQ2-1-4">Definition of terms</a></span>
 <br />   <span class="chapterToc" >3 <a 
 href="#x1-190003" id="QQ2-1-19">Database</a></span>
 <br />   &#x00A0;<span class="sectionToc" >3.1 <a 
-href="#x1-200003.1" id="QQ2-1-20">Synchronization</a></span>
+href="#x1-200003.1" id="QQ2-1-20">Version control</a></span>
+<br />   &#x00A0;<span class="sectionToc" >3.2 <a 
+href="#x1-210003.2" id="QQ2-1-21">Synchronization</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >3.2.1 <a 
+href="#x1-220003.2.1" id="QQ2-1-22">Account access</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >3.2.2 <a 
+href="#x1-290003.2.2" id="QQ2-1-29">Duty lock</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >3.2.3 <a 
+href="#x1-300003.2.3" id="QQ2-1-30">Configuration</a></span>
 <br />   <span class="partToc" >II&#x00A0;&#x00A0;<a 
-href="#x1-25000II" id="QQ2-1-25">Player module</a></span>
+href="#x1-31000II" id="QQ2-1-31">Player module</a></span>
 <br />   <span class="partToc" >III&#x00A0;&#x00A0;<a 
-href="#x1-26000III" id="QQ2-1-26">Social module</a></span>
+href="#x1-32000III" id="QQ2-1-32">Social module</a></span>
 <br />   <span class="partToc" >IV&#x00A0;&#x00A0;<a 
-href="#x1-27000IV" id="QQ2-1-27">Stats module</a></span>
+href="#x1-33000IV" id="QQ2-1-33">Stats module</a></span>
 <br />   <span class="partToc" >V&#x00A0;&#x00A0;<a 
-href="#x1-28000V" id="QQ2-1-28">Shop module</a></span>
+href="#x1-34000V" id="QQ2-1-34">Shop module</a></span>
 <br />   <span class="partToc" >VI&#x00A0;&#x00A0;<a 
-href="#x1-29000VI" id="QQ2-1-29">Land module</a></span>
+href="#x1-35000VI" id="QQ2-1-35">Land module</a></span>
 <br />   <span class="partToc" >VII&#x00A0;&#x00A0;<a 
-href="#x1-30000VII" id="QQ2-1-30">Physical module</a></span>
+href="#x1-36000VII" id="QQ2-1-36">Physical module</a></span>
    </div>
    <div 
 class="abstract" 
@@ -188,103 +196,135 @@ increase in another with different currencies.
  id="x1-190003"></a>Database</h2>
 <!--l. 59--><p class="noindent" >SQLite and MySQL databases should be supported.
    <h3 class="sectionHead"><span class="titlemark">3.1   </span> <a 
- id="x1-200003.1"></a>Synchronization</h3>
-<!--l. 62--><p class="noindent" >If multiple servers share the same database, synchronization should be enabled. The
-need of synchronization can be automatically detected.
-<!--l. 64--><p class="noindent" ><span class="paragraphHead"><a 
- id="x1-210003.1"></a><span 
-class="cmbx-10">Account access</span></span>
-   As account is considered to be the main concurrency-sensitive data, accounts can
-be accessed in two modes:
-<!--l. 65--><p class="indent" >   <span class="subparagraphHead"> <a 
- id="x1-220003.1"></a><span 
-class="cmbx-10">Exclusive access</span></span> Accounts can be accessed anytime and modified in
-any desired method with exclusive access. This is useful when a player is
-online and the server wants to access the accounts of the player as soon as
-possible.
-   Exclusive access can only be gained by one component at the same time.
+ id="x1-200003.1"></a>Version control</h3>
+<!--l. 61--><p class="noindent" >If a newer version of the plugin connects to the database and needs to perform
+backward-incompatible changes in database structure, it would not start unless
+explicitly indicated to update the database.
+<!--l. 63--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">3.2   </span> <a 
+ id="x1-210003.2"></a>Synchronization</h3>
+<!--l. 64--><p class="noindent" >If multiple servers share the same database, synchronization should be enabled. If
+synchronization is not needed, it should be explicitly disabled by the admin.
+Otherwise, synchronization is always assumed to be needed to be safe.
+<!--l. 66--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">3.2.1   </span> <a 
+ id="x1-220003.2.1"></a>Account access</h4>
+<!--l. 67--><p class="noindent" >As account is considered to be the main concurrency-sensitive data, accounts can be
+accessed in two modes:
+<!--l. 68--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-230003.2.1"></a><span 
+class="cmbx-10">Exclusive access</span></span>
+   allows read and modification of account balance in any possible method. This is
+useful when a player is online and the server wants to access the accounts of the
+player as soon as possible.
+<!--l. 70--><p class="indent" >   Exclusive access can only be gained by one component at the same time.
 The component is also responsible for applying the changes from regular
 accessors.
-<!--l. 69--><p class="indent" >   <span class="subparagraphHead"> <a 
- id="x1-230003.1"></a><span 
-class="cmbx-10">Routine access</span></span> Regular access is used when a component modifies a large
-amount of data without reading their results. There are 3 types of modifications
-done by routine access: <span 
-class="cmti-10">absolute</span>, <span 
-class="cmti-10">relative </span>and <span 
-class="cmti-10">proportional</span>. <span 
-class="cmti-10">absolute </span>sets the
-balance to a value regardless of its previous value. <span 
-class="cmti-10">relative </span>adds/subtracts a
-constant amount to the balance. <span 
-class="cmti-10">proportional </span>multiplies the balance by a
-ratio.
+<!--l. 72--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-240003.2.1"></a><span 
+class="cmbx-10">Routine access</span></span>
+   is used when a component modifies a large amount of data without reading their
+results. There are 3 types of modifications done by routine access:
+<!--l. 73--><p class="indent" >   <span class="subparagraphHead"> <a 
+ id="x1-250003.2.1"></a><span 
+class="cmbx-10">absolute</span></span> sets the balance to a value regardless of its previous value.
+<!--l. 74--><p class="indent" >   <span class="subparagraphHead"> <a 
+ id="x1-260003.2.1"></a><span 
+class="cmbx-10">relative</span></span> adds/subtracts a constant amount to the balance.
+<!--l. 75--><p class="indent" >   <span class="subparagraphHead"> <a 
+ id="x1-270003.2.1"></a><span 
+class="cmbx-10">proportional</span></span> multiplies the balance by a ratio.
    Routine access does not allow reading the data values, because modification may
 be executed by exclusive access, which may not immediately expose the modified
 values to the routine accessor.
-<!--l. 73--><p class="indent" >   <span class="subparagraphHead"> <a 
- id="x1-240003.1"></a><span 
-class="cmbx-10">Analytical access</span></span> Analytical access is used when a component reads a large
-amount of data without modification, especially for data analysis. Analytical
-access does not guarantee concurrency safety, so the data may be incorrect
-or outdated to a small extent. As analytical access is typically intended
-for statistical uses, these minor errors should not have significant effect on
-the outcome, i.e. analytical access should only be used by error-tolerant
-reasons.
                                                                   
 
                                                                   
-<!--l. 75--><p class="indent" >
+<!--l. 79--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-280003.2.1"></a><span 
+class="cmbx-10">Analytical access</span></span>
+   is used when a component reads a large amount of data without modification,
+especially for data analysis. Analytical access does not guarantee concurrency safety,
+so the data may be incorrect or outdated to a small extent. As analytical access is
+typically intended for statistical uses, these minor errors should not have significant
+effect on the outcome, i.e. analytical access should only be used by error-tolerant
+reasons.
+<!--l. 81--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">3.2.2   </span> <a 
+ id="x1-290003.2.2"></a>Duty lock</h4>
+<!--l. 82--><p class="noindent" >The duty is a routine operation executed 5 minutes (lower-frequency tasks can be
+executed every multiple duties). The duty is only executed by one of the running
+servers. Every 5 minutes, all servers race to acquire the duty lock. The winner is
+responsible to execute the duty.
+<!--l. 84--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">3.2.3   </span> <a 
+ id="x1-300003.2.3"></a>Configuration</h4>
+<!--l. 85--><p class="noindent" >As different servers having different configuration may lead to inconsistent behaviour,
+only exactly one server should contain the global configuration (namely the <span 
+class="cmti-10">master</span>
+<span 
+class="cmti-10">server</span>). The configuration in other servers (namely the <span 
+class="cmti-10">slave servers</span>) is
+to be copied from the master server. The configuration from the master
+server persists even after the master server shuts down. If two master servers
+are running, the one that started earlier is forced to shut down, and other
+slave servers will import the new configuration from the new master server.
+Slave servers cannot start if no master server previously connected to the
+database.
+                                                                  
+
+                                                                  
+<!--l. 87--><p class="indent" >
                                                                   
 
                                                                   
    <h1 class="partHead"><span class="titlemark">Part&#x00A0;II<br /></span><a 
- id="x1-25000II"></a>Player module</h1>
+ id="x1-31000II"></a>Player module</h1>
                                                                   
 
                                                                   
-<!--l. 77--><p class="indent" >
+<!--l. 89--><p class="indent" >
                                                                   
 
                                                                   
    <h1 class="partHead"><span class="titlemark">Part&#x00A0;III<br /></span><a 
- id="x1-26000III"></a>Social module</h1>
+ id="x1-32000III"></a>Social module</h1>
                                                                   
 
                                                                   
-<!--l. 79--><p class="indent" >
+<!--l. 91--><p class="indent" >
                                                                   
 
                                                                   
    <h1 class="partHead"><span class="titlemark">Part&#x00A0;IV<br /></span><a 
- id="x1-27000IV"></a>Stats module</h1>
+ id="x1-33000IV"></a>Stats module</h1>
                                                                   
 
                                                                   
-<!--l. 81--><p class="indent" >
+<!--l. 93--><p class="indent" >
                                                                   
 
                                                                   
    <h1 class="partHead"><span class="titlemark">Part&#x00A0;V<br /></span><a 
- id="x1-28000V"></a>Shop module</h1>
+ id="x1-34000V"></a>Shop module</h1>
                                                                   
 
                                                                   
-<!--l. 83--><p class="indent" >
+<!--l. 95--><p class="indent" >
                                                                   
 
                                                                   
    <h1 class="partHead"><span class="titlemark">Part&#x00A0;VI<br /></span><a 
- id="x1-29000VI"></a>Land module</h1>
+ id="x1-35000VI"></a>Land module</h1>
                                                                   
 
                                                                   
-<!--l. 85--><p class="indent" >
+<!--l. 97--><p class="indent" >
                                                                   
 
                                                                   
    <h1 class="partHead"><span class="titlemark">Part&#x00A0;VII<br /></span><a 
- id="x1-30000VII"></a>Physical module</h1>
+ id="x1-36000VII"></a>Physical module</h1>
     
 </body></html> 
 
