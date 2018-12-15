@@ -26,6 +26,62 @@
 		This proposal describes a very generalized economy plugin that both adds features and optimizes data mining.
 	\end{abstract}
 
-	\part{Plugin mechanism}
+	\part{Core module}
+		\chapter{Scope}
+			The functionality of the core module is limited to maintaining a list of accounts associated with their owners. The core module should not handle any bvehaviour that is specific to a certain subset of accounts.
 
-	\end{document}
+		\chapter{Definition of terms}
+			\paragraph{Currency and subcurrency}
+				A currency is a unit for money that cannot be directly converted to another currency. Two subcurrencies of the same currency are two units for money that can be directly converted with each other. In other words, each sum of money must be defined with a number and a currency, but it can be expressed in any subcurrency. For example, dollar and pound are different currencies, but a British pound and a British pence are different subcurrencies of the same currency (because 1 pound = 100 pence).
+
+			\paragraph{Account}
+				An account is essentially an entry with a number and a currency to represent some existing capital. This definition of "existing capital" leads to some corollaries:
+				\subparagraph{Conservation rule} A transaction should not create or destroy capital. If an account balance is increased, the same amount must decrease in another account of the same currency.
+				\subparagraph{Summation rule} The sum of all account balance (with units taken into consideration) must represent the total capital that exists in the world.
+				\subparagraph{Negation rule} If the account represents that the account owner must lose some money in foreseeable future (e.g. debt), its balance must be negative.
+				\subparagraph{Absolute rule} Each account must represent an amount that is transferrable, not a relative number. For example, the price of goods in a shop is a relative number, so it is not an account, but the total amount of earned but unclaimed profit in a shop is an account, because the profit is transferrable.
+				\subparagraph{Option rule} If an account represents that one of two currency choices will be given to or taken from an account owner, instead of adding a balance for both currencies, a third currency should be created to represent this optional behaviour.
+
+			\paragraph{Account owner}
+				An account owner is something (not limited to a player or a row in the database or a PHP object, just anything abstract that a human can understand as "something") that can be attributed as having full control on an account. An account owner should be uniquely identified by a "type" and a "name", where "type" is a qualified name representing a group of owners having distinct names, e.g. a player. The account owner type and name must not be used to store any account-related information except to represent the owner as a human-readable text.
+
+			\paragraph{Account type}
+				An account type is a finite set of strings that represent the mechanism associated with the account. Since it is a finite set of strings, it should not be used for storing data.
+
+			\paragraph{Operation}
+				An operation is a change in one or multiple accounts. There are 4 types of operations:
+				\subparagraph{Transaction} A transaction is a change in account balance that obeys the \textit{Conservation rule}.
+				\subparagraph{Creation} A creation is a change in account balance that creates money out of thin air, e.g. when a new player joins, or due to administrative instructions like /givemoney.
+				\subparagraph{Destruction} A destruction is a change in account balance such that money disappears forever. This is equivalent to burning money in the real world. It is also possible to destroy money during account cleanup (deleting obsolete accounts that have not been touched for a long time, possibly due to inactivity).
+				\subparagraph{Exchange} An exchange is the decrease of balance in one account and the increase in another with different currencies.
+
+		\chapter{Database}
+			SQLite and MySQL databases should be supported.
+
+			\section{Synchronization}
+				If multiple servers share the same database, synchronization should be enabled. The need of synchronization can be automatically detected.
+
+				\paragraph{Account access} As account is considered to be the main concurrency-sensitive data, accounts can be accessed in two modes:
+					\subparagraph{Exclusive access} Accounts can be accessed anytime and modified in any desired method with exclusive access. This is useful when a player is online and the server wants to access the accounts of the player as soon as possible.
+
+					Exclusive access can only be gained by one component at the same time. The component is also responsible for applying the changes from regular accessors.
+
+					\subparagraph{Routine access} Regular access is used when a component modifies a large amount of data without reading their results. There are 3 types of modifications done by routine access: \emph{absolute}, \emph{relative} and \emph{proportional}. \emph{absolute} sets the balance to a value regardless of its previous value. \emph{relative} adds/subtracts a constant amount to the balance. \emph{proportional} multiplies the balance by a ratio.
+
+					Routine access does not allow reading the data values, because modification may be executed by exclusive access, which may not immediately expose the modified values to the routine accessor.
+
+					\subparagraph{Analytical access} Analytical access is used when a component reads a large amount of data without modification, especially for data analysis. Analytical access does not guarantee concurrency safety, so the data may be incorrect or outdated to a small extent. As analytical access is typically intended for statistical uses, these minor errors should not have significant effect on the outcome, i.e. analytical access should only be used by error-tolerant reasons.
+
+	\part{Player module}
+
+	\part{Social module}
+
+	\part{Stats module}
+
+	\part{Shop module}
+
+	\part{Land module}
+
+	\part{Physical module}
+
+\end{document}
