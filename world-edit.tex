@@ -231,16 +231,29 @@
 				ellipsoid is a regular sphere, it is also possible to use \texttt{radius} to select any point on the
 				sphere surface.
 
+			\section{Mould selection}
+				Mould selection is a non-geometric selection. There are multiple mould selection modes:
+				\paragraph{Walking} The blocks that have intersected with the player during the selection are added
+				to the set of selected positions.
+				\paragraph{Interaction} The blocks destroyed/placed by the player during the selection are added to the
+				set of selected positions.
+				\paragraph{Filtering} The blocks inside an existing selection that match a certain criterion are added
+				to the new selection. Criteria include:
+					\subparagraph{Block whitelist/blacklist} Only certain block types are included/excluded.
+					\subparagraph{Set intersection/subtraction} Only blocks inside/not inside another selection are
+					included.
+
 		\chapter{Clipboard}
 			\label{sec:clipboard}
 			\section{Copying}
 				\paragraph{\texttt{//copy}} iterates the current selection and writes each block (coordinates + block
-				type) to a \texttt{.clip} file. Each builder session may own their own directory of multiple clips.
+				type) to a schematic file. Each builder session may own their own directory of multiple clips.
 				\paragraph{\texttt{//cut}} deletes the blocks while copying.
 				\paragraph{\texttt{//move}} only copies the selection without deleting the blocks. The first time it is
 				pasted, the blocks are removed.
 			\section{Pasting}
-				\paragraph{\texttt{//paste}} reads a \texttt{.clip} file and sets blocks through the cassette chain.
+				\paragraph{\texttt{//paste}} reads a schematic file and sets blocks through the cassette chain.
+
 		\chapter{Construction zone}
 			Command senders with a certain permission may declare specific zones in the world as "construction zones".
 			Builder sessions are granted with construction access in certain construction zones, only in which they can
@@ -250,7 +263,7 @@
 			the whole level/all levels as construction zones.
 
 			If a world-editing operation overlaps non-construction zones, the ignored blocks will be saved into a new
-			cassette that can be managed later
+			cassette that can be managed later.
 
 		\chapter{Sandbox mode}
 			Builder sessions based on players can use a \texttt{//sandbox} prefix before their commands (e.g.
