@@ -1,4 +1,32 @@
 \expandafter\ifx\csname doTocEntry\endcsname\relax \expandafter\endinput\fi 
 \doTocEntry\toclikechapter{}{\csname a:TocLink\endcsname{1}{x1-1000}{QQ2-1-1}{Contents}}{2}\relax 
-\doTocEntry\tocpart{I}{\csname a:TocLink\endcsname{1}{x1-2000I}{QQ2-1-2}{Plugin mechanism}}{3}\relax 
+\doTocEntry\tocpart{I}{\csname a:TocLink\endcsname{1}{x1-2000I}{QQ2-1-2}{Core module}}{3}\relax 
+\doTocEntry\tocchapter{1}{\csname a:TocLink\endcsname{1}{x1-30001}{QQ2-1-3}{Scope}}{4}\relax 
+\doTocEntry\tocchapter{2}{\csname a:TocLink\endcsname{1}{x1-40002}{QQ2-1-4}{Definition of terms}}{5}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-50002}{QQ2-1-5}{Currency and subcurrency}}{5}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-60002}{QQ2-1-6}{Account}}{5}\relax 
+\doTocEntry\tocsubparagraph{}{\csname a:TocLink\endcsname{1}{x1-70002}{QQ2-1-7}{Conservation rule}}{5}\relax 
+\doTocEntry\tocsubparagraph{}{\csname a:TocLink\endcsname{1}{x1-80002}{QQ2-1-8}{Summation rule}}{5}\relax 
+\doTocEntry\tocsubparagraph{}{\csname a:TocLink\endcsname{1}{x1-90002}{QQ2-1-9}{Negation rule}}{5}\relax 
+\doTocEntry\tocsubparagraph{}{\csname a:TocLink\endcsname{1}{x1-100002}{QQ2-1-10}{Absolute rule}}{5}\relax 
+\doTocEntry\tocsubparagraph{}{\csname a:TocLink\endcsname{1}{x1-110002}{QQ2-1-11}{Option rule}}{5}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-120002}{QQ2-1-12}{Account owner}}{5}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-130002}{QQ2-1-13}{Account type}}{6}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-140002}{QQ2-1-14}{Operation}}{6}\relax 
+\doTocEntry\tocsubparagraph{}{\csname a:TocLink\endcsname{1}{x1-150002}{QQ2-1-15}{Transaction}}{6}\relax 
+\doTocEntry\tocsubparagraph{}{\csname a:TocLink\endcsname{1}{x1-160002}{QQ2-1-16}{Creation}}{6}\relax 
+\doTocEntry\tocsubparagraph{}{\csname a:TocLink\endcsname{1}{x1-170002}{QQ2-1-17}{Destruction}}{6}\relax 
+\doTocEntry\tocsubparagraph{}{\csname a:TocLink\endcsname{1}{x1-180002}{QQ2-1-18}{Exchange}}{6}\relax 
+\doTocEntry\tocchapter{3}{\csname a:TocLink\endcsname{1}{x1-190003}{QQ2-1-19}{Database}}{7}\relax 
+\doTocEntry\tocsection{3.1}{\csname a:TocLink\endcsname{1}{x1-200003.1}{QQ2-1-20}{Synchronization}}{7}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-210003.1}{QQ2-1-21}{Account access}}{7}\relax 
+\doTocEntry\tocsubparagraph{}{\csname a:TocLink\endcsname{1}{x1-220003.1}{QQ2-1-22}{Exclusive access}}{7}\relax 
+\doTocEntry\tocsubparagraph{}{\csname a:TocLink\endcsname{1}{x1-230003.1}{QQ2-1-23}{Routine access}}{7}\relax 
+\doTocEntry\tocsubparagraph{}{\csname a:TocLink\endcsname{1}{x1-240003.1}{QQ2-1-24}{Analytical access}}{7}\relax 
+\doTocEntry\tocpart{II}{\csname a:TocLink\endcsname{1}{x1-25000II}{QQ2-1-25}{Player module}}{9}\relax 
+\doTocEntry\tocpart{III}{\csname a:TocLink\endcsname{1}{x1-26000III}{QQ2-1-26}{Social module}}{11}\relax 
+\doTocEntry\tocpart{IV}{\csname a:TocLink\endcsname{1}{x1-27000IV}{QQ2-1-27}{Stats module}}{13}\relax 
+\doTocEntry\tocpart{V}{\csname a:TocLink\endcsname{1}{x1-28000V}{QQ2-1-28}{Shop module}}{15}\relax 
+\doTocEntry\tocpart{VI}{\csname a:TocLink\endcsname{1}{x1-29000VI}{QQ2-1-29}{Land module}}{17}\relax 
+\doTocEntry\tocpart{VII}{\csname a:TocLink\endcsname{1}{x1-30000VII}{QQ2-1-30}{Physical module}}{19}\relax 
 \par 

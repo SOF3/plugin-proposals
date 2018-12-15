@@ -31,7 +31,27 @@ class="cmr-12">Incomplete</span></div>
  id="x1-1000"></a>Contents</h2>
    <div class="tableofcontents">
    <span class="partToc" >I&#x00A0;&#x00A0;<a 
-href="#x1-2000I" id="QQ2-1-2">Plugin mechanism</a></span>
+href="#x1-2000I" id="QQ2-1-2">Core module</a></span>
+<br />   <span class="chapterToc" >1 <a 
+href="#x1-30001" id="QQ2-1-3">Scope</a></span>
+<br />   <span class="chapterToc" >2 <a 
+href="#x1-40002" id="QQ2-1-4">Definition of terms</a></span>
+<br />   <span class="chapterToc" >3 <a 
+href="#x1-190003" id="QQ2-1-19">Database</a></span>
+<br />   &#x00A0;<span class="sectionToc" >3.1 <a 
+href="#x1-200003.1" id="QQ2-1-20">Synchronization</a></span>
+<br />   <span class="partToc" >II&#x00A0;&#x00A0;<a 
+href="#x1-25000II" id="QQ2-1-25">Player module</a></span>
+<br />   <span class="partToc" >III&#x00A0;&#x00A0;<a 
+href="#x1-26000III" id="QQ2-1-26">Social module</a></span>
+<br />   <span class="partToc" >IV&#x00A0;&#x00A0;<a 
+href="#x1-27000IV" id="QQ2-1-27">Stats module</a></span>
+<br />   <span class="partToc" >V&#x00A0;&#x00A0;<a 
+href="#x1-28000V" id="QQ2-1-28">Shop module</a></span>
+<br />   <span class="partToc" >VI&#x00A0;&#x00A0;<a 
+href="#x1-29000VI" id="QQ2-1-29">Land module</a></span>
+<br />   <span class="partToc" >VII&#x00A0;&#x00A0;<a 
+href="#x1-30000VII" id="QQ2-1-30">Physical module</a></span>
    </div>
    <div 
 class="abstract" 
@@ -60,7 +80,211 @@ optimizes data mining.
 
                                                                   
    <h1 class="partHead"><span class="titlemark">Part&#x00A0;I<br /></span><a 
- id="x1-2000I"></a>Plugin mechanism</h1>
+ id="x1-2000I"></a>Core module</h1>
+                                                                  
+
+                                                                  
+   <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;1</span><br /><a 
+ id="x1-30001"></a>Scope</h2>
+<!--l. 31--><p class="noindent" >The functionality of the core module is limited to maintaining a list of accounts
+associated with their owners. The core module should not handle any bvehaviour
+that is specific to a certain subset of accounts.
+                                                                  
+
+                                                                  
+   <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;2</span><br /><a 
+ id="x1-40002"></a>Definition of terms</h2>
+<!--l. 34--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-50002"></a><span 
+class="cmbx-10">Currency and subcurrency</span></span>
+   A currency is a unit for money that cannot be directly converted to another
+currency. Two subcurrencies of the same currency are two units for money that can
+be directly converted with each other. In other words, each sum of money must be
+defined with a number and a currency, but it can be expressed in any subcurrency.
+For example, dollar and pound are different currencies, but a British pound and a
+British pence are different subcurrencies of the same currency (because 1 pound =
+100 pence).
+<!--l. 37--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-60002"></a><span 
+class="cmbx-10">Account</span></span>
+   An account is essentially an entry with a number and a currency to represent
+some existing capital. This definition of &#8221;existing capital&#8221; leads to some
+corollaries:
+<!--l. 39--><p class="indent" >   <span class="subparagraphHead"> <a 
+ id="x1-70002"></a><span 
+class="cmbx-10">Conservation rule</span></span> A transaction should not create or destroy capital. If an
+account balance is increased, the same amount must decrease in another account of
+the same currency.
+<!--l. 40--><p class="indent" >   <span class="subparagraphHead"> <a 
+ id="x1-80002"></a><span 
+class="cmbx-10">Summation rule</span></span> The sum of all account balance (with units taken into
+consideration) must represent the total capital that exists in the world.
+<!--l. 41--><p class="indent" >   <span class="subparagraphHead"> <a 
+ id="x1-90002"></a><span 
+class="cmbx-10">Negation rule</span></span> If the account represents that the account owner must lose some
+money in foreseeable future (e.g. debt), its balance must be negative.
+<!--l. 42--><p class="indent" >   <span class="subparagraphHead"> <a 
+ id="x1-100002"></a><span 
+class="cmbx-10">Absolute rule</span></span> Each account must represent an amount that is transferrable,
+not a relative number. For example, the price of goods in a shop is a relative number,
+so it is not an account, but the total amount of earned but unclaimed profit in a shop
+is an account, because the profit is transferrable.
+<!--l. 43--><p class="indent" >   <span class="subparagraphHead"> <a 
+ id="x1-110002"></a><span 
+class="cmbx-10">Option rule</span></span> If an account represents that one of two currency choices will be
+given to or taken from an account owner, instead of adding a balance for both
+currencies, a third currency should be created to represent this optional
+behaviour.
+<!--l. 45--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-120002"></a><span 
+class="cmbx-10">Account owner</span></span>
+   An account owner is something (not limited to a player or a row in the database
+or a PHP object, just anything abstract that a human can understand as
+&#8221;something&#8221;) that can be attributed as having full control on an account. An account
+owner should be uniquely identified by a &#8221;type&#8221; and a &#8221;name&#8221;, where &#8221;type&#8221; is a
+qualified name representing a group of owners having distinct names, e.g. a
+player. The account owner type and name must not be used to store any
+                                                                  
+
+                                                                  
+account-related information except to represent the owner as a human-readable
+text.
+<!--l. 48--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-130002"></a><span 
+class="cmbx-10">Account type</span></span>
+   An account type is a finite set of strings that represent the mechanism associated
+with the account. Since it is a finite set of strings, it should not be used for storing
+data.
+<!--l. 51--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-140002"></a><span 
+class="cmbx-10">Operation</span></span>
+   An operation is a change in one or multiple accounts. There are 4 types of
+operations:
+<!--l. 53--><p class="indent" >   <span class="subparagraphHead"> <a 
+ id="x1-150002"></a><span 
+class="cmbx-10">Transaction</span></span> A transaction is a change in account balance that obeys the
+<span 
+class="cmti-10">Conservation rule</span>.
+<!--l. 54--><p class="indent" >   <span class="subparagraphHead"> <a 
+ id="x1-160002"></a><span 
+class="cmbx-10">Creation</span></span> A creation is a change in account balance that creates money out of
+thin air, e.g. when a new player joins, or due to administrative instructions like
+/givemoney.
+<!--l. 55--><p class="indent" >   <span class="subparagraphHead"> <a 
+ id="x1-170002"></a><span 
+class="cmbx-10">Destruction</span></span> A destruction is a change in account balance such that
+money disappears forever. This is equivalent to burning money in the real
+world. It is also possible to destroy money during account cleanup (deleting
+obsolete accounts that have not been touched for a long time, possibly due to
+inactivity).
+<!--l. 56--><p class="indent" >   <span class="subparagraphHead"> <a 
+ id="x1-180002"></a><span 
+class="cmbx-10">Exchange</span></span> An exchange is the decrease of balance in one account and the
+increase in another with different currencies.
+                                                                  
+
+                                                                  
+   <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;3</span><br /><a 
+ id="x1-190003"></a>Database</h2>
+<!--l. 59--><p class="noindent" >SQLite and MySQL databases should be supported.
+   <h3 class="sectionHead"><span class="titlemark">3.1   </span> <a 
+ id="x1-200003.1"></a>Synchronization</h3>
+<!--l. 62--><p class="noindent" >If multiple servers share the same database, synchronization should be enabled. The
+need of synchronization can be automatically detected.
+<!--l. 64--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-210003.1"></a><span 
+class="cmbx-10">Account access</span></span>
+   As account is considered to be the main concurrency-sensitive data, accounts can
+be accessed in two modes:
+<!--l. 65--><p class="indent" >   <span class="subparagraphHead"> <a 
+ id="x1-220003.1"></a><span 
+class="cmbx-10">Exclusive access</span></span> Accounts can be accessed anytime and modified in
+any desired method with exclusive access. This is useful when a player is
+online and the server wants to access the accounts of the player as soon as
+possible.
+   Exclusive access can only be gained by one component at the same time.
+The component is also responsible for applying the changes from regular
+accessors.
+<!--l. 69--><p class="indent" >   <span class="subparagraphHead"> <a 
+ id="x1-230003.1"></a><span 
+class="cmbx-10">Routine access</span></span> Regular access is used when a component modifies a large
+amount of data without reading their results. There are 3 types of modifications
+done by routine access: <span 
+class="cmti-10">absolute</span>, <span 
+class="cmti-10">relative </span>and <span 
+class="cmti-10">proportional</span>. <span 
+class="cmti-10">absolute </span>sets the
+balance to a value regardless of its previous value. <span 
+class="cmti-10">relative </span>adds/subtracts a
+constant amount to the balance. <span 
+class="cmti-10">proportional </span>multiplies the balance by a
+ratio.
+   Routine access does not allow reading the data values, because modification may
+be executed by exclusive access, which may not immediately expose the modified
+values to the routine accessor.
+<!--l. 73--><p class="indent" >   <span class="subparagraphHead"> <a 
+ id="x1-240003.1"></a><span 
+class="cmbx-10">Analytical access</span></span> Analytical access is used when a component reads a large
+amount of data without modification, especially for data analysis. Analytical
+access does not guarantee concurrency safety, so the data may be incorrect
+or outdated to a small extent. As analytical access is typically intended
+for statistical uses, these minor errors should not have significant effect on
+the outcome, i.e. analytical access should only be used by error-tolerant
+reasons.
+                                                                  
+
+                                                                  
+<!--l. 75--><p class="indent" >
+                                                                  
+
+                                                                  
+   <h1 class="partHead"><span class="titlemark">Part&#x00A0;II<br /></span><a 
+ id="x1-25000II"></a>Player module</h1>
+                                                                  
+
+                                                                  
+<!--l. 77--><p class="indent" >
+                                                                  
+
+                                                                  
+   <h1 class="partHead"><span class="titlemark">Part&#x00A0;III<br /></span><a 
+ id="x1-26000III"></a>Social module</h1>
+                                                                  
+
+                                                                  
+<!--l. 79--><p class="indent" >
+                                                                  
+
+                                                                  
+   <h1 class="partHead"><span class="titlemark">Part&#x00A0;IV<br /></span><a 
+ id="x1-27000IV"></a>Stats module</h1>
+                                                                  
+
+                                                                  
+<!--l. 81--><p class="indent" >
+                                                                  
+
+                                                                  
+   <h1 class="partHead"><span class="titlemark">Part&#x00A0;V<br /></span><a 
+ id="x1-28000V"></a>Shop module</h1>
+                                                                  
+
+                                                                  
+<!--l. 83--><p class="indent" >
+                                                                  
+
+                                                                  
+   <h1 class="partHead"><span class="titlemark">Part&#x00A0;VI<br /></span><a 
+ id="x1-29000VI"></a>Land module</h1>
+                                                                  
+
+                                                                  
+<!--l. 85--><p class="indent" >
+                                                                  
+
+                                                                  
+   <h1 class="partHead"><span class="titlemark">Part&#x00A0;VII<br /></span><a 
+ id="x1-30000VII"></a>Physical module</h1>
     
 </body></html> 
 
