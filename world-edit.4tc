@@ -1,0 +1,63 @@
+\expandafter\ifx\csname doTocEntry\endcsname\relax \expandafter\endinput\fi
+\doTocEntry\toclikechapter{}{\csname a:TocLink\endcsname{1}{x1-1000}{QQ2-1-1}{Contents}}{2}\relax 
+\doTocEntry\tocpart{I}{\csname a:TocLink\endcsname{1}{x1-2000I}{QQ2-1-2}{Plugin mechanism}}{3}\relax 
+\doTocEntry\tocchapter{1}{\csname a:TocLink\endcsname{1}{x1-30001}{QQ2-1-3}{Builder sessions}}{4}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-40001}{QQ2-1-4}{Implicit Mode}}{4}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-50001}{QQ2-1-5}{Explicit Mode}}{4}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-60001}{QQ2-1-6}{Minion Mode}}{4}\relax 
+\doTocEntry\tocchapter{2}{\csname a:TocLink\endcsname{1}{x1-70002}{QQ2-1-7}{The core world editing chain}}{5}\relax 
+\doTocEntry\tocsection{2.1}{\csname a:TocLink\endcsname{1}{x1-80002.1}{QQ2-1-8}{Selection and block iterator}}{5}\relax 
+\doTocEntry\tocsection{2.2}{\csname a:TocLink\endcsname{1}{x1-90002.2}{QQ2-1-9}{Block changer}}{5}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-100002.2}{QQ2-1-10}{Simple block changer}}{5}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-110002.2}{QQ2-1-11}{Repeating block changer}}{5}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-120002.2}{QQ2-1-12}{Random list block changer}}{6}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-130002.2}{QQ2-1-13}{Weighted random list block changer}}{6}\relax 
+\doTocEntry\tocsection{2.3}{\csname a:TocLink\endcsname{1}{x1-140002.3}{QQ2-1-14}{Clipboard chain}}{6}\relax 
+\doTocEntry\tocsection{2.4}{\csname a:TocLink\endcsname{1}{x1-150002.4}{QQ2-1-15}{Cassette}}{6}\relax 
+\doTocEntry\tocsection{2.5}{\csname a:TocLink\endcsname{1}{x1-160002.5}{QQ2-1-16}{User history}}{6}\relax 
+\doTocEntry\tocsection{2.6}{\csname a:TocLink\endcsname{1}{x1-170002.6}{QQ2-1-17}{Load synchronizer}}{6}\relax 
+\doTocEntry\tocsection{2.7}{\csname a:TocLink\endcsname{1}{x1-180002.7}{QQ2-1-18}{User interface}}{7}\relax 
+\doTocEntry\tocchapter{3}{\csname a:TocLink\endcsname{1}{x1-190003}{QQ2-1-19}{Shape selection}}{8}\relax 
+\doTocEntry\tocsection{3.1}{\csname a:TocLink\endcsname{1}{x1-200003.1}{QQ2-1-20}{Cuboid}}{8}\relax 
+\doTocEntry\tocsubsection{3.1.1}{\csname a:TocLink\endcsname{1}{x1-210003.1.1}{QQ2-1-21}{Definition}}{8}\relax 
+\doTocEntry\tocsubsection{3.1.2}{\csname a:TocLink\endcsname{1}{x1-220003.1.2}{QQ2-1-22}{Parameters}}{8}\relax 
+\doTocEntry\tocsubsection{3.1.3}{\csname a:TocLink\endcsname{1}{x1-230003.1.3}{QQ2-1-23}{Creation}}{8}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-240003.1.3}{QQ2-1-24}{Explicit selection}}{8}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-250003.1.3}{QQ2-1-25}{\texttt  {shoot} command}}{8}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-260003.1.3}{QQ2-1-26}{\texttt  {grow} command}}{8}\relax 
+\doTocEntry\tocsection{3.2}{\csname a:TocLink\endcsname{1}{x1-270003.2}{QQ2-1-27}{Conical frustum}}{8}\relax 
+\doTocEntry\tocsubsection{3.2.1}{\csname a:TocLink\endcsname{1}{x1-280003.2.1}{QQ2-1-28}{Definition}}{9}\relax 
+\doTocEntry\tocsubsection{3.2.2}{\csname a:TocLink\endcsname{1}{x1-290003.2.2}{QQ2-1-29}{Parameters}}{9}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-300003.2.2}{QQ2-1-30}{Base ellipse}}{9}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-310003.2.2}{QQ2-1-31}{Top ellipse}}{9}\relax 
+\doTocEntry\tocsubsection{3.2.3}{\csname a:TocLink\endcsname{1}{x1-320003.2.3}{QQ2-1-32}{Wands}}{9}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-330003.2.3}{QQ2-1-33}{Principal axis}}{9}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-340003.2.3}{QQ2-1-34}{Upright radius selection}}{10}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-350003.2.3}{QQ2-1-35}{Aligned upright radius selection}}{10}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-360003.2.3}{QQ2-1-36}{Orientation changes}}{10}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-370003.2.3}{QQ2-1-37}{Top center alignment}}{10}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-380003.2.3}{QQ2-1-38}{Top radius selection}}{10}\relax 
+\doTocEntry\tocsubsection{3.2.4}{\csname a:TocLink\endcsname{1}{x1-390003.2.4}{QQ2-1-39}{Commands}}{10}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-400003.2.4}{QQ2-1-40}{Creation}}{10}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-410003.2.4}{QQ2-1-41}{Conversion}}{10}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-420003.2.4}{QQ2-1-42}{Orthogonalization}}{11}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-430003.2.4}{QQ2-1-43}{Explicit radius}}{11}\relax 
+\doTocEntry\tocsection{3.3}{\csname a:TocLink\endcsname{1}{x1-440003.3}{QQ2-1-44}{Ellipsoid}}{11}\relax 
+\doTocEntry\tocsubsection{3.3.1}{\csname a:TocLink\endcsname{1}{x1-450003.3.1}{QQ2-1-45}{Definition}}{11}\relax 
+\doTocEntry\tocsubsection{3.3.2}{\csname a:TocLink\endcsname{1}{x1-460003.3.2}{QQ2-1-46}{Parameters}}{11}\relax 
+\doTocEntry\tocsubsection{3.3.3}{\csname a:TocLink\endcsname{1}{x1-470003.3.3}{QQ2-1-47}{Creation}}{11}\relax 
+\doTocEntry\tocsection{3.4}{\csname a:TocLink\endcsname{1}{x1-480003.4}{QQ2-1-48}{Mould selection}}{11}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-490003.4}{QQ2-1-49}{Walking}}{11}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-500003.4}{QQ2-1-50}{Interaction}}{12}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-510003.4}{QQ2-1-51}{Filtering}}{12}\relax 
+\doTocEntry\tocsubparagraph{}{\csname a:TocLink\endcsname{1}{x1-520003.4}{QQ2-1-52}{Block whitelist/blacklist}}{12}\relax 
+\doTocEntry\tocsubparagraph{}{\csname a:TocLink\endcsname{1}{x1-530003.4}{QQ2-1-53}{Set intersection/subtraction}}{12}\relax 
+\doTocEntry\tocchapter{4}{\csname a:TocLink\endcsname{1}{x1-540004}{QQ2-1-54}{Clipboard}}{13}\relax 
+\doTocEntry\tocsection{4.1}{\csname a:TocLink\endcsname{1}{x1-550004.1}{QQ2-1-55}{Copying}}{13}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-560004.1}{QQ2-1-56}{\texttt  {//copy}}}{13}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-570004.1}{QQ2-1-57}{\texttt  {//cut}}}{13}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-580004.1}{QQ2-1-58}{\texttt  {//move}}}{13}\relax 
+\doTocEntry\tocsection{4.2}{\csname a:TocLink\endcsname{1}{x1-590004.2}{QQ2-1-59}{Pasting}}{13}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-600004.2}{QQ2-1-60}{\texttt  {//paste}}}{13}\relax 
+\doTocEntry\tocchapter{5}{\csname a:TocLink\endcsname{1}{x1-610005}{QQ2-1-61}{Construction zone}}{14}\relax 
+\doTocEntry\tocchapter{6}{\csname a:TocLink\endcsname{1}{x1-620006}{QQ2-1-62}{Sandbox mode}}{15}\relax 

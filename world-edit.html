@@ -1,0 +1,645 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>Proposal for a World edit plugin</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html --> 
+<meta name="src" content="world-edit.tex"> 
+<link rel="stylesheet" type="text/css" href="world-edit.css"> 
+</head><body 
+>
+   <div class="maketitle">
+                                                                  
+
+                                                                  
+
+<h2 class="titleHead">Proposal for a World edit plugin</h2>
+<div class="author" ><span 
+class="cmr-12">SOFe</span></div><br />
+<div class="date" ><span 
+class="cmr-12">2017-07-20, revised 2018-12-15</span></div>
+                                                                  
+
+                                                                  
+   </div>
+                                                                  
+
+                                                                  
+   <h2 class="likechapterHead"><a 
+ id="x1-1000"></a>Contents</h2>
+   <div class="tableofcontents">
+   <span class="partToc" >I&#x00A0;&#x00A0;<a 
+href="#x1-2000I" id="QQ2-1-2">Plugin mechanism</a></span>
+<br />   <span class="chapterToc" >1 <a 
+href="#x1-30001" id="QQ2-1-3">Builder sessions</a></span>
+<br />   <span class="chapterToc" >2 <a 
+href="#x1-70002" id="QQ2-1-7">The core world editing chain</a></span>
+<br />   &#x00A0;<span class="sectionToc" >2.1 <a 
+href="#x1-80002.1" id="QQ2-1-8">Selection and block iterator</a></span>
+<br />   &#x00A0;<span class="sectionToc" >2.2 <a 
+href="#x1-90002.2" id="QQ2-1-9">Block changer</a></span>
+<br />   &#x00A0;<span class="sectionToc" >2.3 <a 
+href="#x1-140002.3" id="QQ2-1-14">Clipboard chain</a></span>
+<br />   &#x00A0;<span class="sectionToc" >2.4 <a 
+href="#x1-150002.4" id="QQ2-1-15">Cassette</a></span>
+<br />   &#x00A0;<span class="sectionToc" >2.5 <a 
+href="#x1-160002.5" id="QQ2-1-16">User history</a></span>
+<br />   &#x00A0;<span class="sectionToc" >2.6 <a 
+href="#x1-170002.6" id="QQ2-1-17">Load synchronizer</a></span>
+<br />   &#x00A0;<span class="sectionToc" >2.7 <a 
+href="#x1-180002.7" id="QQ2-1-18">User interface</a></span>
+<br />   <span class="chapterToc" >3 <a 
+href="#x1-190003" id="QQ2-1-19">Shape selection</a></span>
+<br />   &#x00A0;<span class="sectionToc" >3.1 <a 
+href="#x1-200003.1" id="QQ2-1-20">Cuboid</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >3.1.1 <a 
+href="#x1-210003.1.1" id="QQ2-1-21">Definition</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >3.1.2 <a 
+href="#x1-220003.1.2" id="QQ2-1-22">Parameters</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >3.1.3 <a 
+href="#x1-230003.1.3" id="QQ2-1-23">Creation</a></span>
+<br />   &#x00A0;<span class="sectionToc" >3.2 <a 
+href="#x1-270003.2" id="QQ2-1-27">Conical frustum</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >3.2.1 <a 
+href="#x1-280003.2.1" id="QQ2-1-28">Definition</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >3.2.2 <a 
+href="#x1-290003.2.2" id="QQ2-1-29">Parameters</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >3.2.3 <a 
+href="#x1-320003.2.3" id="QQ2-1-32">Wands</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >3.2.4 <a 
+href="#x1-390003.2.4" id="QQ2-1-39">Commands</a></span>
+<br />   &#x00A0;<span class="sectionToc" >3.3 <a 
+href="#x1-440003.3" id="QQ2-1-44">Ellipsoid</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >3.3.1 <a 
+href="#x1-450003.3.1" id="QQ2-1-45">Definition</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >3.3.2 <a 
+href="#x1-460003.3.2" id="QQ2-1-46">Parameters</a></span>
+<br />   &#x00A0;&#x00A0;<span class="subsectionToc" >3.3.3 <a 
+href="#x1-470003.3.3" id="QQ2-1-47">Creation</a></span>
+<br />   &#x00A0;<span class="sectionToc" >3.4 <a 
+href="#x1-480003.4" id="QQ2-1-48">Mould selection</a></span>
+<br />   <span class="chapterToc" >4 <a 
+href="#x1-540004" id="QQ2-1-54">Clipboard</a></span>
+<br />   &#x00A0;<span class="sectionToc" >4.1 <a 
+href="#x1-550004.1" id="QQ2-1-55">Copying</a></span>
+<br />   &#x00A0;<span class="sectionToc" >4.2 <a 
+href="#x1-590004.2" id="QQ2-1-59">Pasting</a></span>
+<br />   <span class="chapterToc" >5 <a 
+href="#x1-610005" id="QQ2-1-61">Construction zone</a></span>
+<br />   <span class="chapterToc" >6 <a 
+href="#x1-620006" id="QQ2-1-62">Sandbox mode</a></span>
+   </div>
+   <div 
+class="abstract" 
+>
+<!--l. 25--><p class="indent" >
+                                                                  
+
+                                                                  
+<div class="center" 
+>
+<!--l. 25--><p class="noindent" >
+<!--l. 25--><p class="noindent" ><span 
+class="cmbx-10">Abstract</span></div>
+<!--l. 26--><p class="noindent" >This proposal describes a world edit plugin largely based on features originally intended
+in WorldEditArt, along with some new ideas.
+<!--l. 28--><p class="indent" >
+                                                                  
+
+                                                                  
+   </div>
+                                                                  
+
+                                                                  
+<!--l. 30--><p class="indent" >
+                                                                  
+
+                                                                  
+   <h1 class="partHead"><span class="titlemark">Part&#x00A0;I<br /></span><a 
+ id="x1-2000I"></a>Plugin mechanism</h1>
+                                                                  
+
+                                                                  
+   <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;1</span><br /><a 
+ id="x1-30001"></a>Builder sessions</h2>
+<!--l. 32--><p class="noindent" >Users of this plugin should be managed in &#8221;builder sessions&#8221; with individual access
+information. Builder sessions can be created in three modes, namely:
+<!--l. 34--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-40001"></a><span 
+class="cmbx-10">Implicit Mode</span></span>
+   Players with a certain permission will start a builder session upon joining a
+game. The session&#8217;s permission and location will be synchronized with the
+player.
+<!--l. 37--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-50001"></a><span 
+class="cmbx-10">Explicit Mode</span></span>
+   Players with a certain permission will start a builder session upon typing a
+command. The session&#8217;s permission and location will be synchronized with the
+player, and can be closed with a command. The command may be locked with a
+private password (similar to the <span 
+class="cmtt-10">sudo </span>Linux command) or global password (similar to
+the <span 
+class="cmtt-10">su </span>Linux command) for additional protection.
+<!--l. 42--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-60001"></a><span 
+class="cmbx-10">Minion Mode</span></span>
+   Command senders with a certain permission (especially non-in-game senders like
+console) can create minion builder sessions upon typing a command. The session&#8217;s
+permission and location will be controlled by the command sender. Each builder
+session has an allocated amount of resources; this allocation may affect the rate of
+world-editing operations to maximize server performance.
+<!--l. 49--><p class="indent" >   For implicit and explicit modes, the builder session&#8217;s position and orientation is
+synchronized with the player. The position uses the block that <span 
+class="cmbx-10">the player&#8217;s feet</span>
+<span 
+class="cmbx-10">stand in</span>.
+     <ul class="itemize1">
+     <li class="itemize">If the player is floating on a lake of liquid, the highest level of the liquid
+     is used.
+     </li>
+     <li class="itemize">If the player is standing on a full block (or the part of the block with full
+     height, e.g. an upper slab, the upper step of a stair block), the <span 
+class="cmti-10">air block</span>
+     <span 
+class="cmti-10">above </span>the full block is used.
+     </li>
+     <li class="itemize">If the player is standing on an incomplete block (e.g. a lower slab, a chest
+     block, an open-upwards trapdoor), the block itself is used.</li></ul>
+                                                                  
+
+                                                                  
+   <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;2</span><br /><a 
+ id="x1-70002"></a>The core world editing chain</h2>
+     <ul class="itemize1">
+     <li class="itemize">Selection
+     </li>
+     <li class="itemize">Block Iterator
+     </li>
+     <li class="itemize">Block Changer
+     </li>
+     <li class="itemize">Cassette
+     </li>
+     <li class="itemize">User History
+     </li>
+     <li class="itemize">Load Synchronizer</li></ul>
+   <h3 class="sectionHead"><span class="titlemark">2.1   </span> <a 
+ id="x1-80002.1"></a>Selection and block iterator</h3>
+<!--l. 70--><p class="noindent" >A selection refers to a 3D shape. A selection can be created by various methods as
+described in the <a 
+href="#x1-190003">Shape Selection</a> section.
+<!--l. 73--><p class="indent" >   By default, all commands only affect the selection named &#8221;default&#8221;. Builder
+sessions may also create other selections, identified by case-insensitive names. The
+selections should be discarded upon closing a builder session (e.g. when a player
+quits).
+<!--l. 77--><p class="indent" >   A selection should provide an iterator providing a unique stream of blocks within
+the selection, or blocks on the margin of the selection at a defined padding (inside the
+border) and margin (outside the border).
+<!--l. 81--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">2.2   </span> <a 
+ id="x1-90002.2"></a>Block changer</h3>
+<!--l. 82--><p class="noindent" >A block changer is an interface that accepts a Block argument and returns another
+Block argument, determining the new block to set.
+<!--l. 85--><p class="indent" >   Four implementations of block changer are proposed:
+<!--l. 86--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-100002.2"></a><span 
+class="cmbx-10">Simple block changer</span></span>
+   The blocks are always set to the specified block type.
+<!--l. 87--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-110002.2"></a><span 
+class="cmbx-10">Repeating block changer</span></span>
+   A list of block types is provided by the user, and the blocks are returned in a
+loop. For example, if the user specifies <span 
+class="cmtt-10">1 glowstone, 2 glass, 3 stone, 1</span>
+<span 
+class="cmtt-10">lantern</span>, the first block set is a glowstone, the next two are glass, etc. This loop
+repeats at the 9<sup class="textsuperscript"><span 
+class="cmr-9">th</span></sup> block. This is useful for generating patterns in a rectangle or a
+cuboid, but the direction is undefined.
+                                                                  
+
+                                                                  
+<!--l. 91--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-120002.2"></a><span 
+class="cmbx-10">Random list block changer</span></span>
+   A list of block types is provided by the user. Each block is set to one of the block
+types in the list randomly selected.
+<!--l. 93--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-130002.2"></a><span 
+class="cmbx-10">Weighted random list block changer</span></span>
+   Same as random list block changer, except that the block types have different
+probability of being selected.
+<!--l. 96--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">2.3   </span> <a 
+ id="x1-140002.3"></a>Clipboard chain</h3>
+<!--l. 97--><p class="noindent" >An alternative chain is <span 
+class="cmtt-10">Clipboard -&#x003E; Cassette -&#x003E; User History -&#x003E; Load</span>
+<span 
+class="cmtt-10">Synchronizer</span>, where the clipboard provides both the block iterator and the block
+changer. More details will be described in the <a 
+href="#x1-540004">Clipboard</a> section.
+<!--l. 101--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">2.4   </span> <a 
+ id="x1-150002.4"></a>Cassette</h3>
+<!--l. 102--><p class="noindent" >A cassette is a section of server memory, or a temporary file on the hard
+disk (if greater than 10MB), storing an ordered list of blocks changed in an
+operation. It can be re-executed in forward or backward order to redo/undo the
+operation.
+<!--l. 106--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">2.5   </span> <a 
+ id="x1-160002.5"></a>User history</h3>
+<!--l. 107--><p class="noindent" >A user history manages an &#8221;undo stack&#8221; and a &#8221;redo stack&#8221;, each holding an ordered
+list of cassettes. When the user requests to undo or redo, a cassette from one stack
+will be moved to the other stack, and pass a reference to the cassette to the load
+synchronizer.
+<!--l. 111--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">2.6   </span> <a 
+ id="x1-170002.6"></a>Load synchronizer</h3>
+<!--l. 112--><p class="noindent" >The load synchronizer manages chunk locking and cassette operation queuing. Before
+starting an operation, it determines whether the operation should be executed
+synchronously or asynchronously and stores the chunks (identifiers only) affected by
+the cassette to manage locking. <span 
+class="cmti-10">Cassette operations owned by the same builder</span>
+<span 
+class="cmti-10">session will be executed one by one, but cassette operations owned by different builder</span>
+<span 
+class="cmti-10">sessions are executed orderlessly.</span>
+<!--l. 118--><p class="indent" >   If the selection shape supports reporting the maximum number of blocks changed
+per chunk, it would determine whether to use the synchronous strategy (updating a
+                                                                  
+
+                                                                  
+few blocks every tick) or the asynchronous strategy (lock the chunks, pass all
+parameters to an AsyncTask, modify them on the other thread and send the whole
+chunks).
+<!--l. 123--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">2.7   </span> <a 
+ id="x1-180002.7"></a>User interface</h3>
+<!--l. 124--><p class="noindent" >While the chain consists of five components, the user only needs to make two inputs,
+and only look at the final user history.
+<!--l. 127--><p class="indent" >   A builder session first creates a selection using specific means (e.g. wands,
+commands, etc.). After confirming the selection, the user can execute a manipulation
+command, e.g. <span 
+class="cmtt-10">//set</span>, <span 
+class="cmtt-10">//replace</span>, etc. This will trigger the block iterator from the
+selection and instantiate a block changer from the manipulation command&#8217;s
+arguments. A cassette will be inserted into the user history, and the user history
+shall pull data from block iterator and block changer into the cassette for
+execution.
+<!--l. 134--><p class="indent" >   If the load synchronizer contains cassettes used by the user, it should show a
+progress bar on the user&#8217;s screen (scoreboards for players, periodic logger messages
+(at a lower frequency) for console).
+                                                                  
+
+                                                                  
+   <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;3</span><br /><a 
+ id="x1-190003"></a>Shape selection</h2>
+<!--l. 139--><p class="noindent" >The geometric logic is implemented in <span 
+class="cmti-10">libgeom</span>, while the UI logic is implemented in
+this plugin.
+<!--l. 141--><p class="indent" >   A <span 
+class="cmti-10">wand </span>refers to a combination of an item and an action; left-clicking with an
+emerald and right-clicking with an emerald are considered as two different wands.
+The clicked block is known as the <span 
+class="cmti-10">this </span>position.
+<!--l. 145--><p class="indent" >   A wand can be virtually used using a command. For example, the command
+<span 
+class="cmtt-10">//pos1 </span>is equivalent to clicking the <span 
+class="cmtt-10">pos1 </span>wand at the block that the builder session
+stands in.
+   <h3 class="sectionHead"><span class="titlemark">3.1   </span> <a 
+ id="x1-200003.1"></a>Cuboid</h3>
+<!--l. 149--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">3.1.1   </span> <a 
+ id="x1-210003.1.1"></a>Definition</h4>
+<!--l. 149--><p class="noindent" >A cuboid is always aligned to the XYZ coordinate system.
+   <h4 class="subsectionHead"><span class="titlemark">3.1.2   </span> <a 
+ id="x1-220003.1.2"></a>Parameters</h4>
+<!--l. 150--><p class="noindent" >Two points named <span 
+class="cmtt-10">pos1 </span>and <span 
+class="cmtt-10">pos2</span>. The smallest cuboid inscribing both points is
+selected.
+   <h4 class="subsectionHead"><span class="titlemark">3.1.3   </span> <a 
+ id="x1-230003.1.3"></a>Creation</h4>
+<!--l. 153--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-240003.1.3"></a><span 
+class="cmbx-10">Explicit selection</span></span>
+   Execute the wands <span 
+class="cmtt-10">pos1 </span>and <span 
+class="cmtt-10">pos2 </span>to select the two positions separately.
+Executing again manipulates the selection.
+<!--l. 155--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-250003.1.3"></a><span 
+class="cmtt-10">shoot </span><span 
+class="cmbx-10">command</span></span>
+   <span 
+class="cmtt-10">//cuboid shoot &#x003C;distance&#x003E; </span>selects the <span 
+class="cmti-10">this </span>position as <span 
+class="cmtt-10">pos1</span>, then shoots a ray
+along the <span 
+class="cmti-10">this </span>orientation for a specified length to obtain <span 
+class="cmtt-10">pos2</span>.
+<!--l. 158--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-260003.1.3"></a><span 
+class="cmtt-10">grow </span><span 
+class="cmbx-10">command</span></span>
+   <span 
+class="cmtt-10">//cuboid grow &#x003C;+x&#x003E; [-x] &#x003C;+y&#x003E; [-y] &#x003C;+z&#x003E; [-z] </span>modifies the current cuboid
+selection by extending the cuboid on the specified sides. <span 
+class="cmtt-10">pos1 </span>and <span 
+class="cmtt-10">pos2 </span>points might
+be flipped.
+<!--l. 162--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">3.2   </span> <a 
+ id="x1-270003.2"></a>Conical frustum</h3>
+                                                                  
+
+                                                                  
+<!--l. 163--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">3.2.1   </span> <a 
+ id="x1-280003.2.1"></a>Definition</h4>
+<!--l. 163--><p class="noindent" >A conical frustum is very flexible. It is the generalization of:
+     <ul class="itemize1">
+     <li class="itemize"><a 
+href="http://mathworld.wolfram.com/Cylinder.html" >Cylinders</a>
+     </li>
+     <li class="itemize"><a 
+href="http://mathworld.wolfram.com/Cone.html" >Cones</a>
+     </li>
+     <li class="itemize">Or a generic <a 
+href="http://mathworld.wolfram.com/ConicalFrustum.html" >conical frustum</a></li></ul>
+<!--l. 170--><p class="indent" >   A cylinder is a special case of conical frustum where both base shapes are
+congruent. A cone is a special case of conical frustum where the top shape has radius
+0.
+<!--l. 173--><p class="indent" >   Of which, the base shape can be a circle or an ellipse. The base circle may or may
+not align to the XYZ coordinate system. The principal axis (the axis of
+rotation symmetry) may or may not be orthogonal to the XYZ coordinate
+system, and may or may not be orthogonal to the base shape. However, the
+top shape (for cylinders and conical frustums) must be parallel to the base
+shape.
+   <h4 class="subsectionHead"><span class="titlemark">3.2.2   </span> <a 
+ id="x1-290003.2.2"></a>Parameters</h4>
+<!--l. 177--><p class="noindent" >Despite the great flexibility, there are no conditional parameters. The shape is always
+only parameterized by a base ellipse and a top ellipse.
+<!--l. 179--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-300003.2.2"></a><span 
+class="cmbx-10">Base ellipse</span></span>
+   The base ellipse is defined by a center point <span 
+class="cmtt-10">baseCenter </span>(a position vector), axis
+1 <span 
+class="cmtt-10">baseAxis1 </span>(a relative vector from the center to one of the extreme points on the
+ellipse) and axis 2 <span 
+class="cmtt-10">baseAxis2 </span>(a relative vector orthogonal to <span 
+class="cmtt-10">baseAxis1 </span>to represent
+the other elliptic axis).
+<!--l. 183--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-310003.2.2"></a><span 
+class="cmbx-10">Top ellipse</span></span>
+   The top shape must be a stretched projection of the base shape. That is, the top
+shape has parallel axes 1 and 2 to the base shape, but the lengths can be different.
+Therefore, the top shape is defined by the center point <span 
+class="cmtt-10">topCenter</span>, length of axis 1
+<span 
+class="cmtt-10">topLength1 </span>and length of axis 2 <span 
+class="cmtt-10">topLength2</span>.
+   <h4 class="subsectionHead"><span class="titlemark">3.2.3   </span> <a 
+ id="x1-320003.2.3"></a>Wands</h4>
+<!--l. 188--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-330003.2.3"></a><span 
+class="cmbx-10">Principal axis</span></span>
+   There are two basic wands <span 
+class="cmtt-10">baseCenter </span>and <span 
+class="cmtt-10">topCenter </span>to select the principal axis
+of the shape.
+                                                                  
+
+                                                                  
+<!--l. 190--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-340003.2.3"></a><span 
+class="cmbx-10">Upright radius selection</span></span>
+   If the desired shape is an upright (base shape is orthogonal to the principal axis)
+circular cylinder, the <span 
+class="cmtt-10">radius </span>wand selects any point on the extended curved plane of
+the cylinder. In other words, the distance between the base center and the projection
+of the selected point on the base plane is used as the radius of the cylinder. If the
+desired shape is an elliptic cylinder, use <span 
+class="cmtt-10">radius </span>followed by <span 
+class="cmtt-10">radius2 </span>to select the
+intersection points of the curved plane and axes 1/2. If the desired shape is a conical
+frustum,
+<!--l. 197--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-350003.2.3"></a><span 
+class="cmbx-10">Aligned upright radius selection</span></span>
+   If the elliptic radius is aligned on the XZ/YZ/XY plane, use <span 
+class="cmtt-10">radiusY</span>/<span 
+class="cmtt-10">radiusX</span>/<span 
+class="cmtt-10">radiusZ</span>
+so that the selected point is projected onto the respective planes.
+<!--l. 200--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-360003.2.3"></a><span 
+class="cmbx-10">Orientation changes</span></span>
+   The <span 
+class="cmtt-10">freeRadius </span>and <span 
+class="cmtt-10">freeRadius2 </span>wands freely select the intersection points
+between the base radii and the base ellipse perimeter.
+<!--l. 202--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-370003.2.3"></a><span 
+class="cmbx-10">Top center alignment</span></span>
+   The <span 
+class="cmtt-10">topCenterY </span>wand only selects the height of the shape. The selected point is
+horizontally moved to a point directly above/below <span 
+class="cmtt-10">baseCenter</span>. If horizontal
+alignment is desired, use <span 
+class="cmtt-10">topCenterX </span>or <span 
+class="cmtt-10">topCenterZ </span>instead.
+<!--l. 205--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-380003.2.3"></a><span 
+class="cmbx-10">Top radius selection</span></span>
+   Add <span 
+class="cmtt-10">top </span>before the radius selection wand names so that the wand only modifies
+the top radii but not the base radii, except the base axis directions are rotated if the
+top radii are also rotated. Orientation-changing wands are not applicable as the two
+ellipses must be parallel.
+   <h4 class="subsectionHead"><span class="titlemark">3.2.4   </span> <a 
+ id="x1-390003.2.4"></a>Commands</h4>
+<!--l. 210--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-400003.2.4"></a><span 
+class="cmbx-10">Creation</span></span>
+   A much simpler way to create a basic aligned (elliptic) cylinder is to use the
+command <span 
+class="cmtt-10">//cylinder &#x003C;height&#x003E; &#x003C;radius&#x003E; [radius2] [Y|x|z]</span>, where the last
+parameter is the alignment of the principal axis (default <span 
+class="cmtt-10">y</span>).
+<!--l. 213--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-410003.2.4"></a><span 
+class="cmbx-10">Conversion</span></span>
+   <span 
+class="cmtt-10">//cylinder cone </span>sets the top radii to 0, making the shape a cone. <span 
+class="cmtt-10">//cylinder</span>
+<span 
+class="cmtt-10">cylinder </span>sets the top radii to be same as the base radii, making the shape a
+cylinder. <span 
+class="cmtt-10">//cylinder frustum &#x003C;ratio&#x003E; </span>sets the top radii as <span 
+class="cmtt-10">&#x003C;ratio&#x003E; </span>times of the
+base radii, making the shape a frustum. <span 
+class="cmtt-10">cone </span>is equivalent to <span 
+class="cmtt-10">frustum 0</span>, and <span 
+class="cmtt-10">cyl </span>is
+equivalent to <span 
+class="cmtt-10">frustum 1</span>.
+                                                                  
+
+                                                                  
+<!--l. 218--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-420003.2.4"></a><span 
+class="cmbx-10">Orthogonalization</span></span>
+   <span 
+class="cmtt-10">//cylinder pl </span>projects the base and top ellipses to the planes containing the
+base and top centers orthogonal to the principal axis. <span 
+class="cmtt-10">//cylinder rot </span>rotates
+the base and top ellipses such that they are orthogonal to the principal
+axis.
+<!--l. 221--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-430003.2.4"></a><span 
+class="cmbx-10">Explicit radius</span></span>
+   <span 
+class="cmtt-10">//cylinder radius [top|base] [major|minor] &#x003C;length&#x003E; </span>sets the
+major/minor/both radii of the top/base/both ellipses to <span 
+class="cmtt-10">&#x003C;length&#x003E;</span>.
+<!--l. 224--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">3.3   </span> <a 
+ id="x1-440003.3"></a>Ellipsoid</h3>
+<!--l. 225--><p class="noindent" >
+   <h4 class="subsectionHead"><span class="titlemark">3.3.1   </span> <a 
+ id="x1-450003.3.1"></a>Definition</h4>
+<!--l. 225--><p class="noindent" >An ellipsoid is a sphere that can be stretched alogn the three axes respectively.
+   <h4 class="subsectionHead"><span class="titlemark">3.3.2   </span> <a 
+ id="x1-460003.3.2"></a>Parameters</h4>
+<!--l. 226--><p class="noindent" ><span 
+class="cmtt-10">center </span>is the center point of the ellipsoid, and <span 
+class="cmtt-10">rx</span>, <span 
+class="cmtt-10">ry </span>and <span 
+class="cmtt-10">rz </span>are the radii of the
+ellipsoid on the three axes.
+   <h4 class="subsectionHead"><span class="titlemark">3.3.3   </span> <a 
+ id="x1-470003.3.3"></a>Creation</h4>
+<!--l. 228--><p class="noindent" >Use the <span 
+class="cmtt-10">center </span>wand to select the center of the sphere. Use <span 
+class="cmtt-10">rx</span>, <span 
+class="cmtt-10">ry </span>and <span 
+class="cmtt-10">rz </span>to select
+any point at the same x/y/z-coordinate as the margins of the ellipsoid. If other radii
+have not been set, the wands also set them to the same value. If the ellipsoid is a
+regular sphere, it is also possible to use <span 
+class="cmtt-10">radius </span>to select any point on the sphere
+surface.
+<!--l. 234--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">3.4   </span> <a 
+ id="x1-480003.4"></a>Mould selection</h3>
+<!--l. 235--><p class="noindent" >Mould selection is a non-geometric selection. There are multiple mould selection
+modes:
+<!--l. 236--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-490003.4"></a><span 
+class="cmbx-10">Walking</span></span>
+   The blocks that have intersected with the player during the selection are added to
+the set of selected positions.
+                                                                  
+
+                                                                  
+<!--l. 238--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-500003.4"></a><span 
+class="cmbx-10">Interaction</span></span>
+   The blocks destroyed/placed by the player during the selection are added to the
+set of selected positions.
+<!--l. 240--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-510003.4"></a><span 
+class="cmbx-10">Filtering</span></span>
+   The blocks inside an existing selection that match a certain criterion are added to
+the new selection. Criteria include:
+<!--l. 242--><p class="indent" >   <span class="subparagraphHead"> <a 
+ id="x1-520003.4"></a><span 
+class="cmbx-10">Block whitelist/blacklist</span></span> Only certain block types are included/excluded.
+<!--l. 243--><p class="indent" >   <span class="subparagraphHead"> <a 
+ id="x1-530003.4"></a><span 
+class="cmbx-10">Set intersection/subtraction</span></span> Only blocks inside/not inside another selection
+are included.
+                                                                  
+
+                                                                  
+   <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;4</span><br /><a 
+ id="x1-540004"></a>Clipboard</h2>
+   <h3 class="sectionHead"><span class="titlemark">4.1   </span> <a 
+ id="x1-550004.1"></a>Copying</h3>
+<!--l. 249--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-560004.1"></a><span 
+class="cmtt-10">//copy</span></span>
+   iterates the current selection and writes each block (coordinates + block type) to
+a schematic file. Each builder session may own their own directory of multiple
+clips.
+<!--l. 251--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-570004.1"></a><span 
+class="cmtt-10">//cut</span></span>
+   deletes the blocks while copying.
+<!--l. 252--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-580004.1"></a><span 
+class="cmtt-10">//move</span></span>
+   only copies the selection without deleting the blocks. The first time it is pasted,
+the blocks are removed.
+   <h3 class="sectionHead"><span class="titlemark">4.2   </span> <a 
+ id="x1-590004.2"></a>Pasting</h3>
+<!--l. 255--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-600004.2"></a><span 
+class="cmtt-10">//paste</span></span>
+   reads a schematic file and sets blocks through the cassette chain.
+                                                                  
+
+                                                                  
+   <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;5</span><br /><a 
+ id="x1-610005"></a>Construction zone</h2>
+<!--l. 258--><p class="noindent" >Command senders with a certain permission may declare specific zones in the world
+as &#8221;construction zones&#8221;. Builder sessions are granted with construction access in
+certain construction zones, only in which they can execute world-editing
+operations.
+<!--l. 262--><p class="indent" >   This limit may be bypassed through a specific command, or it can be set in
+the plugin configuration to mark the whole level/all levels as construction
+zones.
+<!--l. 265--><p class="indent" >   If a world-editing operation overlaps non-construction zones, the ignored blocks
+will be saved into a new cassette that can be managed later.
+                                                                  
+
+                                                                  
+   <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;6</span><br /><a 
+ id="x1-620006"></a>Sandbox mode</h2>
+<!--l. 269--><p class="noindent" >Builder sessions based on players can use a <span 
+class="cmtt-10">//sandbox </span>prefix before their commands
+(e.g. <span 
+class="cmtt-10">//sandbox set snow </span>such that all world-editing operations they execute are
+only temporarily visible on their client side, but do not update the level and are not
+visible to other players.
+<!--l. 273--><p class="indent" >   Builder sessions may also create named &#8221;shared sandboxes&#8221;, inviting certain
+players (not related to builder sessions) to it and making world-editing operations
+they execute also visible to the invited players&#8217; client side. This feature can be used
+(<span 
+class="cmti-10">abused</span>) to create automated games like spleef matches.
+<!--l. 277--><p class="indent" >   Since the changes are only temporary, it is not necessary to store the changes to a
+cassette. As a result, the chain of a sandbox operation only consists of four
+steps:
+     <ul class="itemize1">
+     <li class="itemize">Selection
+     </li>
+     <li class="itemize">Block iterator
+     </li>
+     <li class="itemize">Block changer
+     </li>
+     <li class="itemize">Client-side changes</li></ul>
+<!--l. 287--><p class="indent" >   Sandbox operations are also affected by construction zones. Since no cassettes are
+involved, the unchanged blocks will not be stored, but they will be counted and
+reported. In addition, the block changer may return different blocks due to
+randomness (unlike redoing operations).
+    
+</body></html> 
+
+                                                                  
+
+
