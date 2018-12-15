@@ -58,19 +58,31 @@
 		\chapter{Database}
 			SQLite and MySQL databases should be supported.
 
-			\section{Synchronization}
-				If multiple servers share the same database, synchronization should be enabled. The need of synchronization can be automatically detected.
+			\section{Version control} If a newer version of the plugin connects to the database and needs to perform backward-incompatible changes in database structure, it would not start unless explicitly indicated to update the database.
 
-				\paragraph{Account access} As account is considered to be the main concurrency-sensitive data, accounts can be accessed in two modes:
-					\subparagraph{Exclusive access} Accounts can be accessed anytime and modified in any desired method with exclusive access. This is useful when a player is online and the server wants to access the accounts of the player as soon as possible.
+			\section{Synchronization}
+				If multiple servers share the same database, synchronization should be enabled. If synchronization is not needed, it should be explicitly disabled by the admin. Otherwise, synchronization is always assumed to be needed to be safe.
+
+				\subsection{Account access}
+					As account is considered to be the main concurrency-sensitive data, accounts can be accessed in two modes:
+					\paragraph{Exclusive access} allows read and modification of account balance in any possible method. This is useful when a player is online and the server wants to access the accounts of the player as soon as possible.
 
 					Exclusive access can only be gained by one component at the same time. The component is also responsible for applying the changes from regular accessors.
 
-					\subparagraph{Routine access} Regular access is used when a component modifies a large amount of data without reading their results. There are 3 types of modifications done by routine access: \emph{absolute}, \emph{relative} and \emph{proportional}. \emph{absolute} sets the balance to a value regardless of its previous value. \emph{relative} adds/subtracts a constant amount to the balance. \emph{proportional} multiplies the balance by a ratio.
+					\paragraph{Routine access} is used when a component modifies a large amount of data without reading their results. There are 3 types of modifications done by routine access:
+						\subparagraph{absolute} sets the balance to a value regardless of its previous value.
+						\subparagraph{relative} adds/subtracts a constant amount to the balance.
+						\subparagraph{proportional} multiplies the balance by a ratio.
 
 					Routine access does not allow reading the data values, because modification may be executed by exclusive access, which may not immediately expose the modified values to the routine accessor.
 
-					\subparagraph{Analytical access} Analytical access is used when a component reads a large amount of data without modification, especially for data analysis. Analytical access does not guarantee concurrency safety, so the data may be incorrect or outdated to a small extent. As analytical access is typically intended for statistical uses, these minor errors should not have significant effect on the outcome, i.e. analytical access should only be used by error-tolerant reasons.
+					\paragraph{Analytical access} is used when a component reads a large amount of data without modification, especially for data analysis. Analytical access does not guarantee concurrency safety, so the data may be incorrect or outdated to a small extent. As analytical access is typically intended for statistical uses, these minor errors should not have significant effect on the outcome, i.e. analytical access should only be used by error-tolerant reasons.
+
+				\subsection{Duty lock}
+					The duty is a routine operation executed 5 minutes (lower-frequency tasks can be executed every multiple duties). The duty is only executed by one of the running servers. Every 5 minutes, all servers race to acquire the duty lock. The winner is responsible to execute the duty.
+
+				\subsection{Configuration}
+					As different servers having different configuration may lead to inconsistent behaviour, only exactly one server should contain the global configuration (namely the \emph{master server}). The configuration in other servers (namely the \emph{slave servers}) is to be copied from the master server. The configuration from the master server persists even after the master server shuts down. If two master servers are running, the one that started earlier is forced to shut down, and other slave servers will import the new configuration from the new master server. Slave servers cannot start if no master server previously connected to the database.
 
 	\part{Player module}
 
