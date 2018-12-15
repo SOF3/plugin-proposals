@@ -1,4 +1,4 @@
-all: index.html world-edit.html
+all: index.html world-edit.html economy.html
 
 index.html: ../index.tex ; htlatex $<
 world-edit.html: ../world-edit.tex ; htlatex $<
