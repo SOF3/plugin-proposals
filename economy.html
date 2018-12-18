@@ -80,10 +80,15 @@ optimizes data mining.
 
                                                                   
    </div>
+<!--l. 29--><p class="indent" >   The whole plugin consists of many different modules, but all modules are released
+together in the same plugin with most modules disabled by default. Although some
+modules can be disabled, the respective configuration fields, database tables, etc. for
+disabled modules are still created in order to facilitate maintenance for both the
+developer and the user.
                                                                   
 
                                                                   
-<!--l. 29--><p class="indent" >
+<!--l. 33--><p class="indent" >
                                                                   
 
                                                                   
@@ -94,7 +99,7 @@ optimizes data mining.
                                                                   
    <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;1</span><br /><a 
  id="x1-30001"></a>Scope</h2>
-<!--l. 31--><p class="noindent" >The functionality of the core module is limited to maintaining a list of accounts
+<!--l. 35--><p class="noindent" >The functionality of the core module is limited to maintaining a list of accounts
 associated with their owners. The core module should not handle any bvehaviour
 that is specific to a certain subset of accounts.
                                                                   
@@ -102,7 +107,7 @@ that is specific to a certain subset of accounts.
                                                                   
    <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;2</span><br /><a 
  id="x1-40002"></a>Definition of terms</h2>
-<!--l. 34--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 39--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-50002"></a><span 
 class="cmbx-10">Currency and subcurrency</span></span>
    A currency is a unit for money that cannot be directly converted to another
@@ -112,38 +117,38 @@ defined with a number and a currency, but it can be expressed in any subcurrency
 For example, dollar and pound are different currencies, but a British pound and a
 British pence are different subcurrencies of the same currency (because 1 pound =
 100 pence).
-<!--l. 37--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 46--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-60002"></a><span 
 class="cmbx-10">Account</span></span>
    An account is essentially an entry with a number and a currency to represent
-some existing capital. This definition of &#8221;existing capital&#8221; leads to some
+some existing capital. This definition of &#8221;existing capital&#8221; results in some
 corollaries:
-<!--l. 39--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 49--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-70002"></a><span 
 class="cmbx-10">Conservation rule</span></span> A transaction should not create or destroy capital. If an
 account balance is increased, the same amount must decrease in another account of
 the same currency.
-<!--l. 40--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 51--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-80002"></a><span 
 class="cmbx-10">Summation rule</span></span> The sum of all account balance (with units taken into
 consideration) must represent the total capital that exists in the world.
-<!--l. 41--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 52--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-90002"></a><span 
 class="cmbx-10">Negation rule</span></span> If the account represents that the account owner must lose some
 money in foreseeable future (e.g. debt), its balance must be negative.
-<!--l. 42--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 53--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-100002"></a><span 
 class="cmbx-10">Absolute rule</span></span> Each account must represent an amount that is transferrable,
 not a relative number. For example, the price of goods in a shop is a relative number,
 so it is not an account, but the total amount of earned but unclaimed profit in a shop
 is an account, because the profit is transferrable.
-<!--l. 43--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 56--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-110002"></a><span 
 class="cmbx-10">Option rule</span></span> If an account represents that one of two currency choices will be
 given to or taken from an account owner, instead of adding a balance for both
 currencies, a third currency should be created to represent this optional
 behaviour.
-<!--l. 45--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 59--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-120002"></a><span 
 class="cmbx-10">Account owner</span></span>
    An account owner is something (not limited to a player or a row in the database
@@ -157,35 +162,35 @@ player. The account owner type and name must not be used to store any
                                                                   
 account-related information except to represent the owner as a human-readable
 text.
-<!--l. 48--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 66--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-130002"></a><span 
 class="cmbx-10">Account type</span></span>
    An account type is a finite set of strings that represent the mechanism associated
 with the account. Since it is a finite set of strings, it should not be used for storing
 data.
-<!--l. 51--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 70--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-140002"></a><span 
 class="cmbx-10">Operation</span></span>
    An operation is a change in one or multiple accounts. There are 4 types of
 operations:
-<!--l. 53--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 73--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-150002"></a><span 
 class="cmbx-10">Transaction</span></span> A transaction is a change in account balance that obeys the
 <span 
 class="cmti-10">Conservation rule</span>.
-<!--l. 54--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 74--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-160002"></a><span 
 class="cmbx-10">Creation</span></span> A creation is a change in account balance that creates money out of
 thin air, e.g. when a new player joins, or due to administrative instructions like
 /givemoney.
-<!--l. 55--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 76--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-170002"></a><span 
-class="cmbx-10">Destruction</span></span> A destruction is a change in account balance such that
-money disappears forever. This is equivalent to burning money in the real
-world. It is also possible to destroy money during account cleanup (deleting
+class="cmbx-10">Destruction</span></span> A destruction is a change in account balance such that money
+disappears forever. This is equivalent to burning money in the real world. It
+is also possible to destroy money during account cleanup, which deletes
 obsolete accounts that have not been touched for a long time, possibly due to
-inactivity).
-<!--l. 56--><p class="indent" >   <span class="subparagraphHead"> <a 
+inactivity.
+<!--l. 80--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-180002"></a><span 
 class="cmbx-10">Exchange</span></span> An exchange is the decrease of balance in one account and the
 increase in another with different currencies.
@@ -194,53 +199,53 @@ increase in another with different currencies.
                                                                   
    <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;3</span><br /><a 
  id="x1-190003"></a>Database</h2>
-<!--l. 59--><p class="noindent" >SQLite and MySQL databases should be supported.
+<!--l. 83--><p class="noindent" >SQLite and MySQL databases should be supported.
    <h3 class="sectionHead"><span class="titlemark">3.1   </span> <a 
  id="x1-200003.1"></a>Version control</h3>
-<!--l. 61--><p class="noindent" >If a newer version of the plugin connects to the database and needs to perform
-backward-incompatible changes in database structure, it would not start unless
+<!--l. 86--><p class="noindent" >If a newer version of the plugin connects to the database and needs to perform
+backward-incompatible changes in database structure, its server cannont start unless
 explicitly indicated to update the database.
-<!--l. 63--><p class="noindent" >
+<!--l. 89--><p class="noindent" >
    <h3 class="sectionHead"><span class="titlemark">3.2   </span> <a 
  id="x1-210003.2"></a>Synchronization</h3>
-<!--l. 64--><p class="noindent" >If multiple servers share the same database, synchronization should be enabled. If
+<!--l. 90--><p class="noindent" >If multiple servers share the same database, synchronization should be enabled. If
 synchronization is not needed, it should be explicitly disabled by the admin.
 Otherwise, synchronization is always assumed to be needed to be safe.
-<!--l. 66--><p class="noindent" >
+<!--l. 94--><p class="noindent" >
    <h4 class="subsectionHead"><span class="titlemark">3.2.1   </span> <a 
  id="x1-220003.2.1"></a>Account access</h4>
-<!--l. 67--><p class="noindent" >As account is considered to be the main concurrency-sensitive data, accounts can be
+<!--l. 95--><p class="noindent" >As account is considered to be the main concurrency-sensitive data, accounts can be
 accessed in two modes:
-<!--l. 68--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 96--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-230003.2.1"></a><span 
 class="cmbx-10">Exclusive access</span></span>
    allows read and modification of account balance in any possible method. This is
 useful when a player is online and the server wants to access the accounts of the
 player as soon as possible.
-<!--l. 70--><p class="indent" >   Exclusive access can only be gained by one component at the same time.
+<!--l. 99--><p class="indent" >   Exclusive access can only be gained by one component at the same time.
 The component is also responsible for applying the changes from regular
 accessors.
-<!--l. 72--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 102--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-240003.2.1"></a><span 
 class="cmbx-10">Routine access</span></span>
    is used when a component modifies a large amount of data without reading their
 results. There are 3 types of modifications done by routine access:
-<!--l. 73--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 104--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-250003.2.1"></a><span 
 class="cmbx-10">absolute</span></span> sets the balance to a value regardless of its previous value.
-<!--l. 74--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 105--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-260003.2.1"></a><span 
 class="cmbx-10">relative</span></span> adds/subtracts a constant amount to the balance.
-<!--l. 75--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 106--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-270003.2.1"></a><span 
 class="cmbx-10">proportional</span></span> multiplies the balance by a ratio.
    Routine access does not allow reading the data values, because modification may
-be executed by exclusive access, which may not immediately expose the modified
-values to the routine accessor.
+be executed by exclusive access without immediately expose the modified values to
+the routine accessor.
                                                                   
 
                                                                   
-<!--l. 79--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 111--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-280003.2.1"></a><span 
 class="cmbx-10">Analytical access</span></span>
    is used when a component reads a large amount of data without modification,
@@ -249,32 +254,33 @@ so the data may be incorrect or outdated to a small extent. As analytical access
 typically intended for statistical uses, these minor errors should not have significant
 effect on the outcome, i.e. analytical access should only be used by error-tolerant
 reasons.
-<!--l. 81--><p class="noindent" >
+<!--l. 116--><p class="noindent" >
    <h4 class="subsectionHead"><span class="titlemark">3.2.2   </span> <a 
  id="x1-290003.2.2"></a>Duty lock</h4>
-<!--l. 82--><p class="noindent" >The duty is a routine operation executed 5 minutes (lower-frequency tasks can be
+<!--l. 117--><p class="noindent" >The duty is a routine operation executed 5 minutes (lower-frequency tasks can be
 executed every multiple duties). The duty is only executed by one of the running
 servers. Every 5 minutes, all servers race to acquire the duty lock. The winner is
 responsible to execute the duty.
-<!--l. 84--><p class="noindent" >
+<!--l. 122--><p class="noindent" >
    <h4 class="subsectionHead"><span class="titlemark">3.2.3   </span> <a 
  id="x1-300003.2.3"></a>Configuration</h4>
-<!--l. 85--><p class="noindent" >As different servers having different configuration may lead to inconsistent behaviour,
-only exactly one server should contain the global configuration (namely the <span 
-class="cmti-10">master</span>
+<!--l. 123--><p class="noindent" >As different servers having different configuration may lead to inconsistent behaviour,
+only exactly one server should contain the global configuration (namely
+the <span 
+class="cmti-10">master server</span>). The configuration in other servers (namely the <span 
+class="cmti-10">slave</span>
 <span 
-class="cmti-10">server</span>). The configuration in other servers (namely the <span 
-class="cmti-10">slave servers</span>) is
-to be copied from the master server. The configuration from the master
-server persists even after the master server shuts down. If two master servers
-are running, the one that started earlier is forced to shut down, and other
-slave servers will import the new configuration from the new master server.
-Slave servers cannot start if no master server previously connected to the
-database.
+class="cmti-10">servers</span>) is to be copied from the master server, and their own settings are
+ignored.
+<!--l. 128--><p class="indent" >   The configuration from the master server persists even after the master server
+shuts down. If two master servers are running, the one that started earlier is forced to
+shut down, and other slave servers will import the new configuration from the new
+master server. Slave servers cannot start if no master server previously connected to
+the database.
                                                                   
 
                                                                   
-<!--l. 87--><p class="indent" >
+<!--l. 133--><p class="indent" >
                                                                   
 
                                                                   
@@ -283,7 +289,7 @@ database.
                                                                   
 
                                                                   
-<!--l. 89--><p class="indent" >
+<!--l. 135--><p class="indent" >
                                                                   
 
                                                                   
@@ -292,7 +298,7 @@ database.
                                                                   
 
                                                                   
-<!--l. 91--><p class="indent" >
+<!--l. 137--><p class="indent" >
                                                                   
 
                                                                   
@@ -301,7 +307,7 @@ database.
                                                                   
 
                                                                   
-<!--l. 93--><p class="indent" >
+<!--l. 139--><p class="indent" >
                                                                   
 
                                                                   
@@ -310,7 +316,7 @@ database.
                                                                   
 
                                                                   
-<!--l. 95--><p class="indent" >
+<!--l. 141--><p class="indent" >
                                                                   
 
                                                                   
@@ -319,7 +325,7 @@ database.
                                                                   
 
                                                                   
-<!--l. 97--><p class="indent" >
+<!--l. 143--><p class="indent" >
                                                                   
 
                                                                   
