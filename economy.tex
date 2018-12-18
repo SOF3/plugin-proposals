@@ -12,10 +12,30 @@
 
 \begin{document}
 	\Css{
+		@font-face {
+			font-family: "Computer Modern";
+			src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunss.otf');
+		}
+		@font-face {
+			font-family: "Computer Modern";
+			src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunsx.otf');
+			font-weight: bold;
+		}
+		@font-face {
+			font-family: "Computer Modern";
+			src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunsi.otf');
+			font-style: italic, oblique;
+		}
+		@font-face {
+			font-family: "Computer Modern";
+			src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunbxo.otf');
+			font-weight: bold;
+			font-style: italic, oblique;
+		}
 		body {
+			font-family: "Computer Modern", sans-serif;
 			margin: 10px auto;
 			max-width: 1000px;
-			font-family: Helvetica, Verdana, Geneva, sans-serif;
 		}
 	}
 
@@ -23,17 +43,22 @@
 	\tableofcontents
 
 	\begin{abstract}
-		This proposal describes a very generalized economy plugin that both adds features and optimizes data mining.
+		This proposal describes a very generalized economy plugin optimized for data mining to be used in other features.
 	\end{abstract}
 
 	The whole plugin consists of many different modules, but all modules are released together in the same plugin with most modules disabled by default.
-	Although some modules can be disabled, the respective configuration fields, database tables, etc. for disabled modules
-	are still created in order to facilitate maintenance for both the developer and the user.
+	Although some modules can be disabled, the respective configuration fields, database tables, etc. for disabled modules are still created
+	in order to facilitate maintenance for both the developer and the user.
+
+	Events for disabled modules may still be handled or triggered,
+	but no behaviour will be changed due to these events as the corresponding modules are disabled.
 
 	\part{Core module}
 		\chapter{Scope}
-			The functionality of the core module is limited to maintaining a list of accounts associated with their owners.
+			The functionality of the core module is limited to maintaining a list of accounts as well as operation logs.
 			The core module should not handle any bvehaviour that is specific to a certain subset of accounts.
+
+			The core module is the base dependency for all other modules. Only enabling the core module should result in no player-visible behaviour.
 
 		\chapter{Definition of terms}
 			\paragraph{Currency and subcurrency}
@@ -130,16 +155,77 @@
 					and other slave servers will import the new configuration from the new master server.
 					Slave servers cannot start if no master server previously connected to the database.
 
+		\chapter{API}
+			To reduce hard dependency among different modules, an event-based API is used.
+			When a module expects to receive data or trigger behaviour from other modules,
+			it should fire an event.
+
+			Event classes should be as lightweight and dependency-free as possible.
+
 	\part{Player module}
+		\chapter{Scope}
+			The player module provides the basic functionality such that players can own and exchange money.
+
+			Semantically, this module merely creates accounts for players and exposes them a user interface for simple financial management.
+
+			This module is only dependent on the core module.
+
+	\part{Bank module}
+		\chapter{Scope}
+			The bank module provides an alternative place to store money.
+			Instead of storing all money in cash accounts, money can be placed in the bank with interest profit at a certain cost.
+
+			This module is dependent on the player module as bank accounts are closely associated with player accounts.
+
+	\part{Loan module}
+		\chapter{Scope}
+			The loan module allows borrowing or lending loans between account owners.
+
+			This module is only dependent on the core module.
 
 	\part{Social module}
+		\chapter{Scope}
+			The social module introduces the new account type "organization" so that players can form organizations
+			and have joint control on the organization accounts.
 
 	\part{Stats module}
+		\chapter{Scope}
+			The stats modulue provides admin tools for monitoring the economic situation in the server.
+
+			This module is only dependent on the core module.
+			Other modules may exchange data with this module using the events API,
+			but dependency is not required.
+
+	\part{Regularization module}
+		\chapter{Scope}
+			The regularization module ("reg module" in short) performs automatic adjustments on designated parameters
+			in order to regulate the change in statistical variables from the stats module through statistical learning methods.
+
+			This module is dependent on the stats module.
+			Other modules may exchange data with this module using the events API,
+			but dependency is not required.
 
 	\part{Shop module}
+		\chapter{Scope}
+			The shop module allows buying or selling of goods between account owners.
+			The scope of goods is not restricted.
+			The shop module introduces virtual items as the default form of goods.
+
+			The shop module is only dependent on the core module.
+			Other modules may interact with this module using the events API,
+			but dependency is not required.
 
 	\part{Land module}
+		\chapter{Scope}
+			The land module allows players or organizations to buy land and impose restrictions on it.
+
+			The module is only dependent on the core module.
 
 	\part{Physical module}
+		\chapter{Scope}
+			The physical module is a sophisticated module that integrates different features into the gameplay world.
+			It can be seen as a variant user interface and permission system to the economy system.
+
+			The module is only dependent on the core module, but it widely interacts with most of the other mechanisms.
 
 \end{document}
