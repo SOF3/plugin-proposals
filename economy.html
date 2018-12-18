@@ -48,47 +48,76 @@ href="#x1-220003.2.1" id="QQ2-1-22">Account access</a></span>
 href="#x1-290003.2.2" id="QQ2-1-29">Duty lock</a></span>
 <br />   &#x00A0;&#x00A0;<span class="subsectionToc" >3.2.3 <a 
 href="#x1-300003.2.3" id="QQ2-1-30">Configuration</a></span>
+<br />   <span class="chapterToc" >4 <a 
+href="#x1-310004" id="QQ2-1-31">API</a></span>
 <br />   <span class="partToc" >II&#x00A0;&#x00A0;<a 
-href="#x1-31000II" id="QQ2-1-31">Player module</a></span>
+href="#x1-32000II" id="QQ2-1-32">Player module</a></span>
+<br />   <span class="chapterToc" >5 <a 
+href="#x1-330005" id="QQ2-1-33">Scope</a></span>
 <br />   <span class="partToc" >III&#x00A0;&#x00A0;<a 
-href="#x1-32000III" id="QQ2-1-32">Social module</a></span>
+href="#x1-34000III" id="QQ2-1-34">Bank module</a></span>
+<br />   <span class="chapterToc" >6 <a 
+href="#x1-350006" id="QQ2-1-35">Scope</a></span>
 <br />   <span class="partToc" >IV&#x00A0;&#x00A0;<a 
-href="#x1-33000IV" id="QQ2-1-33">Stats module</a></span>
+href="#x1-36000IV" id="QQ2-1-36">Loan module</a></span>
+<br />   <span class="chapterToc" >7 <a 
+href="#x1-370007" id="QQ2-1-37">Scope</a></span>
 <br />   <span class="partToc" >V&#x00A0;&#x00A0;<a 
-href="#x1-34000V" id="QQ2-1-34">Shop module</a></span>
+href="#x1-38000V" id="QQ2-1-38">Social module</a></span>
+<br />   <span class="chapterToc" >8 <a 
+href="#x1-390008" id="QQ2-1-39">Scope</a></span>
 <br />   <span class="partToc" >VI&#x00A0;&#x00A0;<a 
-href="#x1-35000VI" id="QQ2-1-35">Land module</a></span>
+href="#x1-40000VI" id="QQ2-1-40">Stats module</a></span>
+<br />   <span class="chapterToc" >9 <a 
+href="#x1-410009" id="QQ2-1-41">Scope</a></span>
 <br />   <span class="partToc" >VII&#x00A0;&#x00A0;<a 
-href="#x1-36000VII" id="QQ2-1-36">Physical module</a></span>
+href="#x1-42000VII" id="QQ2-1-42">Regularization module</a></span>
+<br />   <span class="chapterToc" >10 <a 
+href="#x1-4300010" id="QQ2-1-43">Scope</a></span>
+<br />   <span class="partToc" >VIII&#x00A0;&#x00A0;<a 
+href="#x1-44000VIII" id="QQ2-1-44">Shop module</a></span>
+<br />   <span class="chapterToc" >11 <a 
+href="#x1-4500011" id="QQ2-1-45">Scope</a></span>
+<br />   <span class="partToc" >IX&#x00A0;&#x00A0;<a 
+href="#x1-46000IX" id="QQ2-1-46">Land module</a></span>
+<br />   <span class="chapterToc" >12 <a 
+href="#x1-4700012" id="QQ2-1-47">Scope</a></span>
+<br />   <span class="partToc" >X&#x00A0;&#x00A0;<a 
+href="#x1-48000X" id="QQ2-1-48">Physical module</a></span>
+<br />   <span class="chapterToc" >13 <a 
+href="#x1-4900013" id="QQ2-1-49">Scope</a></span>
    </div>
    <div 
 class="abstract" 
 >
-<!--l. 25--><p class="indent" >
+<!--l. 45--><p class="indent" >
                                                                   
 
                                                                   
 <div class="center" 
 >
-<!--l. 25--><p class="noindent" >
-<!--l. 25--><p class="noindent" ><span 
+<!--l. 45--><p class="noindent" >
+<!--l. 45--><p class="noindent" ><span 
 class="cmbx-10">Abstract</span></div>
-<!--l. 26--><p class="noindent" >This proposal describes a very generalized economy plugin that both adds features and
-optimizes data mining.
-<!--l. 27--><p class="indent" >
+<!--l. 46--><p class="noindent" >This proposal describes a very generalized economy plugin optimized for data mining to
+be used in other features.
+<!--l. 47--><p class="indent" >
                                                                   
 
                                                                   
    </div>
-<!--l. 29--><p class="indent" >   The whole plugin consists of many different modules, but all modules are released
+<!--l. 49--><p class="indent" >   The whole plugin consists of many different modules, but all modules are released
 together in the same plugin with most modules disabled by default. Although some
 modules can be disabled, the respective configuration fields, database tables, etc. for
 disabled modules are still created in order to facilitate maintenance for both the
 developer and the user.
+<!--l. 53--><p class="indent" >   Events for disabled modules may still be handled or triggered, but no
+behaviour will be changed due to these events as the corresponding modules are
+disabled.
                                                                   
 
                                                                   
-<!--l. 33--><p class="indent" >
+<!--l. 56--><p class="indent" >
                                                                   
 
                                                                   
@@ -99,15 +128,17 @@ developer and the user.
                                                                   
    <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;1</span><br /><a 
  id="x1-30001"></a>Scope</h2>
-<!--l. 35--><p class="noindent" >The functionality of the core module is limited to maintaining a list of accounts
-associated with their owners. The core module should not handle any bvehaviour
-that is specific to a certain subset of accounts.
+<!--l. 58--><p class="noindent" >The functionality of the core module is limited to maintaining a list of accounts as
+well as operation logs. The core module should not handle any bvehaviour that is
+specific to a certain subset of accounts.
+<!--l. 61--><p class="indent" >   The core module is the base dependency for all other modules. Only enabling the
+core module should result in no player-visible behaviour.
                                                                   
 
                                                                   
    <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;2</span><br /><a 
  id="x1-40002"></a>Definition of terms</h2>
-<!--l. 39--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 64--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-50002"></a><span 
 class="cmbx-10">Currency and subcurrency</span></span>
    A currency is a unit for money that cannot be directly converted to another
@@ -117,38 +148,38 @@ defined with a number and a currency, but it can be expressed in any subcurrency
 For example, dollar and pound are different currencies, but a British pound and a
 British pence are different subcurrencies of the same currency (because 1 pound =
 100 pence).
-<!--l. 46--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 71--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-60002"></a><span 
 class="cmbx-10">Account</span></span>
    An account is essentially an entry with a number and a currency to represent
 some existing capital. This definition of &#8221;existing capital&#8221; results in some
 corollaries:
-<!--l. 49--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 74--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-70002"></a><span 
 class="cmbx-10">Conservation rule</span></span> A transaction should not create or destroy capital. If an
 account balance is increased, the same amount must decrease in another account of
 the same currency.
-<!--l. 51--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 76--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-80002"></a><span 
 class="cmbx-10">Summation rule</span></span> The sum of all account balance (with units taken into
 consideration) must represent the total capital that exists in the world.
-<!--l. 52--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 77--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-90002"></a><span 
 class="cmbx-10">Negation rule</span></span> If the account represents that the account owner must lose some
 money in foreseeable future (e.g. debt), its balance must be negative.
-<!--l. 53--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 78--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-100002"></a><span 
 class="cmbx-10">Absolute rule</span></span> Each account must represent an amount that is transferrable,
 not a relative number. For example, the price of goods in a shop is a relative number,
 so it is not an account, but the total amount of earned but unclaimed profit in a shop
 is an account, because the profit is transferrable.
-<!--l. 56--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 81--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-110002"></a><span 
 class="cmbx-10">Option rule</span></span> If an account represents that one of two currency choices will be
 given to or taken from an account owner, instead of adding a balance for both
 currencies, a third currency should be created to represent this optional
 behaviour.
-<!--l. 59--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 84--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-120002"></a><span 
 class="cmbx-10">Account owner</span></span>
    An account owner is something (not limited to a player or a row in the database
@@ -162,35 +193,35 @@ player. The account owner type and name must not be used to store any
                                                                   
 account-related information except to represent the owner as a human-readable
 text.
-<!--l. 66--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 91--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-130002"></a><span 
 class="cmbx-10">Account type</span></span>
    An account type is a finite set of strings that represent the mechanism associated
 with the account. Since it is a finite set of strings, it should not be used for storing
 data.
-<!--l. 70--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 95--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-140002"></a><span 
 class="cmbx-10">Operation</span></span>
    An operation is a change in one or multiple accounts. There are 4 types of
 operations:
-<!--l. 73--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 98--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-150002"></a><span 
 class="cmbx-10">Transaction</span></span> A transaction is a change in account balance that obeys the
 <span 
 class="cmti-10">Conservation rule</span>.
-<!--l. 74--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 99--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-160002"></a><span 
 class="cmbx-10">Creation</span></span> A creation is a change in account balance that creates money out of
 thin air, e.g. when a new player joins, or due to administrative instructions like
 /givemoney.
-<!--l. 76--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 101--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-170002"></a><span 
 class="cmbx-10">Destruction</span></span> A destruction is a change in account balance such that money
 disappears forever. This is equivalent to burning money in the real world. It
 is also possible to destroy money during account cleanup, which deletes
 obsolete accounts that have not been touched for a long time, possibly due to
 inactivity.
-<!--l. 80--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 105--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-180002"></a><span 
 class="cmbx-10">Exchange</span></span> An exchange is the decrease of balance in one account and the
 increase in another with different currencies.
@@ -199,44 +230,44 @@ increase in another with different currencies.
                                                                   
    <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;3</span><br /><a 
  id="x1-190003"></a>Database</h2>
-<!--l. 83--><p class="noindent" >SQLite and MySQL databases should be supported.
+<!--l. 108--><p class="noindent" >SQLite and MySQL databases should be supported.
    <h3 class="sectionHead"><span class="titlemark">3.1   </span> <a 
  id="x1-200003.1"></a>Version control</h3>
-<!--l. 86--><p class="noindent" >If a newer version of the plugin connects to the database and needs to perform
+<!--l. 111--><p class="noindent" >If a newer version of the plugin connects to the database and needs to perform
 backward-incompatible changes in database structure, its server cannont start unless
 explicitly indicated to update the database.
-<!--l. 89--><p class="noindent" >
+<!--l. 114--><p class="noindent" >
    <h3 class="sectionHead"><span class="titlemark">3.2   </span> <a 
  id="x1-210003.2"></a>Synchronization</h3>
-<!--l. 90--><p class="noindent" >If multiple servers share the same database, synchronization should be enabled. If
+<!--l. 115--><p class="noindent" >If multiple servers share the same database, synchronization should be enabled. If
 synchronization is not needed, it should be explicitly disabled by the admin.
 Otherwise, synchronization is always assumed to be needed to be safe.
-<!--l. 94--><p class="noindent" >
+<!--l. 119--><p class="noindent" >
    <h4 class="subsectionHead"><span class="titlemark">3.2.1   </span> <a 
  id="x1-220003.2.1"></a>Account access</h4>
-<!--l. 95--><p class="noindent" >As account is considered to be the main concurrency-sensitive data, accounts can be
+<!--l. 120--><p class="noindent" >As account is considered to be the main concurrency-sensitive data, accounts can be
 accessed in two modes:
-<!--l. 96--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 121--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-230003.2.1"></a><span 
 class="cmbx-10">Exclusive access</span></span>
    allows read and modification of account balance in any possible method. This is
 useful when a player is online and the server wants to access the accounts of the
 player as soon as possible.
-<!--l. 99--><p class="indent" >   Exclusive access can only be gained by one component at the same time.
+<!--l. 124--><p class="indent" >   Exclusive access can only be gained by one component at the same time.
 The component is also responsible for applying the changes from regular
 accessors.
-<!--l. 102--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 127--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-240003.2.1"></a><span 
 class="cmbx-10">Routine access</span></span>
    is used when a component modifies a large amount of data without reading their
 results. There are 3 types of modifications done by routine access:
-<!--l. 104--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 129--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-250003.2.1"></a><span 
 class="cmbx-10">absolute</span></span> sets the balance to a value regardless of its previous value.
-<!--l. 105--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 130--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-260003.2.1"></a><span 
 class="cmbx-10">relative</span></span> adds/subtracts a constant amount to the balance.
-<!--l. 106--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 131--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-270003.2.1"></a><span 
 class="cmbx-10">proportional</span></span> multiplies the balance by a ratio.
    Routine access does not allow reading the data values, because modification may
@@ -245,7 +276,7 @@ the routine accessor.
                                                                   
 
                                                                   
-<!--l. 111--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 136--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-280003.2.1"></a><span 
 class="cmbx-10">Analytical access</span></span>
    is used when a component reads a large amount of data without modification,
@@ -254,17 +285,17 @@ so the data may be incorrect or outdated to a small extent. As analytical access
 typically intended for statistical uses, these minor errors should not have significant
 effect on the outcome, i.e. analytical access should only be used by error-tolerant
 reasons.
-<!--l. 116--><p class="noindent" >
+<!--l. 141--><p class="noindent" >
    <h4 class="subsectionHead"><span class="titlemark">3.2.2   </span> <a 
  id="x1-290003.2.2"></a>Duty lock</h4>
-<!--l. 117--><p class="noindent" >The duty is a routine operation executed 5 minutes (lower-frequency tasks can be
+<!--l. 142--><p class="noindent" >The duty is a routine operation executed 5 minutes (lower-frequency tasks can be
 executed every multiple duties). The duty is only executed by one of the running
 servers. Every 5 minutes, all servers race to acquire the duty lock. The winner is
 responsible to execute the duty.
-<!--l. 122--><p class="noindent" >
+<!--l. 147--><p class="noindent" >
    <h4 class="subsectionHead"><span class="titlemark">3.2.3   </span> <a 
  id="x1-300003.2.3"></a>Configuration</h4>
-<!--l. 123--><p class="noindent" >As different servers having different configuration may lead to inconsistent behaviour,
+<!--l. 148--><p class="noindent" >As different servers having different configuration may lead to inconsistent behaviour,
 only exactly one server should contain the global configuration (namely
 the <span 
 class="cmti-10">master server</span>). The configuration in other servers (namely the <span 
@@ -272,7 +303,7 @@ class="cmti-10">slave</span>
 <span 
 class="cmti-10">servers</span>) is to be copied from the master server, and their own settings are
 ignored.
-<!--l. 128--><p class="indent" >   The configuration from the master server persists even after the master server
+<!--l. 153--><p class="indent" >   The configuration from the master server persists even after the master server
 shuts down. If two master servers are running, the one that started earlier is forced to
 shut down, and other slave servers will import the new configuration from the new
 master server. Slave servers cannot start if no master server previously connected to
@@ -280,57 +311,177 @@ the database.
                                                                   
 
                                                                   
-<!--l. 133--><p class="indent" >
+   <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;4</span><br /><a 
+ id="x1-310004"></a>API</h2>
+<!--l. 159--><p class="noindent" >To reduce hard dependency among different modules, an event-based API is used.
+When a module expects to receive data or trigger behaviour from other modules, it
+should fire an event.
+<!--l. 163--><p class="indent" >   Event classes should be as lightweight and dependency-free as possible.
+                                                                  
+
+                                                                  
+<!--l. 165--><p class="indent" >
                                                                   
 
                                                                   
    <h1 class="partHead"><span class="titlemark">Part&#x00A0;II<br /></span><a 
- id="x1-31000II"></a>Player module</h1>
+ id="x1-32000II"></a>Player module</h1>
                                                                   
 
                                                                   
-<!--l. 135--><p class="indent" >
+   <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;5</span><br /><a 
+ id="x1-330005"></a>Scope</h2>
+<!--l. 167--><p class="noindent" >The player module provides the basic functionality such that players can own and
+exchange money.
+<!--l. 169--><p class="indent" >   Semantically, this module merely creates accounts for players and exposes them a
+user interface for simple financial management.
+<!--l. 171--><p class="indent" >   This module is only dependent on the core module.
+                                                                  
+
+                                                                  
+<!--l. 173--><p class="indent" >
                                                                   
 
                                                                   
    <h1 class="partHead"><span class="titlemark">Part&#x00A0;III<br /></span><a 
- id="x1-32000III"></a>Social module</h1>
+ id="x1-34000III"></a>Bank module</h1>
                                                                   
 
                                                                   
-<!--l. 137--><p class="indent" >
+   <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;6</span><br /><a 
+ id="x1-350006"></a>Scope</h2>
+<!--l. 175--><p class="noindent" >The bank module provides an alternative place to store money. Instead of storing all
+money in cash accounts, money can be placed in the bank with interest profit at a
+certain cost.
+<!--l. 178--><p class="indent" >   This module is dependent on the player module as bank accounts are closely
+associated with player accounts.
+                                                                  
+
+                                                                  
+<!--l. 180--><p class="indent" >
                                                                   
 
                                                                   
    <h1 class="partHead"><span class="titlemark">Part&#x00A0;IV<br /></span><a 
- id="x1-33000IV"></a>Stats module</h1>
+ id="x1-36000IV"></a>Loan module</h1>
                                                                   
 
                                                                   
-<!--l. 139--><p class="indent" >
+   <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;7</span><br /><a 
+ id="x1-370007"></a>Scope</h2>
+<!--l. 182--><p class="noindent" >The loan module allows borrowing or lending loans between account owners.
+<!--l. 184--><p class="indent" >   This module is only dependent on the core module.
+                                                                  
+
+                                                                  
+<!--l. 186--><p class="indent" >
                                                                   
 
                                                                   
    <h1 class="partHead"><span class="titlemark">Part&#x00A0;V<br /></span><a 
- id="x1-34000V"></a>Shop module</h1>
+ id="x1-38000V"></a>Social module</h1>
                                                                   
 
                                                                   
-<!--l. 141--><p class="indent" >
+   <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;8</span><br /><a 
+ id="x1-390008"></a>Scope</h2>
+<!--l. 188--><p class="noindent" >The social module introduces the new account type &#8221;organization&#8221; so that
+players can form organizations and have joint control on the organization
+accounts.
+                                                                  
+
+                                                                  
+<!--l. 191--><p class="indent" >
                                                                   
 
                                                                   
    <h1 class="partHead"><span class="titlemark">Part&#x00A0;VI<br /></span><a 
- id="x1-35000VI"></a>Land module</h1>
+ id="x1-40000VI"></a>Stats module</h1>
                                                                   
 
                                                                   
-<!--l. 143--><p class="indent" >
+   <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;9</span><br /><a 
+ id="x1-410009"></a>Scope</h2>
+<!--l. 193--><p class="noindent" >The stats modulue provides admin tools for monitoring the economic situation in the
+server.
+<!--l. 195--><p class="indent" >   This module is only dependent on the core module. Other modules may
+exchange data with this module using the events API, but dependency is not
+required.
+                                                                  
+
+                                                                  
+<!--l. 199--><p class="indent" >
                                                                   
 
                                                                   
    <h1 class="partHead"><span class="titlemark">Part&#x00A0;VII<br /></span><a 
- id="x1-36000VII"></a>Physical module</h1>
+ id="x1-42000VII"></a>Regularization module</h1>
+                                                                  
+
+                                                                  
+   <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;10</span><br /><a 
+ id="x1-4300010"></a>Scope</h2>
+<!--l. 201--><p class="noindent" >The regularization module (&#8221;reg module&#8221; in short) performs automatic adjustments
+on designated parameters in order to regulate the change in statistical variables from
+the stats module through statistical learning methods.
+<!--l. 204--><p class="indent" >   This module is dependent on the stats module. Other modules may exchange data
+with this module using the events API, but dependency is not required.
+                                                                  
+
+                                                                  
+<!--l. 208--><p class="indent" >
+                                                                  
+
+                                                                  
+   <h1 class="partHead"><span class="titlemark">Part&#x00A0;VIII<br /></span><a 
+ id="x1-44000VIII"></a>Shop module</h1>
+                                                                  
+
+                                                                  
+   <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;11</span><br /><a 
+ id="x1-4500011"></a>Scope</h2>
+<!--l. 210--><p class="noindent" >The shop module allows buying or selling of goods between account owners. The
+scope of goods is not restricted. The shop module introduces virtual items as the
+default form of goods.
+<!--l. 214--><p class="indent" >   The shop module is only dependent on the core module. Other modules
+may interact with this module using the events API, but dependency is not
+required.
+                                                                  
+
+                                                                  
+<!--l. 218--><p class="indent" >
+                                                                  
+
+                                                                  
+   <h1 class="partHead"><span class="titlemark">Part&#x00A0;IX<br /></span><a 
+ id="x1-46000IX"></a>Land module</h1>
+                                                                  
+
+                                                                  
+   <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;12</span><br /><a 
+ id="x1-4700012"></a>Scope</h2>
+<!--l. 220--><p class="noindent" >The land module allows players or organizations to buy land and impose restrictions
+on it.
+<!--l. 222--><p class="indent" >   The module is only dependent on the core module.
+                                                                  
+
+                                                                  
+<!--l. 224--><p class="indent" >
+                                                                  
+
+                                                                  
+   <h1 class="partHead"><span class="titlemark">Part&#x00A0;X<br /></span><a 
+ id="x1-48000X"></a>Physical module</h1>
+                                                                  
+
+                                                                  
+   <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;13</span><br /><a 
+ id="x1-4900013"></a>Scope</h2>
+<!--l. 226--><p class="noindent" >The physical module is a sophisticated module that integrates different features into
+the gameplay world. It can be seen as a variant user interface and permission system
+to the economy system.
+<!--l. 229--><p class="indent" >   The module is only dependent on the core module, but it widely interacts with
+most of the other mechanisms.
     
 </body></html> 
 

@@ -29,9 +29,22 @@
 \doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-280003.2.1}{QQ2-1-28}{Analytical access}}{8}\relax 
 \doTocEntry\tocsubsection{3.2.2}{\csname a:TocLink\endcsname{1}{x1-290003.2.2}{QQ2-1-29}{Duty lock}}{8}\relax 
 \doTocEntry\tocsubsection{3.2.3}{\csname a:TocLink\endcsname{1}{x1-300003.2.3}{QQ2-1-30}{Configuration}}{8}\relax 
-\doTocEntry\tocpart{II}{\csname a:TocLink\endcsname{1}{x1-31000II}{QQ2-1-31}{Player module}}{10}\relax 
-\doTocEntry\tocpart{III}{\csname a:TocLink\endcsname{1}{x1-32000III}{QQ2-1-32}{Social module}}{12}\relax 
-\doTocEntry\tocpart{IV}{\csname a:TocLink\endcsname{1}{x1-33000IV}{QQ2-1-33}{Stats module}}{14}\relax 
-\doTocEntry\tocpart{V}{\csname a:TocLink\endcsname{1}{x1-34000V}{QQ2-1-34}{Shop module}}{16}\relax 
-\doTocEntry\tocpart{VI}{\csname a:TocLink\endcsname{1}{x1-35000VI}{QQ2-1-35}{Land module}}{18}\relax 
-\doTocEntry\tocpart{VII}{\csname a:TocLink\endcsname{1}{x1-36000VII}{QQ2-1-36}{Physical module}}{20}\relax 
+\doTocEntry\tocchapter{4}{\csname a:TocLink\endcsname{1}{x1-310004}{QQ2-1-31}{API}}{9}\relax 
+\doTocEntry\tocpart{II}{\csname a:TocLink\endcsname{1}{x1-32000II}{QQ2-1-32}{Player module}}{11}\relax 
+\doTocEntry\tocchapter{5}{\csname a:TocLink\endcsname{1}{x1-330005}{QQ2-1-33}{Scope}}{12}\relax 
+\doTocEntry\tocpart{III}{\csname a:TocLink\endcsname{1}{x1-34000III}{QQ2-1-34}{Bank module}}{14}\relax 
+\doTocEntry\tocchapter{6}{\csname a:TocLink\endcsname{1}{x1-350006}{QQ2-1-35}{Scope}}{15}\relax 
+\doTocEntry\tocpart{IV}{\csname a:TocLink\endcsname{1}{x1-36000IV}{QQ2-1-36}{Loan module}}{17}\relax 
+\doTocEntry\tocchapter{7}{\csname a:TocLink\endcsname{1}{x1-370007}{QQ2-1-37}{Scope}}{18}\relax 
+\doTocEntry\tocpart{V}{\csname a:TocLink\endcsname{1}{x1-38000V}{QQ2-1-38}{Social module}}{20}\relax 
+\doTocEntry\tocchapter{8}{\csname a:TocLink\endcsname{1}{x1-390008}{QQ2-1-39}{Scope}}{21}\relax 
+\doTocEntry\tocpart{VI}{\csname a:TocLink\endcsname{1}{x1-40000VI}{QQ2-1-40}{Stats module}}{23}\relax 
+\doTocEntry\tocchapter{9}{\csname a:TocLink\endcsname{1}{x1-410009}{QQ2-1-41}{Scope}}{24}\relax 
+\doTocEntry\tocpart{VII}{\csname a:TocLink\endcsname{1}{x1-42000VII}{QQ2-1-42}{Regularization module}}{26}\relax 
+\doTocEntry\tocchapter{10}{\csname a:TocLink\endcsname{1}{x1-4300010}{QQ2-1-43}{Scope}}{27}\relax 
+\doTocEntry\tocpart{VIII}{\csname a:TocLink\endcsname{1}{x1-44000VIII}{QQ2-1-44}{Shop module}}{29}\relax 
+\doTocEntry\tocchapter{11}{\csname a:TocLink\endcsname{1}{x1-4500011}{QQ2-1-45}{Scope}}{30}\relax 
+\doTocEntry\tocpart{IX}{\csname a:TocLink\endcsname{1}{x1-46000IX}{QQ2-1-46}{Land module}}{32}\relax 
+\doTocEntry\tocchapter{12}{\csname a:TocLink\endcsname{1}{x1-4700012}{QQ2-1-47}{Scope}}{33}\relax 
+\doTocEntry\tocpart{X}{\csname a:TocLink\endcsname{1}{x1-48000X}{QQ2-1-48}{Physical module}}{35}\relax 
+\doTocEntry\tocchapter{13}{\csname a:TocLink\endcsname{1}{x1-4900013}{QQ2-1-49}{Scope}}{36}\relax 
