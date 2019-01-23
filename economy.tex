@@ -45,6 +45,7 @@
 		This proposal describes a very generalized economy plugin optimized for data mining to be used in other features.
 	\end{abstract}
 
+	\setcounter{tocdepth}{5}
 	\tableofcontents
 
 	The whole plugin consists of many different modules, but all modules are released together in the same plugin with most modules disabled by default.
@@ -55,12 +56,18 @@
 	but no behaviour will be changed due to these events as the corresponding modules are disabled.
 
 	\part{Core module}
-		\chapter{Scope}
+		\chapter{Summary}
 
 			The functionality of the core module is limited to maintaining a list of accounts as well as operation logs.
 			The core module should not handle any bvehaviour that is specific to a certain subset of accounts.
 
 			The core module is the base dependency for all other modules. Only enabling the core module should result in no player-visible behaviour.
+
+			\section{Account owner types}
+				\paragraph{\texttt{.server}}
+					If an account is owned (totally controlled) by a plugin,
+					the account owner type should be \texttt{.server},
+					and the account owner name should represent the plugin/module name.
 
 		\chapter{Definition of terms}
 
@@ -167,14 +174,47 @@
 
 		\chapter{API}
 
-			To reduce hard dependency among different modules, an event-based API is used.
-			When a module expects to receive data or trigger behaviour from other modules,
-			it should fire an event.
+			\section{Event API}
 
-			Event classes should be as lightweight and dependency-free as possible.
+				To reduce hard dependency among different modules, an event-based API is used.
+				When a module expects to receive data or trigger behaviour from other modules,
+				it should fire an event.
+
+				Event classes should be as lightweight and dependency-free as possible.
+
+			\section{Dot-qualify syntax}
+				To avoid loading a class unnecessary, types registered by modules or other plugins use the dot-qualify syntax.
+				The dot-qualify syntax is a dot-delimited string in the format "author.plugin.module.submodule.subsubmodule.name".
+
+		\chapter{User interface}
+
+			The plugin provides a user interface in terms of "actions".
+			An action can be performed by a command sender using a user interface for the command sender.
+
+			All command senders, by definition, have access to the "command" user interface.
+			On the other hand, specific command senders have access to special user interfaces.
+			For example, all players have access to the "form" user interface.
+
+			Special user interface methods may also be added for specific actions.
+			For example, the \href{sec:physical-module}{physical module} adds block interaction as a user interface method.
+
+			Action response is also provided to the user via a sender-specific user interface.
+			For example, confirmation prompts to players use ModalForm,
+			while other command senders have to input a "yes" command.
+
+			\section{Payment}
+
+				The "pay" action is a generic instruction to perform a simple transaction from one account to another.
+				This may result in an inconvenient user interface as accounts need to be specified explicitly.
+				Therefore, the "pay" action also supports payment by specifying a command sender (especially a player).
+				The appropriate "from" and "to" accounts are automatically or manually selected
+				based on a vadiety of validation and prioritization algorithms from other modules,
+				including psrmission checking, machine learning and more.
+
+				This mechanism will be further documented in thd "Account selection" section under each module.
 
 	\part{Player module}
-		\chapter{Scope}
+		\chapter{Summary}
 
 			The player module provides the basic functionality such that players can own and exchange money.
 
@@ -182,8 +222,32 @@
 
 			This module is only dependent on the core module.
 
+			\section{Account owner types}
+				\paragraph{\texttt{.player}}
+					Accounts directly owned by a single player (even if the player cannot access the account directly all the time)
+					should have the \texttt{.player} owner type and the player name as the owner name.
+
+			\section{Account types}
+				\paragraph{\texttt{.player.cash}}
+					The default transaction account for players is the cash account.
+					If only the player module is enabled, all player money are stored in the cash accounts.
+
+		\chapter{User interface}
+			\section{Account selection}
+				The player module contributes the \texttt{.player.cash} account type at priority $+10$
+				for both sender and recipient axxounts if the owning command sender is a player.
+
+		\chapter{Account creation}
+			A \texttt{.player.cash} account is automatically created when a new player logins.
+
+			\chapter{Default capital}
+				An amount of initial capital can be added to each new player account.
+				To prevent abuse, the player is not allowed to perform any player-to-player transactions
+				such that its eventual sum of balance is below the default capital value
+				in the first few days (configurable) after account creation.
+
 	\part{Bank module}
-		\chapter{Scope}
+		\chapter{Summary}
 
 			The bank module provides an alternative place to store money.
 			Instead of storing all money in cash accounts, money can be placed in the bank with interest profit at a certain cost.
@@ -191,20 +255,20 @@
 			This module is dependent on the player module as bank accounts are closely associated with player accounts.
 
 	\part{Loan module}
-		\chapter{Scope}
+		\chapter{Summary}
 
 			The loan module allows borrowing or lending loans between account owners.
 
 			This module is only dependent on the core module.
 
 	\part{Social module}
-		\chapter{Scope}
+		\chapter{Summary}
 
 			The social module introduces the new account type "organization" so that players can form organizations
 			and have joint control on the organization accounts.
 
 	\part{Stats module}
-		\chapter{Scope}
+		\chapter{Summary}
 
 			The stats modulue provides admin tools for monitoring the economic situation in the server.
 
@@ -213,7 +277,7 @@
 			but dependency is not required.
 
 	\part{Regularization module}
-		\chapter{Scope}
+		\chapter{Summary}
 
 			The regularization module ("reg module" in short) performs automatic adjustments on designated parameters
 			in order to regulate the change in statistical variables from the stats module through statistical learning methods.
@@ -223,10 +287,10 @@
 			but dependency is not required.
 
 	\part{Shop module}
-		\chapter{Scope}
+		\chapter{Summary}
 
 			The shop module allows buying or selling of goods between account owners.
-			The scope of goods is not restricted.
+			The Summary of goods is not restricted.
 			The shop module introduces virtual items as the default form of goods.
 
 			The shop module is only dependent on the core module.
@@ -234,14 +298,15 @@
 			but dependency is not required.
 
 	\part{Land module}
-		\chapter{Scope}
+		\chapter{Summary}
 
 			The land module allows players or organizations to buy land and impose restrictions on it.
 
 			The module is only dependent on the core module.
 
 	\part{Physical module}
-		\chapter{Scope}
+		\label{sec:physical-module}
+		\chapter{Summary}
 			The physical module is a sophisticated module that integrates different features into the gameplay world.
 			It can be seen as a variant user interface and permission system to the economy system.
 
