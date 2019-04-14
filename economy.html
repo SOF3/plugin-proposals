@@ -105,47 +105,49 @@ href="#x1-5000010.1" id="QQ2-1-50">Account types</a></span>
 href="#x1-5200011" id="QQ2-1-52">User interface</a></span>
 <br />   &#x00A0;<span class="sectionToc" >11.1 <a 
 href="#x1-5300011.1" id="QQ2-1-53">Account selection</a></span>
+<br />   &#x00A0;<span class="sectionToc" >11.2 <a 
+href="#x1-5400011.2" id="QQ2-1-54">Account creation</a></span>
 <br />   <span class="chapterToc" >12 <a 
-href="#x1-5400012" id="QQ2-1-54">Routine</a></span>
+href="#x1-5500012" id="QQ2-1-55">Routine</a></span>
 <br />   &#x00A0;<span class="sectionToc" >12.1 <a 
-href="#x1-5500012.1" id="QQ2-1-55">Interest growth</a></span>
+href="#x1-5600012.1" id="QQ2-1-56">Interest growth</a></span>
 <br />   <span class="chapterToc" >13 <a 
-href="#x1-5600013" id="QQ2-1-56">Configuration</a></span>
+href="#x1-5700013" id="QQ2-1-57">Configuration</a></span>
 <br />   &#x00A0;<span class="sectionToc" >13.1 <a 
-href="#x1-5700013.1" id="QQ2-1-57">Banks</a></span>
+href="#x1-5800013.1" id="QQ2-1-58">Banks</a></span>
 <br />   &#x00A0;<span class="sectionToc" >13.2 <a 
-href="#x1-5800013.2" id="QQ2-1-58">Interests</a></span>
+href="#x1-5900013.2" id="QQ2-1-59">Interests</a></span>
 <br />   <span class="partToc" >IV&#x00A0;&#x00A0;<a 
-href="#x1-59000IV" id="QQ2-1-59">Loan module</a></span>
-<br />   <span class="chapterToc" >14 <a 
-href="#x1-6000014" id="QQ2-1-60">Summary</a></span>
+href="#x1-63000IV" id="QQ2-1-63">Loan module</a></span>
                                                                   
 
                                                                   
+<br />   <span class="chapterToc" >14 <a 
+href="#x1-6400014" id="QQ2-1-64">Summary</a></span>
 <br />   <span class="partToc" >V&#x00A0;&#x00A0;<a 
-href="#x1-61000V" id="QQ2-1-61">Social module</a></span>
+href="#x1-65000V" id="QQ2-1-65">Social module</a></span>
 <br />   <span class="chapterToc" >15 <a 
-href="#x1-6200015" id="QQ2-1-62">Summary</a></span>
+href="#x1-6600015" id="QQ2-1-66">Summary</a></span>
 <br />   <span class="partToc" >VI&#x00A0;&#x00A0;<a 
-href="#x1-63000VI" id="QQ2-1-63">Stats module</a></span>
+href="#x1-67000VI" id="QQ2-1-67">Stats module</a></span>
 <br />   <span class="chapterToc" >16 <a 
-href="#x1-6400016" id="QQ2-1-64">Summary</a></span>
+href="#x1-6800016" id="QQ2-1-68">Summary</a></span>
 <br />   <span class="partToc" >VII&#x00A0;&#x00A0;<a 
-href="#x1-65000VII" id="QQ2-1-65">Regularization module</a></span>
+href="#x1-69000VII" id="QQ2-1-69">Regularization module</a></span>
 <br />   <span class="chapterToc" >17 <a 
-href="#x1-6600017" id="QQ2-1-66">Summary</a></span>
+href="#x1-7000017" id="QQ2-1-70">Summary</a></span>
 <br />   <span class="partToc" >VIII&#x00A0;&#x00A0;<a 
-href="#x1-67000VIII" id="QQ2-1-67">Shop module</a></span>
+href="#x1-71000VIII" id="QQ2-1-71">Shop module</a></span>
 <br />   <span class="chapterToc" >18 <a 
-href="#x1-6800018" id="QQ2-1-68">Summary</a></span>
+href="#x1-7200018" id="QQ2-1-72">Summary</a></span>
 <br />   <span class="partToc" >IX&#x00A0;&#x00A0;<a 
-href="#x1-69000IX" id="QQ2-1-69">Land module</a></span>
+href="#x1-73000IX" id="QQ2-1-73">Land module</a></span>
 <br />   <span class="chapterToc" >19 <a 
-href="#x1-7000019" id="QQ2-1-70">Summary</a></span>
+href="#x1-7400019" id="QQ2-1-74">Summary</a></span>
 <br />   <span class="partToc" >X&#x00A0;&#x00A0;<a 
-href="#x1-71000X" id="QQ2-1-71">Physical module</a></span>
+href="#x1-75000X" id="QQ2-1-75">Physical module</a></span>
 <br />   <span class="chapterToc" >20 <a 
-href="#x1-7200020" id="QQ2-1-72">Summary</a></span>
+href="#x1-7600020" id="QQ2-1-76">Summary</a></span>
    </div>
 <!--l. 51--><p class="indent" >   The whole plugin consists of many different modules, but all modules are released
 together in the same plugin with most modules disabled by default. Although some
@@ -486,9 +488,13 @@ money in cash accounts, money can be placed in the bank with interest profit at 
 certain cost.
 <!--l. 254--><p class="indent" >   This module is dependent on the player module as bank accounts are closely
 associated with player accounts.
+<!--l. 256--><p class="indent" >   In terms of economics, this &#8221;bank&#8221; is operated by server, assuming kind of
+&#8221;national bank&#8221;. Player-created banks should be implemented using the Loan module
+instead, since private banks are essentially a financial group that extensvely borrows
+and lends loans.
    <h3 class="sectionHead"><span class="titlemark">10.1   </span> <a 
  id="x1-5000010.1"></a>Account types</h3>
-<!--l. 257--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 261--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-5100010.1"></a><span 
 class="cmtt-10">.player.bank</span></span>
    The bank balance of players is stored in individual bank accounts.
@@ -499,32 +505,49 @@ class="cmtt-10">.player.bank</span></span>
  id="x1-5200011"></a>User interface</h2>
    <h3 class="sectionHead"><span class="titlemark">11.1   </span> <a 
  id="x1-5300011.1"></a>Account selection</h3>
-<!--l. 262--><p class="noindent" >Depending on server configuration, bank accounts may or may not be available in
-direct transactions for deposit/withdrawal.
+<!--l. 266--><p class="noindent" >Depending on server configuration, bank accounts may or may not be available in
+ordinary transactions. Servers may want to disable direct deposit/withdrawal if
+deposit/withdrawal requires a fee.
+<!--l. 269--><p class="noindent" >
+   <h3 class="sectionHead"><span class="titlemark">11.2   </span> <a 
+ id="x1-5400011.2"></a>Account creation</h3>
+<!--l. 270--><p class="noindent" >For servers where players register with default capital in banks, <span 
+class="cmtt-10">.player.bank</span>
+accounts are created automatically. Otherwise, bank accounts must be created
+explicitly. It is possible to set a minimum initial balance to create a bank
+account.
+<!--l. 275--><p class="indent" >   There may be multiple bank accounts for the same player, in different currencies.
+The bank module does not provide a user interface to create multiple bank accounts
+in the same currency for the same player, but it is possible for other modules to
+programatically bypass this limit, e.g. the Physical module may create multiple bank
+accounts stored at multiple locations.
                                                                   
 
                                                                   
    <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;12</span><br /><a 
- id="x1-5400012"></a>Routine</h2>
+ id="x1-5500012"></a>Routine</h2>
    <h3 class="sectionHead"><span class="titlemark">12.1   </span> <a 
- id="x1-5500012.1"></a>Interest growth</h3>
-<!--l. 266--><p class="noindent" >Bank account capital may compound automatically based on various conditions. See
+ id="x1-5600012.1"></a>Interest growth</h3>
+<!--l. 283--><p class="noindent" >Bank account capital may compound automatically based on various conditions. See
 the Configuration section for details.
                                                                   
 
                                                                   
    <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;13</span><br /><a 
- id="x1-5600013"></a>Configuration</h2>
+ id="x1-5700013"></a>Configuration</h2>
    <h3 class="sectionHead"><span class="titlemark">13.1   </span> <a 
- id="x1-5700013.1"></a>Banks</h3>
-<!--l. 270--><p class="noindent" >There could be multiple bank account plans (&#8221;plans&#8221;). Usage of each plan may be
+ id="x1-5800013.1"></a>Banks</h3>
+<!--l. 287--><p class="noindent" >There could be multiple bank account plans (&#8221;plans&#8221;). Usage of each plan may be
 limited to one-use. Each usage may require some renewable or non-renewable
 condition, such as a minimum balance.
-<!--l. 274--><p class="noindent" >
+<!--l. 291--><p class="noindent" >
    <h3 class="sectionHead"><span class="titlemark">13.2   </span> <a 
- id="x1-5800013.2"></a>Interests</h3>
-<!--l. 275--><p class="noindent" >Each plan may have one or more interest mechanisms. Each mechanism could be
-applied:
+ id="x1-5900013.2"></a>Interests</h3>
+<!--l. 292--><p class="noindent" >Each plan may have one or more interest mechanisms.
+<!--l. 294--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-6000013.2"></a><span 
+class="cmbx-10">Interest mechanism frequency</span></span>
+   Each mechanism could be applied:
      <ul class="itemize1">
      <li class="itemize">regularly, all the time
      </li>
@@ -533,14 +556,23 @@ applied:
      <li class="itemize">for some period after the account was last &#8221;accessed&#8221;/&#8221;modified&#8221;
      </li>
      <li class="itemize">during player is online</li></ul>
-<!--l. 284--><p class="indent" >   The interest rate can be:
+<!--l. 302--><p class="noindent" ><span class="paragraphHead"><a 
+ id="x1-6100013.2"></a><span 
+class="cmbx-10">Interest rate calculation</span></span>
+   The interest rate can be:
      <ul class="itemize1">
      <li class="itemize">constant amount
      </li>
      <li class="itemize">constant proportion
      </li>
      <li class="itemize">fluctuate based on economic activity (to adjust for inflation)</li></ul>
-<!--l. 291--><p class="indent" >   The measure of economic activity could be:
+                                                                  
+
+                                                                  
+<!--l. 309--><p class="indent" >   <span class="subparagraphHead"> <a 
+ id="x1-6200013.2"></a><span 
+class="cmbx-10">Economic activity measurement</span></span> The measure of economic activity could
+be:
      <ul class="itemize1">
      <li class="itemize">Network-wide, so as to adjust for inflation
      </li>
@@ -548,79 +580,42 @@ applied:
      price independently inflates too much)
      </li>
      <li class="itemize">Account-specific, as a form of stock sharing. This kind of plans could be
-     created by players directly at a cost</li></ul>
-<!--l. 299--><p class="indent" >   Interest may be negative so that there is some risk in depositing.
+     created by players directly at a cost.</li></ul>
+<!--l. 318--><p class="indent" >   Interest may be made negative to produce some risk in depositing, such as
+investment.
                                                                   
 
                                                                   
-<!--l. 301--><p class="indent" >
+<!--l. 320--><p class="indent" >
                                                                   
 
                                                                   
    <h1 class="partHead"><span class="titlemark">Part&#x00A0;IV<br /></span><a 
- id="x1-59000IV"></a>Loan module</h1>
+ id="x1-63000IV"></a>Loan module</h1>
                                                                   
 
                                                                   
    <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;14</span><br /><a 
- id="x1-6000014"></a>Summary</h2>
-<!--l. 304--><p class="noindent" >The loan module allows borrowing or lending loans between account owners.
-<!--l. 306--><p class="indent" >   This module is only dependent on the core module.
+ id="x1-6400014"></a>Summary</h2>
+<!--l. 323--><p class="noindent" >The loan module allows borrowing or lending loans between account owners.
+<!--l. 325--><p class="indent" >   This module is only dependent on the core module.
                                                                   
 
                                                                   
-<!--l. 308--><p class="indent" >
+<!--l. 327--><p class="indent" >
                                                                   
 
                                                                   
    <h1 class="partHead"><span class="titlemark">Part&#x00A0;V<br /></span><a 
- id="x1-61000V"></a>Social module</h1>
+ id="x1-65000V"></a>Social module</h1>
                                                                   
 
                                                                   
    <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;15</span><br /><a 
- id="x1-6200015"></a>Summary</h2>
-<!--l. 311--><p class="noindent" >The social module introduces the new account type &#8221;organization&#8221; so that
+ id="x1-6600015"></a>Summary</h2>
+<!--l. 330--><p class="noindent" >The social module introduces the new account type &#8221;organization&#8221; so that
 players can form organizations and have joint control on the organization
 accounts.
-                                                                  
-
-                                                                  
-<!--l. 314--><p class="indent" >
-                                                                  
-
-                                                                  
-   <h1 class="partHead"><span class="titlemark">Part&#x00A0;VI<br /></span><a 
- id="x1-63000VI"></a>Stats module</h1>
-                                                                  
-
-                                                                  
-   <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;16</span><br /><a 
- id="x1-6400016"></a>Summary</h2>
-<!--l. 317--><p class="noindent" >The stats modulue provides admin tools for monitoring the economic situation in the
-server.
-<!--l. 319--><p class="indent" >   This module is only dependent on the core module. Other modules may
-exchange data with this module using the events API, but dependency is not
-required.
-                                                                  
-
-                                                                  
-<!--l. 323--><p class="indent" >
-                                                                  
-
-                                                                  
-   <h1 class="partHead"><span class="titlemark">Part&#x00A0;VII<br /></span><a 
- id="x1-65000VII"></a>Regularization module</h1>
-                                                                  
-
-                                                                  
-   <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;17</span><br /><a 
- id="x1-6600017"></a>Summary</h2>
-<!--l. 326--><p class="noindent" >The regularization module (&#8221;reg module&#8221; in short) performs automatic adjustments
-on designated parameters in order to regulate the change in statistical variables from
-the stats module through statistical learning methods.
-<!--l. 329--><p class="indent" >   This module is dependent on the stats module. Other modules may exchange data
-with this module using the events API, but dependency is not required.
                                                                   
 
                                                                   
@@ -628,54 +623,92 @@ with this module using the events API, but dependency is not required.
                                                                   
 
                                                                   
+   <h1 class="partHead"><span class="titlemark">Part&#x00A0;VI<br /></span><a 
+ id="x1-67000VI"></a>Stats module</h1>
+                                                                  
+
+                                                                  
+   <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;16</span><br /><a 
+ id="x1-6800016"></a>Summary</h2>
+<!--l. 336--><p class="noindent" >The stats modulue provides admin tools for monitoring the economic situation in the
+server.
+<!--l. 338--><p class="indent" >   This module is only dependent on the core module. Other modules may
+exchange data with this module using the events API, but dependency is not
+required.
+                                                                  
+
+                                                                  
+<!--l. 342--><p class="indent" >
+                                                                  
+
+                                                                  
+   <h1 class="partHead"><span class="titlemark">Part&#x00A0;VII<br /></span><a 
+ id="x1-69000VII"></a>Regularization module</h1>
+                                                                  
+
+                                                                  
+   <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;17</span><br /><a 
+ id="x1-7000017"></a>Summary</h2>
+<!--l. 345--><p class="noindent" >The regularization module (&#8221;reg module&#8221; in short) performs automatic adjustments
+on designated parameters in order to regulate the change in statistical variables from
+the stats module through statistical learning methods.
+<!--l. 348--><p class="indent" >   This module is dependent on the stats module. Other modules may exchange data
+with this module using the events API, but dependency is not required.
+                                                                  
+
+                                                                  
+<!--l. 352--><p class="indent" >
+                                                                  
+
+                                                                  
    <h1 class="partHead"><span class="titlemark">Part&#x00A0;VIII<br /></span><a 
- id="x1-67000VIII"></a>Shop module</h1>
+ id="x1-71000VIII"></a>Shop module</h1>
                                                                   
 
                                                                   
    <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;18</span><br /><a 
- id="x1-6800018"></a>Summary</h2>
-<!--l. 336--><p class="noindent" >The shop module allows buying or selling of goods between account owners. The
+ id="x1-7200018"></a>Summary</h2>
+<!--l. 355--><p class="noindent" >The shop module allows buying or selling of goods between account owners. The
 Summary of goods is not restricted. The shop module introduces virtual items as the
 default form of goods.
-<!--l. 340--><p class="indent" >   The shop module is only dependent on the core module. Other modules
+<!--l. 359--><p class="indent" >   The shop module is only dependent on the core module. Other modules
 may interact with this module using the events API, but dependency is not
 required.
                                                                   
 
                                                                   
-<!--l. 344--><p class="indent" >
+<!--l. 363--><p class="indent" >
                                                                   
 
                                                                   
    <h1 class="partHead"><span class="titlemark">Part&#x00A0;IX<br /></span><a 
- id="x1-69000IX"></a>Land module</h1>
+ id="x1-73000IX"></a>Land module</h1>
                                                                   
 
                                                                   
    <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;19</span><br /><a 
- id="x1-7000019"></a>Summary</h2>
-<!--l. 347--><p class="noindent" >The land module allows players or organizations to buy land and impose restrictions
+ id="x1-7400019"></a>Summary</h2>
+<!--l. 366--><p class="noindent" >The land module allows players or organizations to buy land and impose restrictions
 on it.
-<!--l. 349--><p class="indent" >   The module is only dependent on the core module.
+<!--l. 368--><p class="indent" >   The module is only dependent on the core module.
                                                                   
 
                                                                   
-<!--l. 351--><p class="indent" >
+<!--l. 370--><p class="indent" >
                                                                   
 
                                                                   
    <h1 class="partHead"><span class="titlemark">Part&#x00A0;X<br /></span><a 
- id="x1-71000X"></a>Physical module</h1>
+ id="x1-75000X"></a>Physical module</h1>
                                                                   
 
                                                                   
    <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;20</span><br /><a 
- id="x1-7200020"></a>Summary</h2>
-<!--l. 354--><p class="noindent" >The physical module is a sophisticated module that integrates different features into
+ id="x1-7600020"></a>Summary</h2>
+<!--l. 373--><p class="noindent" >The physical module is a sophisticated module that integrates different features into
 the gameplay world. It can be seen as a variant user interface and permission system
 to the economy system.
-<!--l. 357--><p class="indent" >   The module is only dependent on the core module, but it widely interacts with
+<!--l. 376--><p class="indent" >   The module is only dependent on the core module, but it widely interacts with
 most of the other mechanisms.
     
 </body></html> 
