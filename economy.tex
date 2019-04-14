@@ -253,13 +253,30 @@
 
 			This module is dependent on the player module as bank accounts are closely associated with player accounts.
 
+			In terms of economics, this "bank" is operated by server, assuming kind of "national bank".
+			Player-created banks should be implemented using the Loan module instead,
+			since private banks are essentially a financial group that extensvely borrows and lends loans.
+
 			\section{Account types}
 				\paragraph{\texttt{.player.bank}}
 					The bank balance of players is stored in individual bank accounts.
 
 		\chapter{User interface}
 			\section{Account selection}
-				Depending on server configuration, bank accounts may or may not be available in direct transactions for deposit/withdrawal.
+				Depending on server configuration, bank accounts may or may not be available in ordinary transactions.
+				Servers may want to disable direct deposit/withdrawal if deposit/withdrawal requires a fee.
+
+		\section{Account creation}
+			For servers where players register with default capital in banks,
+			\texttt{.player.bank} accounts are created automatically.
+			Otherwise, bank accounts must be created explicitly.
+			It is possible to set a minimum initial balance to create a bank account.
+
+			There may be multiple bank accounts for the same player, in different currencies.
+			The bank module does not provide a user interface to create
+			multiple bank accounts in the same currency for the same player,
+			but it is possible for other modules to programatically bypass this limit,
+			e.g. the Physical module may create multiple bank accounts stored at multiple locations.
 
 		\chapter{Routine}
 			\section{Interest growth}
@@ -273,7 +290,8 @@
 
 			\section{Interests}
 				Each plan may have one or more interest mechanisms.
-				Each mechanism could be applied:
+
+				\paragraph{Interest mechanism frequency} Each mechanism could be applied:
 				\begin{itemize}
 					\item regularly, all the time
 					\item for some period after the player was last online
@@ -281,22 +299,23 @@
 					\item during player is online
 				\end{itemize}
 
-				The interest rate can be:
+				\paragraph{Interest rate calculation} The interest rate can be:
 				\begin{itemize}
 					\item constant amount
 					\item constant proportion
 					\item fluctuate based on economic activity (to adjust for inflation)
 				\end{itemize}
 
-				The measure of economic activity could be:
-				\begin{itemize}
-					\item Network-wide, so as to adjust for inflation
-					\item Transaction type-specific, so as to adjust for individual sectors (e.g. if land price independently inflates too much)
-					\item Account-specific, as a form of stock sharing.
-						This kind of plans could be created by players directly at a cost
-				\end{itemize}
+					\subparagraph{Economic activity measurement} The measure of economic activity could be:
+					\begin{itemize}
+						\item Network-wide, so as to adjust for inflation
+						\item Transaction type-specific, so as to adjust for individual sectors
+							(e.g. if land price independently inflates too much)
+						\item Account-specific, as a form of stock sharing.
+							This kind of plans could be created by players directly at a cost.
+					\end{itemize}
 
-				Interest may be negative so that there is some risk in depositing.
+				Interest may be made negative to produce some risk in depositing, such as investment.
 
 	\part{Loan module}
 		\chapter{Summary}
