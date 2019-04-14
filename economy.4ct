@@ -48,18 +48,27 @@
 \doTocEntry\tocchapter{9}{\csname a:TocLink\endcsname{1}{x1-470009}{QQ2-1-47}{Default capital}}{18}\relax 
 \doTocEntry\tocpart{III}{\csname a:TocLink\endcsname{1}{x1-48000III}{QQ2-1-48}{Bank module}}{20}\relax 
 \doTocEntry\tocchapter{10}{\csname a:TocLink\endcsname{1}{x1-4900010}{QQ2-1-49}{Summary}}{21}\relax 
-\doTocEntry\tocpart{IV}{\csname a:TocLink\endcsname{1}{x1-50000IV}{QQ2-1-50}{Loan module}}{23}\relax 
-\doTocEntry\tocchapter{11}{\csname a:TocLink\endcsname{1}{x1-5100011}{QQ2-1-51}{Summary}}{24}\relax 
-\doTocEntry\tocpart{V}{\csname a:TocLink\endcsname{1}{x1-52000V}{QQ2-1-52}{Social module}}{26}\relax 
-\doTocEntry\tocchapter{12}{\csname a:TocLink\endcsname{1}{x1-5300012}{QQ2-1-53}{Summary}}{27}\relax 
-\doTocEntry\tocpart{VI}{\csname a:TocLink\endcsname{1}{x1-54000VI}{QQ2-1-54}{Stats module}}{29}\relax 
-\doTocEntry\tocchapter{13}{\csname a:TocLink\endcsname{1}{x1-5500013}{QQ2-1-55}{Summary}}{30}\relax 
-\doTocEntry\tocpart{VII}{\csname a:TocLink\endcsname{1}{x1-56000VII}{QQ2-1-56}{Regularization module}}{32}\relax 
-\doTocEntry\tocchapter{14}{\csname a:TocLink\endcsname{1}{x1-5700014}{QQ2-1-57}{Summary}}{33}\relax 
-\doTocEntry\tocpart{VIII}{\csname a:TocLink\endcsname{1}{x1-58000VIII}{QQ2-1-58}{Shop module}}{35}\relax 
-\doTocEntry\tocchapter{15}{\csname a:TocLink\endcsname{1}{x1-5900015}{QQ2-1-59}{Summary}}{36}\relax 
-\doTocEntry\tocpart{IX}{\csname a:TocLink\endcsname{1}{x1-60000IX}{QQ2-1-60}{Land module}}{38}\relax 
-\doTocEntry\tocchapter{16}{\csname a:TocLink\endcsname{1}{x1-6100016}{QQ2-1-61}{Summary}}{39}\relax 
-\doTocEntry\tocpart{X}{\csname a:TocLink\endcsname{1}{x1-62000X}{QQ2-1-62}{Physical module}}{41}\relax 
-\doTocEntry\tocchapter{17}{\csname a:TocLink\endcsname{1}{x1-6300017}{QQ2-1-63}{Summary}}{42}\relax 
+\doTocEntry\tocsection{10.1}{\csname a:TocLink\endcsname{1}{x1-5000010.1}{QQ2-1-50}{Account types}}{21}\relax 
+\doTocEntry\tocparagraph{}{\csname a:TocLink\endcsname{1}{x1-5100010.1}{QQ2-1-51}{\texttt  {.player.bank}}}{21}\relax 
+\doTocEntry\tocchapter{11}{\csname a:TocLink\endcsname{1}{x1-5200011}{QQ2-1-52}{User interface}}{22}\relax 
+\doTocEntry\tocsection{11.1}{\csname a:TocLink\endcsname{1}{x1-5300011.1}{QQ2-1-53}{Account selection}}{22}\relax 
+\doTocEntry\tocchapter{12}{\csname a:TocLink\endcsname{1}{x1-5400012}{QQ2-1-54}{Routine}}{23}\relax 
+\doTocEntry\tocsection{12.1}{\csname a:TocLink\endcsname{1}{x1-5500012.1}{QQ2-1-55}{Interest growth}}{23}\relax 
+\doTocEntry\tocchapter{13}{\csname a:TocLink\endcsname{1}{x1-5600013}{QQ2-1-56}{Configuration}}{24}\relax 
+\doTocEntry\tocsection{13.1}{\csname a:TocLink\endcsname{1}{x1-5700013.1}{QQ2-1-57}{Banks}}{24}\relax 
+\doTocEntry\tocsection{13.2}{\csname a:TocLink\endcsname{1}{x1-5800013.2}{QQ2-1-58}{Interests}}{24}\relax 
+\doTocEntry\tocpart{IV}{\csname a:TocLink\endcsname{1}{x1-59000IV}{QQ2-1-59}{Loan module}}{26}\relax 
+\doTocEntry\tocchapter{14}{\csname a:TocLink\endcsname{1}{x1-6000014}{QQ2-1-60}{Summary}}{27}\relax 
+\doTocEntry\tocpart{V}{\csname a:TocLink\endcsname{1}{x1-61000V}{QQ2-1-61}{Social module}}{29}\relax 
+\doTocEntry\tocchapter{15}{\csname a:TocLink\endcsname{1}{x1-6200015}{QQ2-1-62}{Summary}}{30}\relax 
+\doTocEntry\tocpart{VI}{\csname a:TocLink\endcsname{1}{x1-63000VI}{QQ2-1-63}{Stats module}}{32}\relax 
+\doTocEntry\tocchapter{16}{\csname a:TocLink\endcsname{1}{x1-6400016}{QQ2-1-64}{Summary}}{33}\relax 
+\doTocEntry\tocpart{VII}{\csname a:TocLink\endcsname{1}{x1-65000VII}{QQ2-1-65}{Regularization module}}{35}\relax 
+\doTocEntry\tocchapter{17}{\csname a:TocLink\endcsname{1}{x1-6600017}{QQ2-1-66}{Summary}}{36}\relax 
+\doTocEntry\tocpart{VIII}{\csname a:TocLink\endcsname{1}{x1-67000VIII}{QQ2-1-67}{Shop module}}{38}\relax 
+\doTocEntry\tocchapter{18}{\csname a:TocLink\endcsname{1}{x1-6800018}{QQ2-1-68}{Summary}}{39}\relax 
+\doTocEntry\tocpart{IX}{\csname a:TocLink\endcsname{1}{x1-69000IX}{QQ2-1-69}{Land module}}{41}\relax 
+\doTocEntry\tocchapter{19}{\csname a:TocLink\endcsname{1}{x1-7000019}{QQ2-1-70}{Summary}}{42}\relax 
+\doTocEntry\tocpart{X}{\csname a:TocLink\endcsname{1}{x1-71000X}{QQ2-1-71}{Physical module}}{44}\relax 
+\doTocEntry\tocchapter{20}{\csname a:TocLink\endcsname{1}{x1-7200020}{QQ2-1-72}{Summary}}{45}\relax 
 \par 
