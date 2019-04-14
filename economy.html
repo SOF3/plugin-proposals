@@ -27,18 +27,18 @@ class="cmr-12">Incomplete</span></div>
    <div 
 class="abstract" 
 >
-<!--l. 44--><p class="indent" >
+<!--l. 45--><p class="indent" >
                                                                   
 
                                                                   
 <div class="center" 
 >
-<!--l. 44--><p class="noindent" >
-<!--l. 44--><p class="noindent" ><span 
+<!--l. 45--><p class="noindent" >
+<!--l. 45--><p class="noindent" ><span 
 class="cmbx-10">Abstract</span></div>
-<!--l. 45--><p class="noindent" >This proposal describes a very generalized economy plugin optimized for data mining to
+<!--l. 46--><p class="noindent" >This proposal describes a very generalized economy plugin optimized for data mining to
 be used in other features.
-<!--l. 46--><p class="indent" >
+<!--l. 47--><p class="indent" >
                                                                   
 
                                                                   
@@ -149,18 +149,18 @@ href="#x1-75000X" id="QQ2-1-75">Physical module</a></span>
 <br />   <span class="chapterToc" >20 <a 
 href="#x1-7600020" id="QQ2-1-76">Summary</a></span>
    </div>
-<!--l. 51--><p class="indent" >   The whole plugin consists of many different modules, but all modules are released
+<!--l. 52--><p class="indent" >   The whole plugin consists of many different modules, but all modules are released
 together in the same plugin with most modules disabled by default. Although some
 modules can be disabled, the respective configuration fields, database tables, etc. for
 disabled modules are still created in order to facilitate maintenance for both the
 developer and the user.
-<!--l. 55--><p class="indent" >   Events for disabled modules may still be handled or triggered, but no
+<!--l. 56--><p class="indent" >   Events for disabled modules may still be handled or triggered, but no
 behaviour will be changed due to these events as the corresponding modules are
 disabled.
                                                                   
 
                                                                   
-<!--l. 58--><p class="indent" >
+<!--l. 59--><p class="indent" >
                                                                   
 
                                                                   
@@ -171,14 +171,14 @@ disabled.
                                                                   
    <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;1</span><br /><a 
  id="x1-30001"></a>Summary</h2>
-<!--l. 61--><p class="noindent" >The functionality of the core module is limited to maintaining a list of accounts as
+<!--l. 62--><p class="noindent" >The functionality of the core module is limited to maintaining a list of accounts as
 well as operation logs. The core module should not handle any bvehaviour that is
 specific to a certain subset of accounts.
-<!--l. 64--><p class="indent" >   The core module is the base dependency for all other modules. Only enabling the
+<!--l. 65--><p class="indent" >   The core module is the base dependency for all other modules. Only enabling the
 core module should result in no player-visible behaviour.
    <h3 class="sectionHead"><span class="titlemark">1.1   </span> <a 
  id="x1-40001.1"></a>Account owner types</h3>
-<!--l. 67--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 68--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-50001.1"></a><span 
 class="cmtt-10">.server</span></span>
    If an account is owned (totally controlled) by a plugin, the account owner type
@@ -190,7 +190,7 @@ name.
                                                                   
    <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;2</span><br /><a 
  id="x1-60002"></a>Definition of terms</h2>
-<!--l. 74--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 75--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-70002"></a><span 
 class="cmbx-10">Currency and subcurrency</span></span>
    A currency is a unit for money that cannot be directly converted to another
@@ -200,38 +200,38 @@ defined with a number and a currency, but it can be expressed in any subcurrency
 For example, dollar and pound are different currencies, but a British pound and a
 British pence are different subcurrencies of the same currency (because 1 pound =
 100 pence).
-<!--l. 81--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 82--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-80002"></a><span 
 class="cmbx-10">Account</span></span>
    An account is essentially an entry with a number and a currency to represent
 some existing capital. This definition of &#8221;existing capital&#8221; results in some
 corollaries:
-<!--l. 84--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 85--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-90002"></a><span 
 class="cmbx-10">Conservation rule</span></span> A transaction should not create or destroy capital. If an
 account balance is increased, the same amount must decrease in another account of
 the same currency.
-<!--l. 86--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 87--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-100002"></a><span 
 class="cmbx-10">Summation rule</span></span> The sum of all account balance (with units taken into
 consideration) must represent the total capital that exists in the world.
-<!--l. 87--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 88--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-110002"></a><span 
 class="cmbx-10">Negation rule</span></span> If the account represents that the account owner must lose some
 money in foreseeable future (e.g. debt), its balance must be negative.
-<!--l. 88--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 89--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-120002"></a><span 
 class="cmbx-10">Absolute rule</span></span> Each account must represent an amount that is transferrable,
 not a relative number. For example, the price of goods in a shop is a relative number,
 so it is not an account, but the total amount of earned but unclaimed profit in a shop
 is an account, because the profit is transferrable.
-<!--l. 91--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 92--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-130002"></a><span 
 class="cmbx-10">Option rule</span></span> If an account represents that one of two currency choices will be
 given to or taken from an account owner, instead of adding a balance for both
 currencies, a third currency should be created to represent this optional
 behaviour.
-<!--l. 94--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 95--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-140002"></a><span 
 class="cmbx-10">Account owner</span></span>
    An account owner is something (not limited to a player or a row in the database
@@ -245,35 +245,35 @@ player. The account owner type and name must not be used to store any
                                                                   
 account-related information except to represent the owner as a human-readable
 text.
-<!--l. 101--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 102--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-150002"></a><span 
 class="cmbx-10">Account type</span></span>
    An account type is a finite set of strings that represent the mechanism associated
 with the account. Since it is a finite set of strings, it should not be used for storing
 data.
-<!--l. 105--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 106--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-160002"></a><span 
 class="cmbx-10">Operation</span></span>
    An operation is a change in one or multiple accounts. There are 4 types of
 operations:
-<!--l. 108--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 109--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-170002"></a><span 
 class="cmbx-10">Transaction</span></span> A transaction is a change in account balance that obeys the
 <span 
 class="cmti-10">Conservation rule</span>.
-<!--l. 109--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 110--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-180002"></a><span 
 class="cmbx-10">Creation</span></span> A creation is a change in account balance that creates money out of
 thin air, e.g. when a new player joins, or due to administrative instructions like
 /givemoney.
-<!--l. 111--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 112--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-190002"></a><span 
 class="cmbx-10">Destruction</span></span> A destruction is a change in account balance such that money
 disappears forever. This is equivalent to burning money in the real world. It
 is also possible to destroy money during account cleanup, which deletes
 obsolete accounts that have not been touched for a long time, possibly due to
 inactivity.
-<!--l. 115--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 116--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-200002"></a><span 
 class="cmbx-10">Exchange</span></span> An exchange is the decrease of balance in one account and the
 increase in another with different currencies.
@@ -282,44 +282,44 @@ increase in another with different currencies.
                                                                   
    <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;3</span><br /><a 
  id="x1-210003"></a>Database</h2>
-<!--l. 119--><p class="noindent" >SQLite and MySQL databases should be supported.
+<!--l. 120--><p class="noindent" >SQLite and MySQL databases should be supported.
    <h3 class="sectionHead"><span class="titlemark">3.1   </span> <a 
  id="x1-220003.1"></a>Version control</h3>
-<!--l. 123--><p class="noindent" >If a newer version of the plugin connects to the database and needs to perform
+<!--l. 124--><p class="noindent" >If a newer version of the plugin connects to the database and needs to perform
 backward-incompatible changes in database structure, its server cannont start unless
 explicitly indicated to update the database.
-<!--l. 126--><p class="noindent" >
+<!--l. 127--><p class="noindent" >
    <h3 class="sectionHead"><span class="titlemark">3.2   </span> <a 
  id="x1-230003.2"></a>Synchronization</h3>
-<!--l. 128--><p class="noindent" >If multiple servers share the same database, synchronization should be enabled. If
+<!--l. 129--><p class="noindent" >If multiple servers share the same database, synchronization should be enabled. If
 synchronization is not needed, it should be explicitly disabled by the admin.
 Otherwise, synchronization is always assumed to be needed to be safe.
-<!--l. 132--><p class="noindent" >
+<!--l. 133--><p class="noindent" >
    <h4 class="subsectionHead"><span class="titlemark">3.2.1   </span> <a 
  id="x1-240003.2.1"></a>Account access</h4>
-<!--l. 134--><p class="noindent" >As account balance is considered to be the main concurrency-sensitive data, accounts
+<!--l. 135--><p class="noindent" >As account balance is considered to be the main concurrency-sensitive data, accounts
 can be accessed in two modes:
-<!--l. 136--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 137--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-250003.2.1"></a><span 
 class="cmbx-10">Exclusive access</span></span>
    allows read and modification of account balance in any possible method. This is
 useful when a player is online and the server wants to access the accounts of the
 player as soon as possible.
-<!--l. 139--><p class="indent" >   Exclusive access can only be gained by one component at the same time.
+<!--l. 140--><p class="indent" >   Exclusive access can only be gained by one component at the same time.
 The component is also responsible for applying the changes from regular
 accessors.
-<!--l. 142--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 143--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-260003.2.1"></a><span 
 class="cmbx-10">Routine access</span></span>
    is used when a component modifies a large amount of data without reading their
 results. There are 3 types of modifications done by routine access:
-<!--l. 144--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 145--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-270003.2.1"></a><span 
 class="cmbx-10">absolute</span></span> sets the balance to a value regardless of its previous value.
-<!--l. 145--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 146--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-280003.2.1"></a><span 
 class="cmbx-10">relative</span></span> adds/subtracts a constant amount to the balance.
-<!--l. 146--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 147--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-290003.2.1"></a><span 
 class="cmbx-10">proportional</span></span> multiplies the balance by a ratio.
    Routine access does not allow reading the data values, because modification may
@@ -328,7 +328,7 @@ the routine accessor.
                                                                   
 
                                                                   
-<!--l. 151--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 152--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-300003.2.1"></a><span 
 class="cmbx-10">Analytical access</span></span>
    is used when a component reads a large amount of data without modification,
@@ -337,17 +337,17 @@ so the data may be incorrect or outdated to a small extent. As analytical access
 typically intended for statistical uses, these minor errors should not have significant
 effect on the outcome, i.e. analytical access should only be used by error-tolerant
 reasons.
-<!--l. 156--><p class="noindent" >
+<!--l. 157--><p class="noindent" >
    <h4 class="subsectionHead"><span class="titlemark">3.2.2   </span> <a 
  id="x1-310003.2.2"></a>Duty lock</h4>
-<!--l. 158--><p class="noindent" >The duty is a routine operation executed 5 minutes (lower-frequency tasks can be
+<!--l. 159--><p class="noindent" >The duty is a routine operation executed 5 minutes (lower-frequency tasks can be
 executed every multiple duties). The duty is only executed by one of the running
 servers. Every 5 minutes, all servers race to acquire the duty lock. The winner is
 responsible to execute the duty.
-<!--l. 163--><p class="noindent" >
+<!--l. 164--><p class="noindent" >
    <h4 class="subsectionHead"><span class="titlemark">3.2.3   </span> <a 
  id="x1-320003.2.3"></a>Configuration</h4>
-<!--l. 165--><p class="noindent" >As different servers having different configuration may lead to inconsistent behaviour,
+<!--l. 166--><p class="noindent" >As different servers having different configuration may lead to inconsistent behaviour,
 only exactly one server should contain the global configuration (namely
 the <span 
 class="cmti-10">master server</span>). The configuration in other servers (namely the <span 
@@ -355,7 +355,7 @@ class="cmti-10">slave</span>
 <span 
 class="cmti-10">servers</span>) is to be copied from the master server, and their own settings are
 ignored.
-<!--l. 170--><p class="indent" >   The configuration from the master server persists even after the master server
+<!--l. 171--><p class="indent" >   The configuration from the master server persists even after the master server
 shuts down. If two master servers are running, the one that started earlier is forced to
 shut down, and other slave servers will import the new configuration from the new
 master server. Slave servers cannot start if no master server previously connected to
@@ -367,14 +367,14 @@ the database.
  id="x1-330004"></a>API</h2>
    <h3 class="sectionHead"><span class="titlemark">4.1   </span> <a 
  id="x1-340004.1"></a>Event API</h3>
-<!--l. 179--><p class="noindent" >To reduce hard dependency among different modules, an event-based API is used.
+<!--l. 180--><p class="noindent" >To reduce hard dependency among different modules, an event-based API is used.
 When a module expects to receive data or trigger behaviour from other modules, it
 should fire an event.
-<!--l. 183--><p class="indent" >   Event classes should be as lightweight and dependency-free as possible.
-<!--l. 185--><p class="noindent" >
+<!--l. 184--><p class="indent" >   Event classes should be as lightweight and dependency-free as possible.
+<!--l. 186--><p class="noindent" >
    <h3 class="sectionHead"><span class="titlemark">4.2   </span> <a 
  id="x1-350004.2"></a>Dot-qualify syntax</h3>
-<!--l. 186--><p class="noindent" >To avoid loading a class unnecessary, types registered by modules or other plugins
+<!--l. 187--><p class="noindent" >To avoid loading a class unnecessary, types registered by modules or other plugins
 use the dot-qualify syntax. The dot-qualify syntax is a dot-delimited string in the
 format &#8221;author.plugin.module.submodule.subsubmodule.name&#8221;.
                                                                   
@@ -382,34 +382,34 @@ format &#8221;author.plugin.module.submodule.subsubmodule.name&#8221;.
                                                                   
    <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;5</span><br /><a 
  id="x1-360005"></a>User interface</h2>
-<!--l. 191--><p class="noindent" >The plugin provides a user interface in terms of &#8221;actions&#8221;. An action can be
+<!--l. 192--><p class="noindent" >The plugin provides a user interface in terms of &#8221;actions&#8221;. An action can be
 performed by a command sender using a user interface for the command
 sender.
-<!--l. 194--><p class="indent" >   All command senders, by definition, have access to the &#8221;command&#8221; user interface.
+<!--l. 195--><p class="indent" >   All command senders, by definition, have access to the &#8221;command&#8221; user interface.
 On the other hand, specific command senders have access to special user interfaces.
 For example, all players have access to the &#8221;form&#8221; user interface.
-<!--l. 198--><p class="indent" >   Special user interface methods may also be added for specific actions.
+<!--l. 199--><p class="indent" >   Special user interface methods may also be added for specific actions.
 For example, the <a 
 href="sec:physical-module" >physical module</a> adds block interaction as a user interface
 method.
-<!--l. 201--><p class="indent" >   Action response is also provided to the user via a sender-specific user interface.
+<!--l. 202--><p class="indent" >   Action response is also provided to the user via a sender-specific user interface.
 For example, confirmation prompts to players use ModalForm, while other command
 senders have to input a &#8221;yes&#8221; command.
    <h3 class="sectionHead"><span class="titlemark">5.1   </span> <a 
  id="x1-370005.1"></a>Payment</h3>
-<!--l. 207--><p class="noindent" >The &#8221;pay&#8221; action is a generic instruction to perform a simple transaction from one
+<!--l. 208--><p class="noindent" >The &#8221;pay&#8221; action is a generic instruction to perform a simple transaction from one
 account to another. This may result in an inconvenient user interface as accounts
 need to be specified explicitly. Therefore, the &#8221;pay&#8221; action also supports payment by
 specifying a command sender (especially a player). The appropriate &#8221;from&#8221; and &#8221;to&#8221;
 accounts are automatically or manually selected based on a vadiety of validation and
 prioritization algorithms from other modules, including psrmission checking, machine
 learning and more.
-<!--l. 214--><p class="indent" >   This mechanism will be further documented in thd &#8221;Account selection&#8221; section
+<!--l. 215--><p class="indent" >   This mechanism will be further documented in thd &#8221;Account selection&#8221; section
 under each module.
                                                                   
 
                                                                   
-<!--l. 216--><p class="indent" >
+<!--l. 217--><p class="indent" >
                                                                   
 
                                                                   
@@ -420,24 +420,24 @@ under each module.
                                                                   
    <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;6</span><br /><a 
  id="x1-390006"></a>Summary</h2>
-<!--l. 219--><p class="noindent" >The player module provides the basic functionality such that players can own and
+<!--l. 220--><p class="noindent" >The player module provides the basic functionality such that players can own and
 exchange money.
-<!--l. 221--><p class="indent" >   Semantically, this module merely creates accounts for players and exposes them a
+<!--l. 222--><p class="indent" >   Semantically, this module merely creates accounts for players and exposes them a
 user interface for simple financial management.
-<!--l. 223--><p class="indent" >   This module is only dependent on the core module.
+<!--l. 224--><p class="indent" >   This module is only dependent on the core module.
    <h3 class="sectionHead"><span class="titlemark">6.1   </span> <a 
  id="x1-400006.1"></a>Account owner types</h3>
-<!--l. 226--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 227--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-410006.1"></a><span 
 class="cmtt-10">.player</span></span>
    Accounts directly owned by a single player (even if the player cannot access the
 account directly all the time) should have the <span 
 class="cmtt-10">.player </span>owner type and the player
 name as the owner name.
-<!--l. 230--><p class="noindent" >
+<!--l. 231--><p class="noindent" >
    <h3 class="sectionHead"><span class="titlemark">6.2   </span> <a 
  id="x1-420006.2"></a>Account types</h3>
-<!--l. 231--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 232--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-430006.2"></a><span 
 class="cmtt-10">.player.cash</span></span>
    The default transaction account for players is the cash account. If only the player
@@ -449,7 +449,7 @@ module is enabled, all player money are stored in the cash accounts.
  id="x1-440007"></a>User interface</h2>
    <h3 class="sectionHead"><span class="titlemark">7.1   </span> <a 
  id="x1-450007.1"></a>Account selection</h3>
-<!--l. 237--><p class="noindent" >The player module contributes the <span 
+<!--l. 238--><p class="noindent" >The player module contributes the <span 
 class="cmtt-10">.player.cash </span>account type at priority +10
 for both sender and recipient axxounts if the owning command sender is a
 player.
@@ -458,21 +458,21 @@ player.
                                                                   
    <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;8</span><br /><a 
  id="x1-460008"></a>Account creation</h2>
-<!--l. 241--><p class="noindent" >A <span 
+<!--l. 242--><p class="noindent" >A <span 
 class="cmtt-10">.player.cash </span>account is automatically created when a new player logins.
                                                                   
 
                                                                   
    <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;9</span><br /><a 
  id="x1-470009"></a>Default capital</h2>
-<!--l. 244--><p class="noindent" >An amount of initial capital can be added to each new player account. To prevent
+<!--l. 245--><p class="noindent" >An amount of initial capital can be added to each new player account. To prevent
 abuse, the player is not allowed to perform any player-to-player transactions such
 that its eventual sum of balance is below the default capital value in the first few
 days (configurable) after account creation.
                                                                   
 
                                                                   
-<!--l. 249--><p class="indent" >
+<!--l. 250--><p class="indent" >
                                                                   
 
                                                                   
@@ -483,18 +483,18 @@ days (configurable) after account creation.
                                                                   
    <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;10</span><br /><a 
  id="x1-4900010"></a>Summary</h2>
-<!--l. 251--><p class="noindent" >The bank module provides an alternative place to store money. Instead of storing all
+<!--l. 252--><p class="noindent" >The bank module provides an alternative place to store money. Instead of storing all
 money in cash accounts, money can be placed in the bank with interest profit at a
 certain cost.
-<!--l. 254--><p class="indent" >   This module is dependent on the player module as bank accounts are closely
+<!--l. 255--><p class="indent" >   This module is dependent on the player module as bank accounts are closely
 associated with player accounts.
-<!--l. 256--><p class="indent" >   In terms of economics, this &#8221;bank&#8221; is operated by server, assuming kind of
+<!--l. 257--><p class="indent" >   In terms of economics, this &#8221;bank&#8221; is operated by server, assuming kind of
 &#8221;national bank&#8221;. Player-created banks should be implemented using the Loan module
 instead, since private banks are essentially a financial group that extensvely borrows
 and lends loans.
    <h3 class="sectionHead"><span class="titlemark">10.1   </span> <a 
  id="x1-5000010.1"></a>Account types</h3>
-<!--l. 261--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 262--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-5100010.1"></a><span 
 class="cmtt-10">.player.bank</span></span>
    The bank balance of players is stored in individual bank accounts.
@@ -505,18 +505,18 @@ class="cmtt-10">.player.bank</span></span>
  id="x1-5200011"></a>User interface</h2>
    <h3 class="sectionHead"><span class="titlemark">11.1   </span> <a 
  id="x1-5300011.1"></a>Account selection</h3>
-<!--l. 266--><p class="noindent" >Depending on server configuration, bank accounts may or may not be available in
+<!--l. 267--><p class="noindent" >Depending on server configuration, bank accounts may or may not be available in
 ordinary transactions. Servers may want to disable direct deposit/withdrawal if
 deposit/withdrawal requires a fee.
-<!--l. 269--><p class="noindent" >
+<!--l. 270--><p class="noindent" >
    <h3 class="sectionHead"><span class="titlemark">11.2   </span> <a 
  id="x1-5400011.2"></a>Account creation</h3>
-<!--l. 270--><p class="noindent" >For servers where players register with default capital in banks, <span 
+<!--l. 271--><p class="noindent" >For servers where players register with default capital in banks, <span 
 class="cmtt-10">.player.bank</span>
 accounts are created automatically. Otherwise, bank accounts must be created
 explicitly. It is possible to set a minimum initial balance to create a bank
 account.
-<!--l. 275--><p class="indent" >   There may be multiple bank accounts for the same player, in different currencies.
+<!--l. 276--><p class="indent" >   There may be multiple bank accounts for the same player, in different currencies.
 The bank module does not provide a user interface to create multiple bank accounts
 in the same currency for the same player, but it is possible for other modules to
 programatically bypass this limit, e.g. the Physical module may create multiple bank
@@ -528,7 +528,7 @@ accounts stored at multiple locations.
  id="x1-5500012"></a>Routine</h2>
    <h3 class="sectionHead"><span class="titlemark">12.1   </span> <a 
  id="x1-5600012.1"></a>Interest growth</h3>
-<!--l. 283--><p class="noindent" >Bank account capital may compound automatically based on various conditions. See
+<!--l. 284--><p class="noindent" >Bank account capital may compound automatically based on various conditions. See
 the Configuration section for details.
                                                                   
 
@@ -537,14 +537,14 @@ the Configuration section for details.
  id="x1-5700013"></a>Configuration</h2>
    <h3 class="sectionHead"><span class="titlemark">13.1   </span> <a 
  id="x1-5800013.1"></a>Banks</h3>
-<!--l. 287--><p class="noindent" >There could be multiple bank account plans (&#8221;plans&#8221;). Usage of each plan may be
+<!--l. 288--><p class="noindent" >There could be multiple bank account plans (&#8221;plans&#8221;). Usage of each plan may be
 limited to one-use. Each usage may require some renewable or non-renewable
 condition, such as a minimum balance.
-<!--l. 291--><p class="noindent" >
+<!--l. 292--><p class="noindent" >
    <h3 class="sectionHead"><span class="titlemark">13.2   </span> <a 
  id="x1-5900013.2"></a>Interests</h3>
-<!--l. 292--><p class="noindent" >Each plan may have one or more interest mechanisms.
-<!--l. 294--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 293--><p class="noindent" >Each plan may have one or more interest mechanisms.
+<!--l. 295--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-6000013.2"></a><span 
 class="cmbx-10">Interest mechanism frequency</span></span>
    Each mechanism could be applied:
@@ -556,7 +556,7 @@ class="cmbx-10">Interest mechanism frequency</span></span>
      <li class="itemize">for some period after the account was last &#8221;accessed&#8221;/&#8221;modified&#8221;
      </li>
      <li class="itemize">during player is online</li></ul>
-<!--l. 302--><p class="noindent" ><span class="paragraphHead"><a 
+<!--l. 303--><p class="noindent" ><span class="paragraphHead"><a 
  id="x1-6100013.2"></a><span 
 class="cmbx-10">Interest rate calculation</span></span>
    The interest rate can be:
@@ -569,7 +569,7 @@ class="cmbx-10">Interest rate calculation</span></span>
                                                                   
 
                                                                   
-<!--l. 309--><p class="indent" >   <span class="subparagraphHead"> <a 
+<!--l. 310--><p class="indent" >   <span class="subparagraphHead"> <a 
  id="x1-6200013.2"></a><span 
 class="cmbx-10">Economic activity measurement</span></span> The measure of economic activity could
 be:
@@ -581,12 +581,12 @@ be:
      </li>
      <li class="itemize">Account-specific, as a form of stock sharing. This kind of plans could be
      created by players directly at a cost.</li></ul>
-<!--l. 318--><p class="indent" >   Interest may be made negative to produce some risk in depositing, such as
+<!--l. 319--><p class="indent" >   Interest may be made negative to produce some risk in depositing, such as
 investment.
                                                                   
 
                                                                   
-<!--l. 320--><p class="indent" >
+<!--l. 321--><p class="indent" >
                                                                   
 
                                                                   
@@ -597,12 +597,12 @@ investment.
                                                                   
    <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;14</span><br /><a 
  id="x1-6400014"></a>Summary</h2>
-<!--l. 323--><p class="noindent" >The loan module allows borrowing or lending loans between account owners.
-<!--l. 325--><p class="indent" >   This module is only dependent on the core module.
+<!--l. 324--><p class="noindent" >The loan module allows borrowing or lending loans between account owners.
+<!--l. 326--><p class="indent" >   This module is only dependent on the core module.
                                                                   
 
                                                                   
-<!--l. 327--><p class="indent" >
+<!--l. 328--><p class="indent" >
                                                                   
 
                                                                   
@@ -613,13 +613,13 @@ investment.
                                                                   
    <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;15</span><br /><a 
  id="x1-6600015"></a>Summary</h2>
-<!--l. 330--><p class="noindent" >The social module introduces the new account type &#8221;organization&#8221; so that
+<!--l. 331--><p class="noindent" >The social module introduces the new account type &#8221;organization&#8221; so that
 players can form organizations and have joint control on the organization
 accounts.
                                                                   
 
                                                                   
-<!--l. 333--><p class="indent" >
+<!--l. 334--><p class="indent" >
                                                                   
 
                                                                   
@@ -630,15 +630,15 @@ accounts.
                                                                   
    <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;16</span><br /><a 
  id="x1-6800016"></a>Summary</h2>
-<!--l. 336--><p class="noindent" >The stats modulue provides admin tools for monitoring the economic situation in the
+<!--l. 337--><p class="noindent" >The stats modulue provides admin tools for monitoring the economic situation in the
 server.
-<!--l. 338--><p class="indent" >   This module is only dependent on the core module. Other modules may
+<!--l. 339--><p class="indent" >   This module is only dependent on the core module. Other modules may
 exchange data with this module using the events API, but dependency is not
 required.
                                                                   
 
                                                                   
-<!--l. 342--><p class="indent" >
+<!--l. 343--><p class="indent" >
                                                                   
 
                                                                   
@@ -649,15 +649,15 @@ required.
                                                                   
    <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;17</span><br /><a 
  id="x1-7000017"></a>Summary</h2>
-<!--l. 345--><p class="noindent" >The regularization module (&#8221;reg module&#8221; in short) performs automatic adjustments
+<!--l. 346--><p class="noindent" >The regularization module (&#8221;reg module&#8221; in short) performs automatic adjustments
 on designated parameters in order to regulate the change in statistical variables from
 the stats module through statistical learning methods.
-<!--l. 348--><p class="indent" >   This module is dependent on the stats module. Other modules may exchange data
+<!--l. 349--><p class="indent" >   This module is dependent on the stats module. Other modules may exchange data
 with this module using the events API, but dependency is not required.
                                                                   
 
                                                                   
-<!--l. 352--><p class="indent" >
+<!--l. 353--><p class="indent" >
                                                                   
 
                                                                   
@@ -668,16 +668,16 @@ with this module using the events API, but dependency is not required.
                                                                   
    <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;18</span><br /><a 
  id="x1-7200018"></a>Summary</h2>
-<!--l. 355--><p class="noindent" >The shop module allows buying or selling of goods between account owners. The
+<!--l. 356--><p class="noindent" >The shop module allows buying or selling of goods between account owners. The
 Summary of goods is not restricted. The shop module introduces virtual items as the
 default form of goods.
-<!--l. 359--><p class="indent" >   The shop module is only dependent on the core module. Other modules
+<!--l. 360--><p class="indent" >   The shop module is only dependent on the core module. Other modules
 may interact with this module using the events API, but dependency is not
 required.
                                                                   
 
                                                                   
-<!--l. 363--><p class="indent" >
+<!--l. 364--><p class="indent" >
                                                                   
 
                                                                   
@@ -688,13 +688,13 @@ required.
                                                                   
    <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;19</span><br /><a 
  id="x1-7400019"></a>Summary</h2>
-<!--l. 366--><p class="noindent" >The land module allows players or organizations to buy land and impose restrictions
+<!--l. 367--><p class="noindent" >The land module allows players or organizations to buy land and impose restrictions
 on it.
-<!--l. 368--><p class="indent" >   The module is only dependent on the core module.
+<!--l. 369--><p class="indent" >   The module is only dependent on the core module.
                                                                   
 
                                                                   
-<!--l. 370--><p class="indent" >
+<!--l. 371--><p class="indent" >
                                                                   
 
                                                                   
@@ -705,10 +705,10 @@ on it.
                                                                   
    <h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;20</span><br /><a 
  id="x1-7600020"></a>Summary</h2>
-<!--l. 373--><p class="noindent" >The physical module is a sophisticated module that integrates different features into
+<!--l. 374--><p class="noindent" >The physical module is a sophisticated module that integrates different features into
 the gameplay world. It can be seen as a variant user interface and permission system
 to the economy system.
-<!--l. 376--><p class="indent" >   The module is only dependent on the core module, but it widely interacts with
+<!--l. 377--><p class="indent" >   The module is only dependent on the core module, but it widely interacts with
 most of the other mechanisms.
     
 </body></html> 
