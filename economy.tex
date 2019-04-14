@@ -248,11 +248,55 @@
 
 	\part{Bank module}
 		\chapter{Summary}
-
 			The bank module provides an alternative place to store money.
 			Instead of storing all money in cash accounts, money can be placed in the bank with interest profit at a certain cost.
 
 			This module is dependent on the player module as bank accounts are closely associated with player accounts.
+
+			\section{Account types}
+				\paragraph{\texttt{.player.bank}}
+					The bank balance of players is stored in individual bank accounts.
+
+		\chapter{User interface}
+			\section{Account selection}
+				Depending on server configuration, bank accounts may or may not be available in direct transactions for deposit/withdrawal.
+
+		\chapter{Routine}
+			\section{Interest growth}
+				Bank account capital may compound automatically based on various conditions. See the Configuration section for details.
+
+		\chapter{Configuration}
+			\section{Banks}
+				There could be multiple bank account plans ("plans").
+				Usage of each plan may be limited to one-use.
+				Each usage may require some renewable or non-renewable condition, such as a minimum balance.
+
+			\section{Interests}
+				Each plan may have one or more interest mechanisms.
+				Each mechanism could be applied:
+				\begin{itemize}
+					\item regularly, all the time
+					\item for some period after the player was last online
+					\item for some period after the account was last "accessed"/"modified"
+					\item during player is online
+				\end{itemize}
+
+				The interest rate can be:
+				\begin{itemize}
+					\item constant amount
+					\item constant proportion
+					\item fluctuate based on economic activity (to adjust for inflation)
+				\end{itemize}
+
+				The measure of economic activity could be:
+				\begin{itemize}
+					\item Network-wide, so as to adjust for inflation
+					\item Transaction type-specific, so as to adjust for individual sectors (e.g. if land price independently inflates too much)
+					\item Account-specific, as a form of stock sharing.
+						This kind of plans could be created by players directly at a cost
+				\end{itemize}
+
+				Interest may be negative so that there is some risk in depositing.
 
 	\part{Loan module}
 		\chapter{Summary}
