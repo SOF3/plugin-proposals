@@ -3,156 +3,125 @@
 	\date{Incomplete}
 	\author{SOFe}
 
-\usepackage{hyperref}
-\usepackage{xr-hyper}
+\usepackage[hidelinks]{hyperref}
 \usepackage{parskip}
-
 
 \def \code #1{\texttt{#1}}
 \def \sup #1{\textsuperscript{#1}}
 
 \begin{document}
-	\Css{
-		@font-face {
-			font-family: "Computer Modern";
-			src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunss.otf');
-		}
-		@font-face {
-			font-family: "Computer Modern";
-			src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunsx.otf');
-			font-weight: bold;
-		}
-		@font-face {
-			font-family: "Computer Modern";
-			src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunsi.otf');
-			font-style: italic, oblique;
-		}
-		@font-face {
-			font-family: "Computer Modern";
-			src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunbxo.otf');
-			font-weight: bold;
-			font-style: italic, oblique;
-		}
-		body {
-			font-family: "Computer Modern", sans-serif;
-			margin: 10px auto;
-			max-width: 1000px;
-		}
-	}
 
 	\maketitle
 
 	\begin{abstract}
 		This proposal describes a very generalized economy plugin optimized for data mining to be used in other features.
+
+		The whole plugin consists of many different modules, but all modules are released together in the same plugin with most modules disabled by default.
+		Although some modules can be disabled, the respective configuration fields, database tables, etc. for disabled modules are still created
+		in order to facilitate maintenance for both the developer and the user.
+
+		Events for disabled modules may still be handled or triggered,
+		but no behaviour will be changed due to these events as the corresponding modules are disabled.
 	\end{abstract}
 
-	\setcounter{tocdepth}{5}
+	\setcounter{tocdepth}{3}
 	\tableofcontents
 
-	The whole plugin consists of many different modules, but all modules are released together in the same plugin with most modules disabled by default.
-	Although some modules can be disabled, the respective configuration fields, database tables, etc. for disabled modules are still created
-	in order to facilitate maintenance for both the developer and the user.
+	\newpage
 
-	Events for disabled modules may still be handled or triggered,
-	but no behaviour will be changed due to these events as the corresponding modules are disabled.
-
-	\part{Core module}
-		\chapter{Summary}
+	\chapter{Core module}
+		\section{Summary}
 
 			The functionality of the core module is limited to maintaining a list of accounts as well as operation logs.
 			The core module should not handle any bvehaviour that is specific to a certain subset of accounts.
 
 			The core module is the base dependency for all other modules. Only enabling the core module should result in no player-visible behaviour.
 
-			\section{Account owner types}
-				\paragraph{\texttt{.server}}
+			\subsection{Account owner types}
+				\subsubsection{\texttt{.server}}
 					If an account is owned (totally controlled) by a plugin,
 					the account owner type should be \texttt{.server},
 					and the account owner name should represent the plugin/module name.
 
-		\chapter{Definition of terms}
-
-			\paragraph{Currency and subcurrency}
+		\section{Definition of terms}
+			\subsection{Currency and subcurrency}
 				A currency is a unit for money that cannot be directly converted to another currency.
 				Two subcurrencies of the same currency are two units for money that can be directly converted with each other.
 				In other words, each sum of money must be defined with a number and a currency, but it can be expressed in any subcurrency.
 				For example, dollar and pound are different currencies, but a British pound and a British pence are different subcurrencies of the same currency
 				(because 1 pound = 100 pence).
 
-			\paragraph{Account}
+			\subsection{Account}
 				An account is essentially an entry with a number and a currency to represent some existing capital.
 				This definition of "existing capital" results in some corollaries:
-				\subparagraph{Conservation rule} A transaction should not create or destroy capital.
+				\paragraph{Conservation rule} A transaction should not create or destroy capital.
 					If an account balance is increased, the same amount must decrease in another account of the same currency.
-				\subparagraph{Summation rule} The sum of all account balance (with units taken into consideration) must represent the total capital that exists in the world.
-				\subparagraph{Negation rule} If the account represents that the account owner must lose some money in foreseeable future (e.g. debt), its balance must be negative.
-				\subparagraph{Absolute rule} Each account must represent an amount that is transferrable, not a relative number.
+				\paragraph{Summation rule} The sum of all account balance (with units taken into consideration) must represent the total capital that exists in the world.
+				\paragraph{Negation rule} If the account represents that the account owner must lose some money in foreseeable future (e.g. debt), its balance must be negative.
+				\paragraph{Absolute rule} Each account must represent an amount that is transferrable, not a relative number.
 					For example, the price of goods in a shop is a relative number, so it is not an account,
 					but the total amount of earned but unclaimed profit in a shop is an account, because the profit is transferrable.
-				\subparagraph{Option rule} If an account represents that one of two currency choices will be given to or taken from an account owner,
+				\paragraph{Option rule} If an account represents that one of two currency choices will be given to or taken from an account owner,
 					instead of adding a balance for both currencies, a third currency should be created to represent this optional behaviour.
 
-			\paragraph{Account owner}
+			\subsection{Account owner}
 				An account owner is something (not limited to a player or a row in the database or a PHP object,
 				just anything abstract that a human can understand as "something") that can be attributed as having full control on an account.
 				An account owner should be uniquely identified by a "type" and a "name",
 				where "type" is a qualified name representing a group of owners having distinct names, e.g. a player.
 				The account owner type and name must not be used to store any account-related information except to represent the owner as a human-readable text.
 
-			\paragraph{Account type}
+			\subsection{Account type}
 				An account type is a finite set of strings that represent the mechanism associated with the account.
 				Since it is a finite set of strings, it should not be used for storing data.
 
-			\paragraph{Operation}
+			\subsection{Operation}
 				An operation is a change in one or multiple accounts.
 				There are 4 types of operations:
-				\subparagraph{Transaction} A transaction is a change in account balance that obeys the \textit{Conservation rule}.
-				\subparagraph{Creation} A creation is a change in account balance that creates money out of thin air,
+				\paragraph{Transaction} A transaction is a change in account balance that obeys the \textit{Conservation rule}.
+				\paragraph{Creation} A creation is a change in account balance that creates money out of thin air,
 					e.g. when a new player joins, or due to administrative instructions like /givemoney.
-				\subparagraph{Destruction} A destruction is a change in account balance such that money disappears forever.
+				\paragraph{Destruction} A destruction is a change in account balance such that money disappears forever.
 					This is equivalent to burning money in the real world.
 					It is also possible to destroy money during account cleanup, which
 					deletes obsolete accounts that have not been touched for a long time, possibly due to inactivity.
-				\subparagraph{Exchange} An exchange is the decrease of balance in one account and the increase in another with different currencies.
+				\paragraph{Exchange} An exchange is the decrease of balance in one account and the increase in another with different currencies.
 
-		\chapter{Database}
+		\section{Database}
 
 			SQLite and MySQL databases should be supported.
 
-			\section{Version control}
+			\subsection{Version control}
 
 				If a newer version of the plugin connects to the database and needs to perform backward-incompatible changes in database structure,
 				its server cannont start unless explicitly indicated to update the database.
 
-			\section{Synchronization}
-
+			\subsection{Synchronization}
 				If multiple servers share the same database, synchronization should be enabled.
 				If synchronization is not needed, it should be explicitly disabled by the admin.
 				Otherwise, synchronization is always assumed to be needed to be safe.
 
-				\subsection{Account access}
+				As account balance is considered to be the main concurrency-sensitive data, accounts can be accessed in three modes:
 
-					As account balance is considered to be the main concurrency-sensitive data, accounts can be accessed in two modes:
+				\paragraph{Exclusive access} allows read and modification of account balance in any possible method.
+					This is useful when a player is online and the server wants to access the accounts of the player as soon as possible.
 
-					\paragraph{Exclusive access} allows read and modification of account balance in any possible method.
-						This is useful when a player is online and the server wants to access the accounts of the player as soon as possible.
+					Exclusive access can only be gained by one component at the same time.
+					The component is also responsible for applying the changes from regular accessors.
 
-						Exclusive access can only be gained by one component at the same time.
-						The component is also responsible for applying the changes from regular accessors.
+				\paragraph{Routine access} is used when a component modifies a large amount of data without reading their results.
+					There are 3 types of modifications done by routine access:
+					\subparagraph{absolute} sets the balance to a value regardless of its previous value.
+					\subparagraph{relative} adds/subtracts a constant amount to the balance.
+					\subparagraph{proportional} multiplies the balance by a ratio.
 
-					\paragraph{Routine access} is used when a component modifies a large amount of data without reading their results.
-						There are 3 types of modifications done by routine access:
-						\subparagraph{absolute} sets the balance to a value regardless of its previous value.
-						\subparagraph{relative} adds/subtracts a constant amount to the balance.
-						\subparagraph{proportional} multiplies the balance by a ratio.
+					Routine access does not allow reading the data values, because modification may be executed by exclusive access
+					without immediately expose the modified values to the routine accessor.
 
-						Routine access does not allow reading the data values, because modification may be executed by exclusive access
-						without immediately expose the modified values to the routine accessor.
-
-					\paragraph{Analytical access} is used when a component reads a large amount of data without modification, especially for data analysis.
-					Analytical access does not guarantee concurrency safety, so the data may be incorrect or outdated to a small extent.
-					As analytical access is typically intended for statistical uses, these minor errors should not have significant effect on the outcome,
-					i.e. analytical access should only be used by error-tolerant reasons.
+				\paragraph{Analytical access} is used when a component reads a large amount of data without modification, especially for data analysis.
+				Analytical access does not guarantee concurrency safety, so the data may be incorrect or outdated to a small extent.
+				As analytical access is typically intended for statistical uses, these minor errors should not have significant effect on the outcome,
+				i.e. analytical access should only be used by error-tolerant reasons.
 
 				\subsection{Duty lock}
 
@@ -173,9 +142,9 @@
 					and other slave servers will import the new configuration from the new master server.
 					Slave servers cannot start if no master server previously connected to the database.
 
-		\chapter{API}
+		\section{API}
 
-			\section{Event API}
+			\subsection{Event API}
 
 				To reduce hard dependency among different modules, an event-based API is used.
 				When a module expects to receive data or trigger behaviour from other modules,
@@ -183,11 +152,11 @@
 
 				Event classes should be as lightweight and dependency-free as possible.
 
-			\section{Dot-qualify syntax}
+			\subsection{Dot-qualify syntax}
 				To avoid loading a class unnecessary, types registered by modules or other plugins use the dot-qualify syntax.
 				The dot-qualify syntax is a dot-delimited string in the format "author.plugin.module.submodule.subsubmodule.name".
 
-		\chapter{User interface}
+		\section{User interface}
 
 			The plugin provides a user interface in terms of "actions".
 			An action can be performed by a command sender using a user interface for the command sender.
@@ -203,7 +172,7 @@
 			For example, confirmation prompts to players use ModalForm,
 			while other command senders have to input a "yes" command.
 
-			\section{Payment}
+			\subsection{Payment}
 
 				The "pay" action is a generic instruction to perform a simple transaction from one account to another.
 				This may result in an inconvenient user interface as accounts need to be specified explicitly.
@@ -214,8 +183,8 @@
 
 				This mechanism will be further documented in thd "Account selection" section under each module.
 
-	\part{Player module}
-		\chapter{Summary}
+	\chapter{Player module}
+		\section{Summary}
 
 			The player module provides the basic functionality such that players can own and exchange money.
 
@@ -223,32 +192,32 @@
 
 			This module is only dependent on the core module.
 
-			\section{Account owner types}
+			\subsection{Account owner types}
 				\paragraph{\texttt{.player}}
 					Accounts directly owned by a single player (even if the player cannot access the account directly all the time)
 					should have the \texttt{.player} owner type and the player name as the owner name.
 
-			\section{Account types}
+			\subsection{Account types}
 				\paragraph{\texttt{.player.cash}}
 					The default transaction account for players is the cash account.
 					If only the player module is enabled, all player money are stored in the cash accounts.
 
-		\chapter{User interface}
-			\section{Account selection}
+		\section{User interface}
+			\subsection{Account selection}
 				The player module contributes the \texttt{.player.cash} account type at priority $+10$
 				for both sender and recipient axxounts if the owning command sender is a player.
 
-		\chapter{Account creation}
+		\section{Account creation}
 			A \texttt{.player.cash} account is automatically created when a new player logins.
 
-			\chapter{Default capital}
+			\subsection{Default capital}
 				An amount of initial capital can be added to each new player account.
 				To prevent abuse, the player is not allowed to perform any player-to-player transactions
 				such that its eventual sum of balance is below the default capital value
 				in the first few days (configurable) after account creation.
 
-	\part{Bank module}
-		\chapter{Summary}
+	\chapter{Bank module}
+		\section{Summary}
 			The bank module provides an alternative place to store money.
 			Instead of storing all money in cash accounts, money can be placed in the bank with interest profit at a certain cost.
 
@@ -258,41 +227,41 @@
 			Player-created banks should be implemented using the Loan module instead,
 			since private banks are essentially a financial group that extensvely borrows and lends loans.
 
-			\section{Account types}
+			\subsection{Account types}
 				\paragraph{\texttt{.player.bank}}
 					The bank balance of players is stored in individual bank accounts.
 
-		\chapter{User interface}
-			\section{Account selection}
+		\section{User interface}
+			\subsection{Account selection}
 				Depending on server configuration, bank accounts may or may not be available in ordinary transactions.
 				Servers may want to disable direct deposit/withdrawal if deposit/withdrawal requires a fee.
 
-		\section{Account creation}
-			For servers where players register with default capital in banks,
-			\texttt{.player.bank} accounts are created automatically.
-			Otherwise, bank accounts must be created explicitly.
-			It is possible to set a minimum initial balance to create a bank account.
+			\subsection{Account creation}
+				For servers where players register with default capital in banks,
+				\texttt{.player.bank} accounts are created automatically.
+				Otherwise, bank accounts must be created explicitly.
+				It is possible to set a minimum initial balance to create a bank account.
 
-			There may be multiple bank accounts for the same player, in different currencies.
-			The bank module does not provide a user interface to create
-			multiple bank accounts in the same currency for the same player,
-			but it is possible for other modules to programatically bypass this limit,
-			e.g. the Physical module may create multiple bank accounts stored at multiple locations.
+				There may be multiple bank accounts for the same player, in different currencies.
+				The bank module does not provide a user interface to create
+				multiple bank accounts in the same currency for the same player,
+				but it is possible for other modules to programatically bypass this limit,
+				e.g. the Physical module may create multiple bank accounts stored at multiple locations.
 
-		\chapter{Routine}
-			\section{Interest growth}
+		\section{Routine}
+			\subsection{Interest growth}
 				Bank account capital may compound automatically based on various conditions. See the Configuration section for details.
 
-		\chapter{Configuration}
-			\section{Banks}
+		\section{Configuration}
+			\subsection{Banks}
 				There could be multiple bank account plans ("plans").
 				Usage of each plan may be limited to one-use.
 				Each usage may require some renewable or non-renewable condition, such as a minimum balance.
 
-			\section{Interests}
+			\subsection{Interests}
 				Each plan may have one or more interest mechanisms.
 
-				\paragraph{Interest mechanism frequency} Each mechanism could be applied:
+				Each mechanism could be applied:
 				\begin{itemize}
 					\item regularly, all the time
 					\item for some period after the player was last online
@@ -300,39 +269,39 @@
 					\item during player is online
 				\end{itemize}
 
-				\paragraph{Interest rate calculation} The interest rate can be:
+				The interest rate can be:
 				\begin{itemize}
 					\item constant amount
 					\item constant proportion
 					\item fluctuate based on economic activity (to adjust for inflation)
 				\end{itemize}
 
-					\subparagraph{Economic activity measurement} The measure of economic activity could be:
-					\begin{itemize}
-						\item Network-wide, so as to adjust for inflation
-						\item Transaction type-specific, so as to adjust for individual sectors
-							(e.g. if land price independently inflates too much)
-						\item Account-specific, as a form of stock sharing.
-							This kind of plans could be created by players directly at a cost.
-					\end{itemize}
+				The measurement of economic activity could be:
+				\begin{itemize}
+					\item Network-wide, so as to adjust for inflation
+					\item Transaction type-specific, so as to adjust for individual sectors
+						(e.g. if land price independently inflates too much)
+					\item Account-specific, as a form of stock sharing.
+						This kind of plans could be created by players directly at a cost.
+				\end{itemize}
 
 				Interest may be made negative to produce some risk in depositing, such as investment.
 
-	\part{Loan module}
-		\chapter{Summary}
+	\chapter{Loan module}
+		\section{Summary}
 
 			The loan module allows borrowing or lending loans between account owners.
 
 			This module is only dependent on the core module.
 
-	\part{Social module}
-		\chapter{Summary}
+	\chapter{Social module}
+		\section{Summary}
 
 			The social module introduces the new account type "organization" so that players can form organizations
 			and have joint control on the organization accounts.
 
-	\part{Stats module}
-		\chapter{Summary}
+	\chapter{Stats module}
+		\section{Summary}
 
 			The stats modulue provides admin tools for monitoring the economic situation in the server.
 
@@ -340,8 +309,8 @@
 			Other modules may exchange data with this module using the events API,
 			but dependency is not required.
 
-	\part{Regularization module}
-		\chapter{Summary}
+	\chapter{Regularization module}
+		\section{Summary}
 
 			The regularization module ("reg module" in short) performs automatic adjustments on designated parameters
 			in order to regulate the change in statistical variables from the stats module through statistical learning methods.
@@ -350,8 +319,8 @@
 			Other modules may exchange data with this module using the events API,
 			but dependency is not required.
 
-	\part{Shop module}
-		\chapter{Summary}
+	\chapter{Shop module}
+		\section{Summary}
 
 			The shop module allows buying or selling of goods between account owners.
 			The Summary of goods is not restricted.
@@ -361,16 +330,16 @@
 			Other modules may interact with this module using the events API,
 			but dependency is not required.
 
-	\part{Land module}
-		\chapter{Summary}
+	\chapter{Land module}
+		\section{Summary}
 
 			The land module allows players or organizations to buy land and impose restrictions on it.
 
 			The module is only dependent on the core module.
 
-	\part{Physical module}
+	\chapter{Physical module}
 		\label{sec:physical-module}
-		\chapter{Summary}
+		\section{Summary}
 			The physical module is a sophisticated module that integrates different features into the gameplay world.
 			It can be seen as a variant user interface and permission system to the economy system.
 

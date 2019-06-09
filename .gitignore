@@ -9,3 +9,6 @@
 *.log
 *.tmp
 *.xref
+*.out
+*.pdf
+*.toc

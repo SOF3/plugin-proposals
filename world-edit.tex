@@ -3,32 +3,30 @@
 	\date{2017-07-20, revised 2018-12-15}
 	\author{SOFe}
 
-\usepackage{hyperref}
-\usepackage{xr-hyper}
+\usepackage[hidelinks]{hyperref}
+\usepackage{bookmark}
+\usepackage{parskip}
 
+\renewcommand\thechapter{\arabic{chapter}}
 
 \def \code #1{\texttt{#1}}
 \def \sup #1{\textsuperscript{#1}}
 
 \begin{document}
-	\Css{
-		body {
-			margin: 10px auto;
-			max-width: 1000px;
-			font-family: Helvetica, Verdana, Geneva, sans-serif;
-		}
-	}
 
 	\maketitle
-	\tableofcontents
 
 	\begin{abstract}
 		This proposal describes a world edit plugin largely based on features originally intended in WorldEditArt,
 		along with some new ideas.
 	\end{abstract}
 
-	\part{Plugin mechanism}
-		\chapter{Builder sessions}
+	\tableofcontents
+
+	\newpage
+
+	\section{Plugin mechanism}
+		\section{Builder sessions}
 			Users of this plugin should be managed in "builder sessions" with individual access information. Builder
 			sessions can be created in three modes, namely:
 			\paragraph{Implicit Mode}
@@ -56,7 +54,7 @@
 					open-upwards trapdoor), the block itself is used.
 			\end{itemize}
 
-		\chapter{The core world editing chain}
+		\section{The core world editing chain}
 			\begin{itemize}
 				\item Selection
 				\item Block Iterator
@@ -66,9 +64,9 @@
 				\item Load Synchronizer
 			\end{itemize}
 
-			\section{Selection and block iterator}
+			\subsection{Selection and block iterator}
 				A selection refers to a 3D shape. A selection can be created by various methods as described in the
-				\hyperref[sec:shape-selection]{Shape Selection} section.
+				\hyperref[sec:shape-selection]{Shape Selection} subsection.
 
 				By default, all commands only affect the selection named "default". Builder sessions may also create
 				other selections, identified by case-insensitive names. The selections should be discarded upon closing
@@ -78,7 +76,7 @@
 				blocks on the margin of the selection at a defined padding (inside the border) and margin (outside the
 				border).
 
-			\section{Block changer}
+			\subsection{Block changer}
 				A block changer is an interface that accepts a Block argument and returns another Block argument,
 				determining the new block to set.
 
@@ -93,22 +91,22 @@
 				\paragraph{Weighted random list block changer} Same as random list block changer, except that the block
 				types have different probability of being selected.
 
-			\section{Clipboard chain}
+			\subsection{Clipboard chain}
 				An alternative chain is \texttt{Clipboard -> Cassette -> User History -> Load Synchronizer}, where the
 				clipboard provides both the block iterator and the block changer. More details will be described in the
-				\hyperref[sec:clipboard]{Clipboard} section.
+				\hyperref[sec:clipboard]{Clipboard} subsection.
 
-			\section{Cassette}
+			\subsection{Cassette}
 				A cassette is a section of server memory, or a temporary file on the hard disk (if greater than 10MB),
 				storing an ordered list of blocks changed in an operation. It can be re-executed in forward or backward
 				order to redo/undo the operation.
 
-			\section{User history}
+			\subsection{User history}
 				A user history manages an "undo stack" and a "redo stack", each holding an ordered list of cassettes.
 				When the user requests to undo or redo, a cassette from one stack will be moved to the other stack, and
 				pass a reference to the cassette to the load synchronizer.
 
-			\section{Load synchronizer}
+			\subsection{Load synchronizer}
 				The load synchronizer manages chunk locking and cassette operation queuing. Before starting an
 				operation, it determines whether the operation should be executed synchronously or asynchronously and
 				stores the chunks (identifiers only) affected by the cassette to manage locking. \emph{Cassette
@@ -120,7 +118,7 @@
 				asynchronous strategy (lock the chunks, pass all parameters to an AsyncTask, modify them on the other
 				thread and send the whole chunks).
 
-			\section{User interface}
+			\subsection{User interface}
 				While the chain consists of five components, the user only needs to make two inputs, and only look at
 				the final user history.
 
@@ -134,7 +132,7 @@
 				If the load synchronizer contains cassettes used by the user, it should show a progress bar on the
 				user's screen (scoreboards for players, periodic logger messages (at a lower frequency) for console).
 
-		\chapter{Shape selection}
+		\section{Shape selection}
 			\label{sec:shape-selection}
 			The geometric logic is implemented in \textit{libgeom}, while the UI logic is implemented in this plugin.
 
@@ -145,11 +143,11 @@
 			A wand can be virtually used using a command. For example, the command \texttt{//pos1} is equivalent to
 			clicking the \texttt{pos1} wand at the block that the builder session stands in.
 
-			\section{Cuboid}
-				\subsection{Definition} A cuboid is always aligned to the XYZ coordinate system.
-				\subsection{Parameters} Two points named \texttt{pos1} and \texttt{pos2}. The smallest cuboid
+			\subsection{Cuboid}
+				\subsubsection{Definition} A cuboid is always aligned to the XYZ coordinate system.
+				\subsubsection{Parameters} Two points named \texttt{pos1} and \texttt{pos2}. The smallest cuboid
 				inscribing both points is selected.
-				\subsection{Creation}
+				\subsubsection{Creation}
 					\paragraph{Explicit selection} Execute the wands \texttt{pos1} and \texttt{pos2} to select the two
 					positions separately. Executing again manipulates the selection.
 					\paragraph{\texttt{shoot} command} \texttt{//cuboid shoot <distance>} selects the \textit{this}
@@ -159,8 +157,8 @@
 					current cuboid selection by extending the cuboid on the specified sides. \texttt{pos1} and
 					\texttt{pos2} points might be flipped.
 
-			\section{Conical frustum}
-				\subsection{Definition} A conical frustum is very flexible. It is the generalization of:
+			\subsection{Conical frustum}
+				\subsubsection{Definition} A conical frustum is very flexible. It is the generalization of:
 					\begin{itemize}
 						\item \href{http://mathworld.wolfram.com/Cylinder.html}{Cylinders}
 						\item \href{http://mathworld.wolfram.com/Cone.html}{Cones}
@@ -174,7 +172,7 @@
 					XYZ coordinate system. The principal axis (the axis of rotation symmetry) may or may not be
 					orthogonal to the XYZ coordinate system, and may or may not be orthogonal to the base shape.
 					However, the top shape (for cylinders and conical frustums) must be parallel to the base shape.
-				\subsection{Parameters} Despite the great flexibility, there are no conditional parameters. The shape
+				\subsubsection{Parameters} Despite the great flexibility, there are no conditional parameters. The shape
 				is always only parameterized by a base ellipse and a top ellipse.
 					\paragraph{Base ellipse} The base ellipse is defined by a center point \texttt{baseCenter} (a
 					position vector), axis 1 \texttt{baseAxis1} (a relative vector from the center to one of the
@@ -184,7 +182,7 @@
 					the top shape has parallel axes 1 and 2 to the base shape, but the lengths can be different.
 					Therefore, the top shape is defined by the center point \texttt{topCenter}, length of axis 1
 					\texttt{topLength1} and length of axis 2 \texttt{topLength2}.
-				\subsection{Wands}
+				\subsubsection{Wands}
 					\paragraph{Principal axis} There are two basic wands \texttt{baseCenter} and \texttt{topCenter} to
 					select the principal axis of the shape.
 					\paragraph{Upright radius selection} If the desired shape is an upright (base shape is orthogonal
@@ -206,7 +204,7 @@
 					the wand only modifies the top radii but not the base radii, except the base axis directions are
 					rotated if the top radii are also rotated. Orientation-changing wands are not applicable as the two
 					ellipses must be parallel.
-				\subsection{Commands}
+				\subsubsection{Commands}
 					\paragraph{Creation} A much simpler way to create a basic aligned (elliptic) cylinder is to use the
 					command \texttt{//cylinder <height> <radius> [radius2] [Y|x|z]}, where the last parameter is the
 					alignment of the principal axis (default \texttt{y}).
@@ -221,17 +219,17 @@
 					\paragraph{Explicit radius} \texttt{//cylinder radius [top|base] [major|minor] <length>} sets the
 					major/minor/both radii of the top/base/both ellipses to \texttt{<length>}.
 
-			\section{Ellipsoid}
-				\subsection{Definition} An ellipsoid is a sphere that can be stretched alogn the three axes respectively.
-				\subsection{Parameters} \texttt{center} is the center point of the ellipsoid, and \texttt{rx},
+			\subsection{Ellipsoid}
+				\subsubsection{Definition} An ellipsoid is a sphere that can be stretched alogn the three axes respectively.
+				\subsubsection{Parameters} \texttt{center} is the center point of the ellipsoid, and \texttt{rx},
 				\texttt{ry} and \texttt{rz} are the radii of the ellipsoid on the three axes.
-				\subsection{Creation} Use the \texttt{center} wand to select the center of the sphere. Use
+				\subsubsection{Creation} Use the \texttt{center} wand to select the center of the sphere. Use
 				\texttt{rx}, \texttt{ry} and \texttt{rz} to select any point at the same x/y/z-coordinate as the margins
 				of the ellipsoid. If other radii have not been set, the wands also set them to the same value. If the
 				ellipsoid is a regular sphere, it is also possible to use \texttt{radius} to select any point on the
 				sphere surface.
 
-			\section{Mould selection}
+			\subsection{Mould selection}
 				Mould selection is a non-geometric selection. There are multiple mould selection modes:
 				\paragraph{Walking} The blocks that have intersected with the player during the selection are added
 				to the set of selected positions.
@@ -243,18 +241,18 @@
 					\subparagraph{Set intersection/subtraction} Only blocks inside/not inside another selection are
 					included.
 
-		\chapter{Clipboard}
+		\section{Clipboard}
 			\label{sec:clipboard}
-			\section{Copying}
+			\subsection{Copying}
 				\paragraph{\texttt{//copy}} iterates the current selection and writes each block (coordinates + block
 				type) to a schematic file. Each builder session may own their own directory of multiple clips.
 				\paragraph{\texttt{//cut}} deletes the blocks while copying.
 				\paragraph{\texttt{//move}} only copies the selection without deleting the blocks. The first time it is
 				pasted, the blocks are removed.
-			\section{Pasting}
+			\subsection{Pasting}
 				\paragraph{\texttt{//paste}} reads a schematic file and sets blocks through the cassette chain.
 
-		\chapter{Construction zone}
+		\section{Construction zone}
 			Command senders with a certain permission may declare specific zones in the world as "construction zones".
 			Builder sessions are granted with construction access in certain construction zones, only in which they can
 			execute world-editing operations.
@@ -265,7 +263,7 @@
 			If a world-editing operation overlaps non-construction zones, the ignored blocks will be saved into a new
 			cassette that can be managed later.
 
-		\chapter{Sandbox mode}
+		\section{Sandbox mode}
 			Builder sessions based on players can use a \texttt{//sandbox} prefix before their commands (e.g.
 			\texttt{//sandbox set snow} such that all world-editing operations they execute are only temporarily visible
 			on their client side, but do not update the level and are not visible to other players.
